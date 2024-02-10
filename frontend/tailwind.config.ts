@@ -17,6 +17,10 @@ const config = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      ubuntu: 'var(--font-ubuntu)',
+      jost: 'var(--font-jost)',
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
