@@ -14,7 +14,10 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        sm: '640px',
+        md: '768px',
+        lg: '960px',
+        xl: '1440px',
       },
     },
     fontFamily: {
@@ -23,6 +26,13 @@ const config = {
     },
     extend: {
       colors: {
+        "primary-black": "#00040F",
+        "secondary-black": "#1F1F1F",
+        "primary-purple": "#918EF4",
+        "primary-skyblue": "#62C7E4",
+        "primary-green": "#3EAF3F",
+        "dark-grey": "#404040",
+        "lighter-dark-grey": "#53595F",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
