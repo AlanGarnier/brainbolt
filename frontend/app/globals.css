@@ -71,6 +71,30 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-primary-black text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-white;
+  }
+
+  .hero-title {
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-white to-[#52525B] text-3xl lg:text-6xl font-ubuntu font-bold text-center;
+  }
+
+  .hero-subtitle {
+    @apply text-center text-base font-jost font-medium;
+  }
+
+  .typing-text {
+    @apply text-sm lg:text-base font-ubuntu font-medium;
+  }
+
+  .section-title {
+    @apply text-lg lg:text-3xl font-jost font-medium;
+  }
+
+  .section-text {
+    @apply text-base font-jost font-normal;
   }
 }

@@ -24,6 +24,14 @@ const config = {
       ubuntu: 'var(--font-ubuntu)',
       jost: 'var(--font-jost)',
     },
+    fontSize: {
+      sm: ['14px', '20px'],
+      base: ['16px', '24px'],
+      lg: ['20px', '28px'],
+      xl: ['24px', '32px'],
+      "3xl": ["32px", "40px"],
+      "6xl": ["64px", "80px"],
+    },
     extend: {
       colors: {
         "primary-black": "#00040F",
