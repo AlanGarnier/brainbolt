@@ -1,10 +1,9 @@
-import { link } from 'fs';
-import { Link } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 interface CustomTextProps {
     children: React.ReactNode;
-    link?: string;
+    link: string;
 }
 
 export const HeroTitle = ({children}: CustomTextProps) => {
