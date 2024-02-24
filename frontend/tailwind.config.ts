@@ -30,6 +30,7 @@ const config = {
       lg: ['20px', '28px'],
       xl: ['24px', '32px'],
       "3xl": ["32px", "40px"],
+      "4xl": ["40px", "48px"],
       "6xl": ["64px", "80px"],
     },
     extend: {
