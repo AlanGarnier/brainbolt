@@ -1,49 +1,83 @@
-import React from 'react'
+import { link } from 'fs';
+import { Link } from 'lucide-react';
+import React from 'react';
 
-export const HeroTitle = () => {
+interface CustomTextProps {
+    children: React.ReactNode;
+    link?: string;
+}
+
+export const HeroTitle = ({children}: CustomTextProps) => {
     return (
-        <div>HeroTitle</div>
+        <h1 className="hero-title">
+            {children}
+        </h1>
     )
 }
 
-export const HeroSubtitle = () => {
+export const HeroSubtitle = ({children}: CustomTextProps) => {
     return (
-        <div>HeroSubtitle</div>
+        <p className="hero-subtitle">
+            {children}
+        </p>
     )
 }
 
-export const TypingText = () => {
+export const TypingText = ({children}: CustomTextProps) => {
   return (
-    <div>TypingText</div>
+    <p className="typing-text">
+        {children}
+    </p>
   )
 }
 
-export const SectionTitle = () => {
+export const SectionTitle = ({children}: CustomTextProps) => {
     return (
-        <div>SectionTitle</div>
+        <h2 className="section-title">
+            {children}
+        </h2>
     )
 }
 
-export const FeatureTitle = () => {
+export const FeatureTitle = ({children}: CustomTextProps) => {
     return (
-        <div>FeatureTitle</div>
+        <h3 className="feature-title">
+            {children}
+        </h3>
+            
     )
 }
 
-export const FeatureText = () => {
+export const FeatureText = ({children}: CustomTextProps) => {
     return (
-        <div>FeatureText</div>
+        <p className="feature-text">
+            {children}
+        </p>
     )
 }
 
-export const BannerTitle = () => {
+export const BannerTitle = ({children}: CustomTextProps) => {
     return (
-        <div>BannerTitle</div>
+        <h2 className="banner-title">
+            {children}  
+        </h2>
     )
 }
 
-export const BannerText = () => {
+export const BannerText = ({children}: CustomTextProps) => {
     return (
-        <div>BannerText</div>
+        <p className="banner-text">
+            {children}
+        </p>
+    )
+}
+
+export const NavLink = ({children, link}: CustomTextProps) => {
+    return (
+        <li className="nav-link">
+            <Link href={link}>
+                {children}
+            </Link>
+        </li>
     )
 }
