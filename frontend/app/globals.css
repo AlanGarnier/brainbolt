@@ -74,12 +74,12 @@
     @apply bg-primary-black text-white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3, h4, h5, h6, p, a, span {
     @apply text-white;
   }
 
   .hero-title {
-    @apply bg-clip-text text-transparent bg-gradient-to-b from-white to-[#52525B] text-3xl lg:text-6xl font-ubuntu font-bold text-center;
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white to-[#52525B] text-3xl lg:text-6xl font-ubuntu font-bold text-center;
   }
 
   .hero-subtitle {
@@ -96,5 +96,17 @@
 
   .section-text {
     @apply text-base font-jost font-normal;
+  }
+
+  .banner-title {
+    @apply bg-clip-text text-transparent bg-gradient-to-br from-white to-[#52525B] text-3xl lg:text-4xl font-ubuntu font-bold;
+  }
+
+  .banner-text {
+    @apply text-base font-jost font-normal;
+  }
+
+  .nav-link {
+    @apply text-lg lg:text-md font-jost font-medium;
   }
 }

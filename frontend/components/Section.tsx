@@ -1,8 +1,14 @@
 import React from 'react'
 
-const Section = () => {
+interface SectionProps {
+  children: React.ReactNode;
+}
+
+const Section = ({children}: SectionProps) => {
   return (
-    <div>Section</div>
+    <section className="container mx-auto px-8 pt-5 pb-8 lg:pt-[90px] lg:pb-[110px] lg:px-[110px]">
+      {children}
+    </section>
   )
 }
 
