@@ -14,7 +14,7 @@ const Hero = () => {
       <div className="flex flex-col mx-auto lg:max-w-[796px] space-y-[40px] items-center justify-center h-full text-center">
         <h1 className="hero-title uppercase">Lorem ipsum dolor sit amet consectetur</h1>
         <p className="hero-subtitle">Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod. Proin fermentum mi vitae diam id. Purus est urna lectus malesuada et gravida porttitor fames. Nullam aliquet aliquam eget malesuada id sed rhoncus. Est metus elementum odio felis facilisi non natoque cras vitae.  </p>
-        <Button>
+        <Button asChild className="glow">
           <Link className="font-semibold font-jost text-[16px]" href="/login">
             Lancez la partie
           </Link>
