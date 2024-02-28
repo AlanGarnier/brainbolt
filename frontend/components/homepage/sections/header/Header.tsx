@@ -1,5 +1,7 @@
 "use client";
 import { NavLink } from '@/components/CustomTexts'
+import GradientBorderButton from '@/components/GradientBorderButton';
+import RadialBorderGradient from '@/components/RadialBorderGradient';
 import { Button } from '@/components/ui/button'
 import { AlignRight, X } from 'lucide-react'
 import Image from 'next/image'
@@ -16,30 +18,50 @@ const Header = () => {
     <>
 
       {/* Desktop Header */}
-      <header className="px-8 pt-5 pb-8 lg:py-4 lg:px-[110px]">
+      <header className="relative px-8 pt-5 pb-8 lg:py-4 lg:px-[110px]">
+        {/* Radial gradient at the bottom of the header */}
+        <RadialBorderGradient direction="bottom" />
         <div className="flex justify-between h-16 mx-auto">
-          <a rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center">
-            <Image src="/assets/img/brainbolt-white-logo.svg" alt="Logo" width={194} height={30} />
-          </a>
+          <Link 
+            href="/"
+            className="flex items-center">
+            <Image 
+              src="/assets/img/brainbolt-white-logo.svg" 
+              alt="Brainbolt" 
+              width={194} 
+              height={30} />
+          </Link>
           <ul className="items-stretch hidden space-x-3 lg:flex">
             <NavLink link="/login">Lorem Ipsum</NavLink>
             <NavLink link="/login">Lorem Ipsum</NavLink>
             <NavLink link="/login">Lorem Ipsum</NavLink>
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex lg:space-x-5">
-            <Button asChild variant={'outline'}>
-              <Link className="glow font-semibold font-jost text-primary-purple text-[16px] hover:text-white" href="/login">
+            <GradientBorderButton>
+              <Link 
+                href="/signup"
+                className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px] group-hover:text-white"
+                >
                 Rejoindre la communauté
               </Link>
-            </Button>
-            <Button variant={'default'} asChild className="glow">
-              <Link className="font-semibold font-jost" href="/login">
+            </GradientBorderButton>
+            <Button 
+              asChild
+              variant={'default'}  
+              className="glow">
+              <Link 
+                href="/login"
+                className="font-semibold font-jost">
                 Lancez la partie
               </Link>
             </Button>
           </div>
-          <button className="lg:hidden" onClick={showMobileMenu}>
-            <AlignRight width={40} height={40} />
+          <button 
+            className="lg:hidden" 
+            onClick={showMobileMenu}>
+            <AlignRight 
+              width={40} 
+              height={40} />
           </button>
         </div>
       </header>
@@ -51,10 +73,16 @@ const Header = () => {
             <nav>
               <div className='flex justify-between items-center pb-14'>
                 <div>
-                  <Image src="/assets/img/brainbolt-white-logo.svg" alt="Logo" width={194} height={30} />
+                  <Image 
+                    src="/assets/img/brainbolt-white-logo.svg" 
+                    alt="Logo" 
+                    width={194} 
+                    height={30} />
                 </div>
                 <div onClick={showMobileMenu}>
-                  <X width={40} height={40} />
+                  <X 
+                    width={40} 
+                    height={40} />
                 </div>
               </div>
               <ul className="flex flex-col space-y-8 pb-10">
@@ -64,8 +92,12 @@ const Header = () => {
                 <NavLink link="/login">Lorem Ipsum</NavLink>
               </ul>
               <div className="inline">
-                <Button variant={'default'} asChild>
-                  <Link className="font-semibold font-jost text-[16px]" href="/login">
+                <Button 
+                  asChild
+                  variant={'default'}>
+                  <Link 
+                    href="/login"
+                    className="font-semibold font-jost text-[16px]">
                     Lancez la partie
                   </Link>
                 </Button>
