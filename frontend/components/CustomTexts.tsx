@@ -73,8 +73,8 @@ export const BannerText = ({children}: CustomTextProps) => {
 
 export const NavLink = ({children, link}: CustomTextProps) => {
     return (
-        <li className="nav-link">
-            <Link href={link}>
+        <li className="nav-link flex">
+            <Link className="flex items-center md:px-4 lg:px-4 -mb-1" href={link}>
                 {children}
             </Link>
         </li>
