@@ -19,8 +19,6 @@ const Header = () => {
 
       {/* Desktop Header */}
       <header className="relative px-8 pt-5 pb-8 lg:py-4 lg:px-[110px]">
-        {/* Radial gradient at the bottom of the header */}
-        <RadialBorderGradient direction="bottom" />
         <div className="flex justify-between h-16 mx-auto">
           <Link 
             href="/"
@@ -65,6 +63,9 @@ const Header = () => {
           </button>
         </div>
       </header>
+
+      {/* Radial gradient at the bottom of the header */}
+      <RadialBorderGradient direction="bottom" />
 
       {/* Mobile Header */}
       <div className="lg:hidden !z-[999]">
