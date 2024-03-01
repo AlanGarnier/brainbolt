@@ -1,6 +1,12 @@
 {
   "extends": ["next", "next/core-web-vitals"],
   "rules": {
-    "no-unused-vars": "error"
+    "no-unused-vars": "error",
+    "template-curly-spacing": "error",
+    "no-var": "error",
+    "no-const-assign": "error",
+    "camelcase": "error",
+    "no-return-assign": "error",
+    "no-console": "warn"
   }
 }
