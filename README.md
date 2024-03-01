@@ -1,4 +1,4 @@
-## Brainbolt - Guide d'installation
+# Brainbolt - Guide d'installation
 
 # Frontend
 
