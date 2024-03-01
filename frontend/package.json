@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prepare": "cd .. && husky frontend/.husky && sh frontend/.husky/hooks/setup.sh",
     "check-branch-name": "cd .. && frontend/.husky/hooks/check_branch_naming.sh",
-    "pre-commit": "npm run lint && npm run check-branch-name"
+    "pre-commit": "npm run lint",
+    "pre-push": "npm run check-branch-name"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
