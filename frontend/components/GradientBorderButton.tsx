@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from './ui/button'
 
 interface GradientBorderButtonProps {
     children: React.ReactNode;
