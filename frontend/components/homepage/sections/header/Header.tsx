@@ -36,7 +36,7 @@ const Header = () => {
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex lg:space-x-5">
             <GradientBorderButton>
-            <Link 
+              <Link
                 href="/auth/signup"
                 className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px] group-hover:text-white"
               >
