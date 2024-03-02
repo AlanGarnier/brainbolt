@@ -118,4 +118,8 @@
     @apply transition-shadow duration-300 ease-in-out;
   }
 
+  .bg-signup {
+    @apply bg-[url('/assets/img/bg-signup.webp')] bg-cover bg-center bg-no-repeat;
+  }
+
 }
