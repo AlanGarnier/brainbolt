@@ -1,3 +1,0 @@
-# frontend/.husky/pre-commit
-cd frontend
-npm run pre-commit
