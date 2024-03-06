@@ -6,6 +6,7 @@ import Header from "@/components/homepage/sections/header/Header";
 import Hero from "@/components/homepage/sections/hero/Hero";
 import Map from "@/components/homepage/sections/map/Map";
 import Platform from "@/components/homepage/sections/platform/Platform";
+import Banner from "@/components/homepage/sections/banner/Banner";
 
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <Features />
       <Explore />
       <Map />
+      <Banner />
       <Footer />
     </main>
   );
