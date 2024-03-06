@@ -20,13 +20,13 @@ const Header = () => {
       {/* Desktop Header */}
       <header className="relative px-8 pt-5 pb-8 lg:py-4 lg:px-[110px]">
         <div className="flex justify-between h-16 mx-auto">
-          <Link 
+          <Link
             href="/"
             className="flex items-center">
-            <Image 
-              src="/assets/img/brainbolt-white-logo.svg" 
-              alt="Brainbolt" 
-              width={194} 
+            <Image
+              src="/assets/img/brainbolt-white-logo.svg"
+              alt="Brainbolt"
+              width={194}
               height={30} />
           </Link>
           <ul className="items-stretch hidden space-x-3 lg:flex">
@@ -36,29 +36,29 @@ const Header = () => {
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex lg:space-x-5">
             <GradientBorderButton>
-              <Link 
+              <Link
                 href="/signup"
                 className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px] group-hover:text-white"
-                >
+              >
                 Rejoindre la communauté
               </Link>
             </GradientBorderButton>
-            <Button 
+            <Button
               asChild
-              variant={'default'}  
+              variant={'default'}
               className="glow">
-              <Link 
+              <Link
                 href="/login"
                 className="font-semibold font-jost">
-                Lancez la partie
+                Se connecter
               </Link>
             </Button>
           </div>
-          <button 
-            className="lg:hidden" 
+          <button
+            className="lg:hidden"
             onClick={showMobileMenu}>
-            <AlignRight 
-              width={40} 
+            <AlignRight
+              width={40}
               height={40} />
           </button>
         </div>
@@ -74,15 +74,15 @@ const Header = () => {
             <nav>
               <div className='flex justify-between items-center pb-14'>
                 <div>
-                  <Image 
-                    src="/assets/img/brainbolt-white-logo.svg" 
-                    alt="Logo" 
-                    width={194} 
+                  <Image
+                    src="/assets/img/brainbolt-white-logo.svg"
+                    alt="Logo"
+                    width={194}
                     height={30} />
                 </div>
                 <div onClick={showMobileMenu}>
-                  <X 
-                    width={40} 
+                  <X
+                    width={40}
                     height={40} />
                 </div>
               </div>
@@ -93,10 +93,10 @@ const Header = () => {
                 <NavLink link="/login">Lorem Ipsum</NavLink>
               </ul>
               <div className="inline">
-                <Button 
+                <Button
                   asChild
                   variant={'default'}>
-                  <Link 
+                  <Link
                     href="/login"
                     className="font-semibold font-jost text-[16px]">
                     Lancez la partie
