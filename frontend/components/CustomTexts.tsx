@@ -3,6 +3,10 @@ import React from 'react';
 
 interface CustomTextProps {
     children: React.ReactNode;
+}
+
+interface NavLinkProps {
+    children: React.ReactNode;
     link: string;
 }
 
@@ -71,7 +75,7 @@ export const BannerText = ({children}: CustomTextProps) => {
     )
 }
 
-export const NavLink = ({children, link}: CustomTextProps) => {
+export const NavLink = ({children, link}: NavLinkProps) => {
     return (
         <li className="nav-link flex">
             <Link 
