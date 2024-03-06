@@ -118,4 +118,7 @@
     @apply transition-shadow duration-300 ease-in-out;
   }
 
+  .bg-section {
+    @apply bg-[url('/assets/img/star-lights.png')] bg-no-repeat bg-cover bg-center;
+  }
 }
