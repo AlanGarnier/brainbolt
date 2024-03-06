@@ -3,14 +3,14 @@ import Section from '@/components/Section'
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { BannerText, BannerTitle } from '@/components/CustomTexts';
 
 const Banner = () => {
   return (
     <Section background="bg-section">
       <div className="flex flex-col mx-auto lg:max-w-[796px] space-y-[40px] items-center justify-center h-full text-center">
-        <h1 className="banner-title">Lorem ipsum dolor sit amet consectetur. </h1>
-        <h2 className="banner-text">Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod.</h2>
-
+        <BannerTitle>Lorem ipsum dolor sit amet consectetur.</BannerTitle>
+        <BannerText>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod.</BannerText>
         <div className="inline">
           <Button
             asChild
