@@ -121,4 +121,12 @@
   .bg-section {
     @apply bg-[url('/assets/img/star-lights.png')] bg-no-repeat bg-cover bg-center;
   }
+
+  .map-subtitle{
+    @apply text-center text-base font-jost font-medium;
+  }
+
+  .map-title{
+    @apply text-center text-base font-jost font-medium;
+  }
 }
