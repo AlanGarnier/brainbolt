@@ -33,6 +33,7 @@ const Input = ({id,
         "w-full",
         "rounded-xl",
         "border",
+        "mb-4",
         {
           "border-red-500": error,
           "bg-red-200": error,
