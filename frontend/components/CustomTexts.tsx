@@ -102,3 +102,52 @@ export const MapTitle = ({children}: CustomTextProps) => {
         </h2>
     )
 }
+
+export const ExploreSubtitle = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="explore-subtitle">
+            {children}  
+        </h2>
+    )
+}
+
+export const ExploreTitle = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="explore-title">
+            {children}  
+        </h2>
+    )
+}
+
+export const FriendsTitle = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="friends-title">
+            {children}  
+        </h2>
+    )
+}
+
+export const FriendsText = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="friends-text">
+            {children}  
+        </h2>
+    )
+}
+
+export const ChatTitle = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="chat-title">
+            {children}  
+        </h2>
+    )
+}
+
+export const ChatText = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="chat-text">
+            {children}  
+        </h2>
+    )
+}
+

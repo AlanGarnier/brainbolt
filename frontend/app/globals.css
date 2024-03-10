@@ -129,4 +129,31 @@
   .map-title{
     @apply text-center text-base font-jost font-medium;
   }
+
+  .explore-subtitle{
+    @apply text-base font-jost font-medium;
+  }
+
+  .explore-title{
+    @apply text-3xl text-base font-jost font-medium;
+    margin-top: 20px;
+  }
+
+  .friends-title{
+    @apply text-base font-jost font-medium;
+  }
+
+  .friends-text{
+    @apply text-base font-jost font-medium;
+    margin-top: 20px;
+  }
+
+  .chat-title{
+    @apply text-base font-jost font-medium;
+  }
+
+  .chat-text{
+    @apply text-base font-jost font-medium;
+    margin-top: 20px;
+  }
 }
