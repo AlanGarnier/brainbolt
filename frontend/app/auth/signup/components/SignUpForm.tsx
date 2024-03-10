@@ -6,6 +6,11 @@ import { SectionTitle } from '@/components/CustomTexts';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+import z from 'zod';
+import { SignUpFormSchema } from '@/lib/schemas';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 const steps = [
   {
     id: '1',
@@ -20,10 +25,22 @@ const steps = [
   { id: '3', name: 'Avatar', fields: ['image'] }
 ]
 
+type Inputs = z.infer<typeof SignUpFormSchema>;
+
 const SignUpForm = () => {
   // const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
   // const delta = currentStep - previousStep
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    trigger,
+    formState: { errors },
+  } = useForm<Inputs>({
+    resolver: zodResolver(SignUpFormSchema),
+  });
 
   const next = () => {
     // const fields = steps[currentStep].fields
@@ -58,15 +75,15 @@ const SignUpForm = () => {
                   id="email"
                   type="email"
                   placeholder="Email"
-                  // register={register("email")}
-                  // error={errors.email?.message}     
+                  register={register("email")}
+                  error={errors.email?.message}     
                 />
                 <Input
                   id="password"
                   type="password"
                   placeholder="Mot de passe"
-                  // register={register("password")}
-                  // error={errors.password?.message}
+                  register={register("password")}
+                  error={errors.password?.message}
                 />
               </div>
             </div>
@@ -78,11 +95,11 @@ const SignUpForm = () => {
                 Trouve-toi un nom de joueur unique !
               </SectionTitle>
               <Input
-                id="name"
+                id="username"
                 type="text"
                 placeholder="Nom d'utilisateur"
-                // register={register("name")}
-                // error={errors.name?.message}
+                register={register("username")}
+                error={errors.username?.message}
               />
             </div>
           )}
