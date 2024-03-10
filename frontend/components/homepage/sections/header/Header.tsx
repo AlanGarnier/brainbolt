@@ -30,14 +30,14 @@ const Header = () => {
               height={30} />
           </Link>
           <ul className="items-stretch hidden space-x-3 lg:flex">
-            <NavLink link="#">Lorem Ipsum</NavLink>
-            <NavLink link="#">Lorem Ipsum</NavLink>
-            <NavLink link="#">Lorem Ipsum</NavLink>
+            <NavLink link="/login">Lorem Ipsum</NavLink>
+            <NavLink link="/login">Lorem Ipsum</NavLink>
+            <NavLink link="/login">Lorem Ipsum</NavLink>
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex lg:space-x-5">
             <GradientBorderButton>
               <Link
-                href="/auth/signup"
+                href="/signup"
                 className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px] group-hover:text-white"
               >
                 Rejoindre la communauté
@@ -47,8 +47,8 @@ const Header = () => {
               asChild
               variant={'default'}
               className="glow">
-              <Link 
-                href="/auth/login"
+              <Link
+                href="/login"
                 className="font-semibold font-jost">
                 Se connecter
               </Link>

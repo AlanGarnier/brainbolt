@@ -5,6 +5,7 @@
     "template-curly-spacing": "error",
     "no-var": "error",
     "no-const-assign": "error",
+    "camelcase": "error",
     "no-return-assign": "error",
     "no-console": "warn"
   }

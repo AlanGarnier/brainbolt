@@ -118,23 +118,7 @@
     @apply transition-shadow duration-300 ease-in-out;
   }
 
-  .bg-signup {
-    @apply bg-[url('/assets/img/bg-signup.webp')] bg-no-repeat bg-cover bg-center;
-  }
-
   .bg-section {
     @apply bg-[url('/assets/img/star-lights.png')] bg-no-repeat bg-cover bg-center;
-  }
-
-  .bg-signup {
-    @apply bg-[url('/assets/img/bg-signup.webp')] bg-cover bg-center bg-no-repeat;
-  }
-
-  .input {
-    @apply bg-white/60 h-[52px] text-white font-jost first-letter:outline-none w-full text-sm rounded-2xl focus:ring-white focus:border-white focus:outline-1;
-  }
-
-  .input::placeholder {
-    @apply text-white font-jost font-light;
   }
 }

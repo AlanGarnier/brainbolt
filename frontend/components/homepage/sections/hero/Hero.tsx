@@ -19,7 +19,7 @@ const Hero = () => {
           asChild 
           className="glow">
           <Link 
-            href="/auth/login"
+            href="/login"
             className="font-semibold font-jost text-base">
             Lancez la partie
           </Link>
