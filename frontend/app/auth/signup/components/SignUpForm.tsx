@@ -53,20 +53,22 @@ const SignUpForm = () => {
                 className='bg-clip-text text-transparent mb-8 bg-gradient-to-br from-white to-[#52525B]'>
                 Commençons par ton email/mot de passe
               </SectionTitle>
-              <Input
-                id="email"
-                type="email"
-                placeholder="Email"
-                // register={register("email")}
-                // error={errors.email?.message}     
-              />
-              <Input
-                id="password"
-                type="password"
-                placeholder="Mot de passe"
-                // register={register("password")}
-                // error={errors.password?.message}
-              />
+              <div className="flex flex-col space-y-4">
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Email"
+                  // register={register("email")}
+                  // error={errors.email?.message}     
+                />
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Mot de passe"
+                  // register={register("password")}
+                  // error={errors.password?.message}
+                />
+              </div>
             </div>
           )}
           { currentStep === 1 && (
