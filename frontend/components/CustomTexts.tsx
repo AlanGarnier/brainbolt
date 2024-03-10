@@ -3,7 +3,6 @@ import React from 'react';
 
 interface CustomTextProps {
     children: React.ReactNode;
-    className?: string;
 }
 
 interface NavLinkProps {
@@ -35,9 +34,9 @@ export const TypingText = ({children}: CustomTextProps) => {
   )
 }
 
-export const SectionTitle = ({children, className}: CustomTextProps) => {
+export const SectionTitle = ({children}: CustomTextProps) => {
     return (
-        <h2 className={`section-title ${className}`}>
+        <h2 className="section-title">
             {children}
         </h2>
     )
