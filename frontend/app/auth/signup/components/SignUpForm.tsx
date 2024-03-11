@@ -12,6 +12,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CldUploadButton } from 'next-cloudinary';
+import { get } from 'http';
 
 const steps = [
   {
@@ -61,9 +62,9 @@ const SignUpForm = () => {
 
   type FieldName = keyof Inputs
 
-  const next = () => {
+  const next = async () => {
     const fields = steps[currentStep].fields
-    const output = trigger(fields as FieldName[], { shouldFocus: true })
+    const output = await trigger(fields as FieldName[], { shouldFocus: true })
     const {image} = getValues()
 
     if (!output) return
@@ -74,8 +75,8 @@ const SignUpForm = () => {
       setPreviousStep(currentStep);
       setCurrentStep(step => step + 1);
       // console.log('en cours')
-    } else if (currentStep === steps.length - 1 && image) {
-      handleSubmit(onSubmit)();
+    } else if (currentStep === steps.length - 1 && getValues().image) {
+      await handleSubmit(onSubmit)();
     }
   }
 
@@ -170,13 +171,16 @@ const SignUpForm = () => {
             <Button
               onClick={prev}
               disabled={currentStep === 0}
+              variant="navigation"
             >
               <ChevronLeft className='h-5 w-5' />
             </Button>
             {/* Bouton suivant / valider */}
             <Button
               onClick={next}
-              type='submit'
+              type="submit"
+              variant="navigation"
+              disabled={currentStep === steps.length - 1 && !getValues().image}
             >
               {
                 currentStep === steps.length - 1 ? 'Valider' : <ChevronRight className='h-5 w-5' />
