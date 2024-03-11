@@ -12,7 +12,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CldUploadButton } from 'next-cloudinary';
-import { get } from 'http';
+import { motion } from 'framer-motion'
 
 const steps = [
   {
@@ -34,7 +34,7 @@ const SignUpForm = () => {
   const [previousStep, setPreviousStep] = useState(0)
   const [currentStep, setCurrentStep] = useState(0)
   
-  // const delta = currentStep - previousStep
+  const delta = currentStep - previousStep
 
   const {
     register,
@@ -95,10 +95,14 @@ const SignUpForm = () => {
           currentStep={currentStep} 
         />
         {/* Form */}
-        <form className="space-y-8 w-full min-h-[295px]" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-8 w-full min-h-[240px] lg:min-h-[295px]" onSubmit={handleSubmit(onSubmit)}>
           {/* Si le currentStep est égal à 0, on affiche les champs email et password */}
           { currentStep === 0 && (
-            <div>
+            <motion.div
+                initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
               <SectionTitle 
                 className='bg-clip-text text-transparent mb-8 bg-gradient-to-br from-white to-[#52525B]'>
                 Commençons par ton email/mot de passe
@@ -121,11 +125,15 @@ const SignUpForm = () => {
                   error={errors.password?.message}
                 />
               </div>
-            </div>
+            </motion.div>
           )}
           {/* Si le currentStep est égal à 1, on affiche le champ username */}
           { currentStep === 1 && (
-            <div>
+            <motion.div
+                initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
               <SectionTitle 
                 className='bg-clip-text text-transparent mb-8 bg-gradient-to-br from-white to-[#52525B]'>
                 Trouve-toi un nom de joueur unique !
@@ -138,11 +146,15 @@ const SignUpForm = () => {
                 register={register("username")}
                 error={errors.username?.message}
               />
-            </div>
+            </motion.div>
           )}
           {/* Si le currentStep est égal à 2, on affiche le champ image */}
           { currentStep === 2 && (
-            <div>
+             <motion.div
+                initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
               <SectionTitle 
                 className='bg-clip-text text-transparent mb-8 bg-gradient-to-br from-white to-[#52525B]'>
                 Presque fini ! Pimp ton profil en ajoutant une image d&apos;avatar !
@@ -161,7 +173,7 @@ const SignUpForm = () => {
                   <Input id="image" type="file" register={register("image")} className="hidden" />
                 </CldUploadButton>
               </div>
-            </div>
+            </motion.div>
           )}
         </form>
         {/* Navigation */}
