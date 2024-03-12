@@ -8,8 +8,8 @@ const Features = () => {
   return (
     <Section background="bg-section">
       <div className="flex flex-col  space-y-8 lg:space-y-20 items-center justify-center h-full text-center">
-        <p className="typing-text">Lorem ipsum.</p>
-        <h2 className="section-title">Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod. Proin fermentum mi vitae diam id. Purus est urna lectus malesuada et gravida porttitor fames. Nullam aliquet aliquam eget malesuada id sed rhoncus.</h2>
+        <FeatureText>Lorem ipsum.</FeatureText>
+        <FeatureTitle>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod. Proin fermentum mi vitae diam id. Purus est urna lectus malesuada et gravida porttitor fames. Nullam aliquet aliquam eget malesuada id sed rhoncus.</FeatureTitle>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col justify-center items-center py-8 px-6 space-y-6 w-full max-w-[338px]">
