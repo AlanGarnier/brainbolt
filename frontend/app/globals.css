@@ -98,6 +98,11 @@
     @apply text-base font-jost font-normal;
   }
 
+  .plus-title{
+    @apply text-3xl text-base font-jost font-medium;
+    margin-top: 20px;
+  }
+
   .banner-title {
     @apply bg-clip-text text-transparent bg-gradient-to-br from-white to-[#52525B] text-3xl lg:text-4xl font-ubuntu font-bold;
   }
@@ -120,40 +125,5 @@
 
   .bg-section {
     @apply bg-[url('/assets/img/star-lights.png')] bg-no-repeat bg-cover bg-center;
-  }
-
-  .map-subtitle{
-    @apply text-center text-base font-jost font-medium;
-  }
-
-  .map-title{
-    @apply text-center text-base font-jost font-medium;
-  }
-
-  .explore-subtitle{
-    @apply text-base font-jost font-medium;
-  }
-
-  .explore-title{
-    @apply text-3xl text-base font-jost font-medium;
-    margin-top: 20px;
-  }
-
-  .friends-title{
-    @apply text-base font-jost font-medium;
-  }
-
-  .friends-text{
-    @apply text-base font-jost font-medium;
-    margin-top: 20px;
-  }
-
-  .chat-title{
-    @apply text-base font-jost font-medium;
-  }
-
-  .chat-text{
-    @apply text-base font-jost font-medium;
-    margin-top: 20px;
   }
 }

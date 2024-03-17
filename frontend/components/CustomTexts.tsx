@@ -42,6 +42,14 @@ export const SectionTitle = ({children}: CustomTextProps) => {
     )
 }
 
+export const PlusTitle = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="plus-title">
+            {children}
+        </h2>
+    )
+}
+
 export const FeatureTitle = ({children}: CustomTextProps) => {
     return (
         <h3 className="feature-title">
@@ -87,67 +95,4 @@ export const NavLink = ({children, link}: NavLinkProps) => {
     )
 }
 
-export const MapSubtitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="map-subtitle">
-            {children}  
-        </h2>
-    )
-}
-
-export const MapTitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="map-title">
-            {children}  
-        </h2>
-    )
-}
-
-export const ExploreSubtitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="explore-subtitle">
-            {children}  
-        </h2>
-    )
-}
-
-export const ExploreTitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="explore-title">
-            {children}  
-        </h2>
-    )
-}
-
-export const FriendsTitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="friends-title">
-            {children}  
-        </h2>
-    )
-}
-
-export const FriendsText = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="friends-text">
-            {children}  
-        </h2>
-    )
-}
-
-export const ChatTitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="chat-title">
-            {children}  
-        </h2>
-    )
-}
-
-export const ChatText = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="chat-text">
-            {children}  
-        </h2>
-    )
-}
 

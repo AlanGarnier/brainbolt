@@ -2,12 +2,8 @@ import React from "react";
 import Section from "@/components/Section";
 import Image from "next/image";
 import {
-  ExploreSubtitle,
-  ExploreTitle,
-  FriendsTitle,
-  FriendsText,
-  ChatTitle,
-  ChatText,
+  SectionTitle,
+  PlusTitle
 } from "@/components/CustomTexts";
 
 const Explore = () => {
@@ -15,11 +11,11 @@ const Explore = () => {
     <Section>
       <div className="flex flex-col lg:flex-row lg:space-x-6 lg:items-center">
         <div className="flex flex-col justify-center lg:w-1/2">
-          <ExploreSubtitle>Lorem ipsum</ExploreSubtitle>
+          <SectionTitle>Lorem ipsum</SectionTitle>
 
-          <ExploreTitle>
+          <PlusTitle>
             Lorem ipsum dolor sit amet consectetur. Euismod nam
-          </ExploreTitle>
+          </PlusTitle>
 
           <div className="flex mt-4">
             <div className="flex flex-col w-48 mr-12">
@@ -29,10 +25,10 @@ const Explore = () => {
                 width={70}
                 height={140}
               />
-              <FriendsTitle>Lorem ipsum</FriendsTitle>
-              <FriendsText>
+              <SectionTitle>Lorem ipsum</SectionTitle>
+              <PlusTitle>
                 Lorem ipsum dolor sit amet consectetur augue egestas varius
-              </FriendsText>
+              </PlusTitle>
             </div>
 
             <div className="flex flex-col w-48">
@@ -42,10 +38,10 @@ const Explore = () => {
                 width={70}
                 height={140}
               />
-              <ChatTitle>Lorem ipsum</ChatTitle>
-              <ChatText>
+              <SectionTitle>Lorem ipsum</SectionTitle>
+              <PlusTitle>
                 Lorem ipsum dolor sit amet consectetur augue egestas varius{" "}
-              </ChatText>
+              </PlusTitle>
             </div>
           </div>
         </div>
