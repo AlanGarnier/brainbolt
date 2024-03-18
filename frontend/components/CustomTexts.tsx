@@ -42,14 +42,6 @@ export const SectionTitle = ({children}: CustomTextProps) => {
     )
 }
 
-export const PlusTitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="plus-title">
-            {children}
-        </h2>
-    )
-}
-
 export const FeatureTitle = ({children}: CustomTextProps) => {
     return (
         <h3 className="feature-title">
