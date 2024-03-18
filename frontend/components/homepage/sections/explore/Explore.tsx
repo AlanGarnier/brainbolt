@@ -2,46 +2,45 @@ import React from "react";
 import Section from "@/components/Section";
 import Image from "next/image";
 import {
+  FeatureText,
+  FeatureTitle,
   SectionTitle,
-  PlusTitle
+  TypingText
 } from "@/components/CustomTexts";
 
 const Explore = () => {
   return (
     <Section>
       <div className="flex flex-col lg:flex-row lg:space-x-6 lg:items-center">
-        <div className="flex flex-col justify-center lg:w-1/2">
-          <SectionTitle>Lorem ipsum</SectionTitle>
+        <div className="flex flex-col justify-center lg:w-1/2 mb-9 lg:mb-0">
+          <div className="flex flex-col space-y-5 lg:space-y-10 mb-10 lg:mb-14">
+            <TypingText>Lorem ipsum</TypingText>
+            <SectionTitle>Lorem ipsum dolor sit amet consectetur. Euismod nam</SectionTitle>
+          </div>
 
-          <PlusTitle>
-            Lorem ipsum dolor sit amet consectetur. Euismod nam
-          </PlusTitle>
-
-          <div className="flex mt-4">
-            <div className="flex flex-col w-48 mr-12">
+          <div className="flex flex-col space-y-6 lg:space-y-0 lg:flex-row lg:space-x-10">
+            <div className="flex flex-col space-y-4">
               <Image
                 src="/assets/img/icone-friends.png"
                 alt="Friends Icone"
-                width={70}
-                height={140}
+                width={56}
+                height={56}
+                className="-ml-1"
               />
-              <SectionTitle>Lorem ipsum</SectionTitle>
-              <PlusTitle>
-                Lorem ipsum dolor sit amet consectetur augue egestas varius
-              </PlusTitle>
+              <FeatureTitle>Lorem ipsum</FeatureTitle>
+              <FeatureText>Lorem ipsum dolor sit amet consectetur augue egestas varius</FeatureText>
             </div>
 
-            <div className="flex flex-col w-48">
+            <div className="flex flex-col space-y-4">
               <Image
                 src="/assets/img/icone-chat.png"
                 alt="Chat Icone"
-                width={70}
-                height={140}
+                width={56}
+                height={56}
+                className="-ml-1"
               />
-              <SectionTitle>Lorem ipsum</SectionTitle>
-              <PlusTitle>
-                Lorem ipsum dolor sit amet consectetur augue egestas varius{" "}
-              </PlusTitle>
+              <FeatureTitle>Lorem ipsum</FeatureTitle>
+              <FeatureText>Lorem ipsum dolor sit amet consectetur augue egestas varius</FeatureText>
             </div>
           </div>
         </div>
