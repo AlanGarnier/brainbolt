@@ -30,14 +30,14 @@ const Header = () => {
               height={30} />
           </Link>
           <ul className="items-stretch hidden space-x-3 lg:flex">
-            <NavLink link="/login">Lorem Ipsum</NavLink>
-            <NavLink link="/login">Lorem Ipsum</NavLink>
-            <NavLink link="/login">Lorem Ipsum</NavLink>
+            <NavLink link="#">Lorem Ipsum</NavLink>
+            <NavLink link="#">Lorem Ipsum</NavLink>
+            <NavLink link="#">Lorem Ipsum</NavLink>
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex lg:space-x-5">
             <GradientBorderButton>
               <Link
-                href="/signup"
+                href="/auth/signup"
                 className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px] group-hover:text-white"
               >
                 Rejoindre la communauté
@@ -48,7 +48,7 @@ const Header = () => {
               variant={'default'}
               className="glow">
               <Link
-                href="/login"
+                href="/auth/login"
                 className="font-semibold font-jost">
                 Se connecter
               </Link>
@@ -87,17 +87,17 @@ const Header = () => {
                 </div>
               </div>
               <ul className="flex flex-col space-y-8 pb-10">
-                <NavLink link="/login">Lorem Ipsum</NavLink>
-                <NavLink link="/login">Lorem Ipsum</NavLink>
-                <NavLink link="/login">Lorem Ipsum</NavLink>
-                <NavLink link="/login">Lorem Ipsum</NavLink>
+                <NavLink link="#">Lorem Ipsum</NavLink>
+                <NavLink link="#">Lorem Ipsum</NavLink>
+                <NavLink link="#">Lorem Ipsum</NavLink>
+                <NavLink link="#">Lorem Ipsum</NavLink>
               </ul>
               <div className="inline">
                 <Button
                   asChild
                   variant={'default'}>
                   <Link
-                    href="/login"
+                    href="/auth/login"
                     className="font-semibold font-jost text-[16px]">
                     Lancez la partie
                   </Link>
