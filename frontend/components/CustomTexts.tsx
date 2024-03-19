@@ -86,19 +86,3 @@ export const NavLink = ({children, link}: NavLinkProps) => {
         </li>
     )
 }
-
-export const MapSubtitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="map-subtitle">
-            {children}  
-        </h2>
-    )
-}
-
-export const MapTitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="map-title">
-            {children}  
-        </h2>
-    )
-}
