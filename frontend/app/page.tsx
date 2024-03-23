@@ -7,12 +7,14 @@ import Hero from "@/components/homepage/sections/hero/Hero";
 import Map from "@/components/homepage/sections/map/Map";
 import Platform from "@/components/homepage/sections/platform/Platform";
 import Banner from "@/components/homepage/sections/banner/Banner";
+import { MeteorEffect } from "@/components/MeteorEffect";
 
 
 export default function Home() {
   return (
     <main>
       <Header />
+      <MeteorEffect />
       <Hero />
       <Platform />
       <Games />
