@@ -14,7 +14,7 @@ const Explore = () => {
       <div className="flex flex-col lg:flex-row lg:space-x-6 lg:items-center">
         <div className="flex flex-col justify-center lg:w-1/2 mb-9 lg:mb-0">
           <div className="flex flex-col space-y-5 lg:space-y-10 mb-10 lg:mb-14">
-            <TypingText>Lorem ipsum</TypingText>
+            <TypingText text="| Lorem ipsum" />
             <SectionTitle>Lorem ipsum dolor sit amet consectetur. Euismod nam</SectionTitle>
           </div>
 

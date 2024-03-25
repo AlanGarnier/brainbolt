@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import Section from '@/components/Section';
 import { Button } from '@/components/ui/button';
@@ -9,7 +10,7 @@ const Features = () => {
   return (
     <Section background="bg-section">
       <div className="flex flex-col space-y-8 lg:space-y-20 items-center justify-center h-full text-center">
-        <TypingText>Lorem ipsum.</TypingText>
+        <TypingText text="| Lorem ipsum" />
         <SectionTitle>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod. Proin fermentum mi vitae diam id. Purus est urna lectus malesuada et gravida porttitor fames. Nullam aliquet aliquam eget malesuada id sed rhoncus.</SectionTitle>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

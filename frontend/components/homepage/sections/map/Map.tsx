@@ -7,7 +7,7 @@ const Map = () => {
   return (
     <Section>
       <div className="mx-auto flex flex-col text-center items-center justify-center space-y-5 lg:space-y-10 lg:max-w-[763px] mb-9 lg:mb-20">
-        <TypingText>Lorem ipsum</TypingText>
+        <TypingText text="| Lorem ipsum" />
         <SectionTitle>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod. Proin fermentum mi vitae diam id.</SectionTitle>
       </div>
       <Image src="/assets/img/map.png" alt="Map" width={1170} height={535} />
