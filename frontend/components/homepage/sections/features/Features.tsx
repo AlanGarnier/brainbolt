@@ -40,7 +40,7 @@ const Features = () => {
             <Image 
               width={96}
               height={96}
-              src="/assets/img/icone-inscription.png" 
+              src="/assets/img/icone-joueur.png" 
               alt="Icône Joueur" />
             <FeatureTitle>Play Game</FeatureTitle>
 
@@ -53,7 +53,7 @@ const Features = () => {
             <Image 
               width={96}
               height={96}
-              src="/assets/img/icone-inscription.png" 
+              src="/assets/img/icone-resultats.png" 
               alt="Icône Résultats" />
             <FeatureTitle>See results</FeatureTitle>
 
@@ -62,7 +62,7 @@ const Features = () => {
         </div>
 
         <Button asChild className="glow">
-          <Link href="/auth/login" className="font-semibold font-jost text-base">
+          <Link href="/auth/signup" className="font-semibold font-jost text-base">
             Je m&apos;inscris
           </Link>
         </Button>
