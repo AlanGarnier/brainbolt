@@ -1,17 +1,26 @@
+"use client";
 import React from 'react';
 import Section from '@/components/Section'
-
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { BannerText, BannerTitle } from '@/components/CustomTexts';
+import { motion } from 'framer-motion';
+import { fadeIn, staggerContainer } from '@/lib/motion';
 
 const Banner = () => {
   return (
     <Section background="bg-section">
-      <div className="flex flex-col mx-auto lg:max-w-[796px] space-y-[40px] items-center justify-center h-full text-center">
+      <motion.div 
+        variants={staggerContainer(0, 0)}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
+        className="flex flex-col mx-auto lg:max-w-[796px] space-y-[40px] items-center justify-center h-full text-center">
         <BannerTitle>Lorem ipsum dolor sit amet consectetur.</BannerTitle>
         <BannerText>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod.</BannerText>
-        <div className="inline">
+        <motion.div 
+          variants={fadeIn('up', 'tween', 0.6, 1)}
+          className="inline">
           <Button
             asChild
             variant={'default'}>
@@ -21,8 +30,8 @@ const Banner = () => {
               Lancez la partie
             </Link>
           </Button>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </Section>
   )
 }
