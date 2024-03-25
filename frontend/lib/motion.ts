@@ -1,6 +1,6 @@
 import { Variants } from "framer-motion";
 
-// in this file, we store the animations
+// in this file, we store the animations 
 
 interface textContainerProps extends Variants{
     hidden: {
@@ -30,15 +30,7 @@ interface typingTextProps extends Variants{
     }
 }
 
-interface staggerContainerProps extends Variants{
-    hidden: {},
-    show: {
-        transition: {
-            staggerChildren: number;
-            delayChildren: number;
-        }
-    }
-}
+
 
 export const textContainer: textContainerProps = {
     hidden: {
@@ -65,7 +57,7 @@ export const typingText: typingTextProps = {
     },
 }
 
-export const staggerContainer = (staggerChildren: number, delayChildren: number): staggerContainerProps => ({
+export const staggerContainer = (staggerChildren: number, delayChildren: number) => ({
     hidden: {},
     show: {
         transition: {
@@ -74,3 +66,22 @@ export const staggerContainer = (staggerChildren: number, delayChildren: number)
         },
     },
 });
+
+export const fadeIn = (direction: string, type: string, delay: number, duration: number) => ({
+    hidden: {
+      x: direction === 'left' ? 100 : direction === 'right' ? -100 : 0,
+      y: direction === 'up' ? 100 : direction === 'down' ? -100 : 0,
+      opacity: 0,
+    },
+    show: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      transition: {
+        type,
+        delay,
+        duration,
+        ease: 'easeOut',
+      },
+    },
+  });
