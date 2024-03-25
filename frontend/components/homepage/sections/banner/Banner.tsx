@@ -25,7 +25,7 @@ const Banner = () => {
             asChild
             variant={'default'}>
             <Link
-              href="/login"
+              href="/auth/login"
               className="font-semibold font-jost text-[16px]">
               Lancez la partie
             </Link>

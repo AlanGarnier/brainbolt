@@ -28,7 +28,7 @@ const Footer = () => {
             {/* Bouton */}
             <div className="items-center flex-shrink-0 hidden lg:flex lg:space-x-5">
               <Button asChild variant={'default'} className="glow">
-                <Link href="/login" className="font-semibold font-jost">
+                <Link href="/auth/login" className="font-semibold font-jost">
                   Se connecter
                 </Link>
               </Button>
