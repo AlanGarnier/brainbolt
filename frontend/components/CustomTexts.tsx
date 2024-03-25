@@ -1,9 +1,16 @@
+"use client";
 import Link from 'next/link';
 import React from 'react';
+import { motion } from 'framer-motion';
+import { textContainer, typingText } from '@/lib/motion';
 
 interface CustomTextProps {
     children: React.ReactNode;
     className?: string;
+}
+
+interface TypingTextProps {
+    text: string;
 }
 
 interface NavLinkProps {
@@ -27,11 +34,22 @@ export const HeroSubtitle = ({children}: CustomTextProps) => {
     )
 }
 
-export const TypingText = ({children}: CustomTextProps) => {
+export const TypingText = ({text}: TypingTextProps) => {
   return (
-    <p className="typing-text">
-        {children}
-    </p>
+    <motion.p 
+        variants={textContainer}
+        className="typing-text">
+        {
+            Array.from(text).map((letter, index) => (
+                <motion.span
+                    variants={typingText}
+                    key={index}
+                >
+                {letter === " " ? "\u00A0" : letter}
+                </motion.span>
+            ))
+        }
+    </motion.p>
   )
 }
 
