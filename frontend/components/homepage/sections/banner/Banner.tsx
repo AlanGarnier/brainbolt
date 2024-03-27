@@ -23,6 +23,7 @@ const Banner = () => {
           className="inline">
           <Button
             asChild
+            className="glow"
             variant={'default'}>
             <Link
               href="/auth/login"
