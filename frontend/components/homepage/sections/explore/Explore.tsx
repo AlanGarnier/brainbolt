@@ -33,7 +33,7 @@ const Explore = () => {
             className="flex flex-col space-y-6 lg:space-y-0 lg:flex-row lg:space-x-10">
             <div className="flex flex-col space-y-4">
               <Image
-                src="/assets/img/icone-friends.png"
+                src="/assets/img/icone-friends.webp"
                 alt="Friends Icone"
                 width={56}
                 height={56}
@@ -45,7 +45,7 @@ const Explore = () => {
 
             <div className="flex flex-col space-y-4">
               <Image
-                src="/assets/img/icone-chat.png"
+                src="/assets/img/icone-chat.webp"
                 alt="Chat Icone"
                 width={56}
                 height={56}
