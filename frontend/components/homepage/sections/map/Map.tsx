@@ -27,7 +27,7 @@ const Map = () => {
           <motion.div
             variants={fadeIn('up', 'tween', 0.2, 1)}
             >
-            <Image src="/assets/img/map.png" alt="Map" width={1170} height={535} />
+            <Image src="/assets/img/map.webp" alt="Map" width={1170} height={535} />
             </motion.div>
       </motion.div>
     </Section>
