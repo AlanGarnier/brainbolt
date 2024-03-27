@@ -6,20 +6,49 @@ import { Button } from '@/components/ui/button'
 import { AlignRight, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Header = () => {
+  const [lastScrollY, setLastScrollY] = useState<number>(0);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [show, setShow] = useState<string>("translate-y-0");
+  const [blurHeader, setBlurHeader] = useState<boolean>(false);
+
   const showMobileMenu = () => {
     const mobileMenu = document.querySelector('.mobile-menu')
     mobileMenu?.classList.toggle('hidden')
   }
 
+  const controlNavbar = () => {
+    if (window.scrollY > 200) {
+      if (window.scrollY > lastScrollY && !isMenuOpen) {
+        setShow("-translate-y-[120px]")
+        setBlurHeader(false)
+      } else {
+        setShow("shadow-sm")
+        setBlurHeader(true)
+      }
+
+    } else {
+      setShow("translate-y-0")
+      setBlurHeader(true)
+    }
+    setLastScrollY(window.scrollY)
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+
+    return () => {
+      window.removeEventListener("scroll", controlNavbar)
+    }
+  }, [lastScrollY])
+
   return (
     <>
-
       {/* Desktop Header */}
-      <header className="relative px-8 pt-5 pb-8 lg:py-4 lg:px-[110px]">
-        <div className="flex justify-between h-16 mx-auto">
+      <header className={`${show} ${blurHeader ? 'backdrop-blur-lg' : ''} sticky top-0 transition-transform duration-300 px-8 pt-5 pb-8 lg:py-4 lg:px-[110px]`}>
+        <div className="relative flex justify-between h-16 mx-auto">
           <Link
             href="/"
             className="flex items-center">
