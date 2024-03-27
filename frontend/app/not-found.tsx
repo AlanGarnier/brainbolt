@@ -16,7 +16,7 @@ function NotFoundPage() {
                     alt="404" 
                 />
                 <h2 className="block min-h-6 lg:min-h-20 pt-4 mb-4 bg-clip-text text-transparent bg-gradient-to-br from-white to-[#52525B] text-6xl lg:text-[96px] font-ubuntu font-bold text-center">404</h2>
-                <p className="mb-6 text-white/70 text-center">The page que vous recherchez n'existe pas.</p>
+                <p className="mb-6 text-white/70 text-center">The page que vous recherchez n&apos;existe pas.</p>
                 <Button
                     asChild
                     variant={'default'}
@@ -24,7 +24,7 @@ function NotFoundPage() {
                     <Link
                     href="/"
                     className="font-semibold font-jost text-[16px]">
-                    Retour à l'accueil
+                    Retour à l&apos;accueil
                     </Link>
                 </Button>
             </div>
