@@ -27,7 +27,7 @@ const Features = () => {
             <Image 
               width={96}
               height={96}
-              src="/assets/img/icone-inscription.png" 
+              src="/assets/img/icone-inscription.webp" 
               alt="Icône Inscription" />
             <FeatureTitle>Sign Up</FeatureTitle>
 
@@ -40,7 +40,7 @@ const Features = () => {
             <Image 
               width={96}
               height={96}
-              src="/assets/img/icone-joueur.png" 
+              src="/assets/img/icone-joueur.webp" 
               alt="Icône Joueur" />
             <FeatureTitle>Play Game</FeatureTitle>
 
@@ -53,7 +53,7 @@ const Features = () => {
             <Image 
               width={96}
               height={96}
-              src="/assets/img/icone-resultats.png" 
+              src="/assets/img/icone-resultats.webp" 
               alt="Icône Résultats" />
             <FeatureTitle>See results</FeatureTitle>
 
