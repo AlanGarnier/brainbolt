@@ -105,6 +105,14 @@
   .banner-text {
     @apply text-base font-jost font-normal;
   }
+  .feature-title {
+    @apply font-ubuntu font-bold text-[24px] lg:text-[32px] text-white;
+ 
+  }
+    .feature-text {
+    @apply font-jost font-normal text-[16px] lg:text-[24px] text-white;
+ 
+  }
 
   .nav-link {
     @apply text-lg lg:text-base font-jost font-medium;
