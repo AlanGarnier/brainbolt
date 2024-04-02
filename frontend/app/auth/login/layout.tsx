@@ -9,7 +9,7 @@ const Layout = ({children}: LayoutProps) => {
   return (
     <>
         <section className="w-full h-screen flex">
-          <div className="bg-signup pb-16 hidden lg:block lg:py-48 lg:w-1/3">
+          <div className="bg-login pb-16 hidden lg:block lg:py-48 lg:w-1/3">
             &nbsp;
           </div>
           <div className="px-8 py-8 lg:px-[140px] lg:pt-12 lg:pb-28 w-full lg:w-2/3 flex flex-col">

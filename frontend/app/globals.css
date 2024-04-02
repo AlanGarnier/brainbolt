@@ -133,6 +133,9 @@
   .bg-signup {
     @apply bg-[url('/assets/img/bg-signup.webp')] bg-cover bg-center bg-no-repeat;
   }
+  .bg-login {
+    @apply bg-[url('/assets/img/bg-login.png')] bg-cover bg-center bg-no-repeat;
+  }
 
   .input {
     @apply bg-white/60 h-[52px] text-white font-jost first-letter:outline-none w-full text-sm rounded-2xl focus:ring-white focus:border-white focus:outline-1;
