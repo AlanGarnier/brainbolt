@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Ubuntu, Jost } from "next/font/google";
 import "./globals.css";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -26,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <link rel="icon" href="/favicon.ico" />
-      <body className={`${ubuntu.variable} ${jost.variable}`}>{children}</body>
+      <body className={`${ubuntu.variable} ${jost.variable}`}>
+        {children}
+        <GoogleTagManager gtmId="GTM-NQ3HFVFF" />
+      </body>
     </html>
   );
 }
