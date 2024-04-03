@@ -1,9 +1,16 @@
+"use client";
 import Link from 'next/link';
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeIn, textContainer, typingText } from '@/lib/motion';
 
 interface CustomTextProps {
     children: React.ReactNode;
     className?: string;
+}
+
+interface TypingTextProps {
+    text: string;
 }
 
 interface NavLinkProps {
@@ -27,19 +34,32 @@ export const HeroSubtitle = ({children}: CustomTextProps) => {
     )
 }
 
-export const TypingText = ({children}: CustomTextProps) => {
+export const TypingText = ({text}: TypingTextProps) => {
   return (
-    <p className="typing-text">
-        {children}
-    </p>
+    <motion.p 
+        variants={textContainer}
+        className="typing-text">
+        {
+            Array.from(text).map((letter, index) => (
+                <motion.span
+                    variants={typingText}
+                    key={index}
+                >
+                {letter === " " ? "\u00A0" : letter}
+                </motion.span>
+            ))
+        }
+    </motion.p>
   )
 }
 
 export const SectionTitle = ({children, className}: CustomTextProps) => {
     return (
-        <h2 className={`section-title ${className}`}>
+        <motion.h2 
+            variants={fadeIn('up', 'tween', 0.2, 1)}
+            className={`section-title ${className}`}>
             {children}
-        </h2>
+        </motion.h2>
     )
 }
 
@@ -62,17 +82,21 @@ export const FeatureText = ({children}: CustomTextProps) => {
 
 export const BannerTitle = ({children}: CustomTextProps) => {
     return (
-        <h2 className="banner-title">
+        <motion.h2 
+            variants={fadeIn('up', 'tween', 0.2, 1)}
+            className="banner-title">
             {children}  
-        </h2>
+        </motion.h2>
     )
 }
 
 export const BannerText = ({children}: CustomTextProps) => {
     return (
-        <p className="banner-text">
+        <motion.p 
+            variants={fadeIn('up', 'tween', 0.4, 1)}
+            className="banner-text">
             {children}
-        </p>
+        </motion.p>
     )
 }
 
@@ -87,3 +111,5 @@ export const NavLink = ({children, link}: NavLinkProps) => {
         </li>
     )
 }
+
+
