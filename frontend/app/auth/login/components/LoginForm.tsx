@@ -6,12 +6,12 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import z from 'zod';
-import { SignUpFormSchema } from '@/lib/schemas';
+import { SignInFormSchema } from '@/lib/schemas';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
 
-type Inputs = z.infer<typeof SignUpFormSchema>;
+type Inputs = z.infer<typeof SignInFormSchema>;
 
 const LoginForm = () => {
     const {
@@ -19,7 +19,7 @@ const LoginForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<Inputs>({
-        resolver: zodResolver(SignUpFormSchema),
+        resolver: zodResolver(SignInFormSchema),
     });
 
     const onSubmit: SubmitHandler<Inputs> = data => {
@@ -40,7 +40,7 @@ const LoginForm = () => {
                         height={40}
                         src="/assets/img/brainbolt-favicon.png"
                         alt="Favicon Brainbolt" />
-                    <SectionTitle className='bg-clip-text text-transparent mb-8 bg-gradient-to-br from-white to-[#52525B]'>
+                    <SectionTitle className='mt-4 bg-clip-text text-transparent mb-8 bg-gradient-to-br from-white to-[#52525B]'>
                         Connexion
                     </SectionTitle>
                     <div className="flex flex-col space-y-4">
