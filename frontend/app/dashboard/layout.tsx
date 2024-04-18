@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import DashboardLayout from './components/layout/DashboardLayout'
 
 interface LayoutProps {
     children: ReactNode
@@ -7,7 +8,7 @@ interface LayoutProps {
 const Layout = ({children}: LayoutProps) => {
   return (
     <>
-        <h2>Dashboard</h2>
+        <DashboardLayout />
         {children}
     </>
   )
