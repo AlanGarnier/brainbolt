@@ -1,7 +1,7 @@
 "use client";
 import React from 'react'
-import Nav from './Nav'
-import Sidebar from './Sidebar'
+import DashboardNav from './DashboardNav'
+import DashboardSidebar from './DashboardSidebar';
 
 const DashboardLayout = () => {
   const [open, setOpen] = React.useState(false);
@@ -10,8 +10,8 @@ const DashboardLayout = () => {
   }
   return (
     <>
-        <Sidebar open={open} handleButtonClick={handleButtonClick} />
-        <Nav />
+        <DashboardSidebar open={open} handleButtonClick={handleButtonClick} />
+        <DashboardNav />
     </>
   )
 }
