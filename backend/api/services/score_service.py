@@ -16,7 +16,7 @@ class ScoreService:
             # Save the score to the database, etc.
             score_collection.insert_one(data)
             # Return a JSON response
-            return {"message": "User added successfully"}, 200
+            return {"message": "Score added successfully"}, 200
         except ValidationError as e:
             # If the JSON data doesn't match the Pydantic model, return a 400 Bad Request response
             return {"message": str(e.errors()[0]['msg'])}, 400
@@ -48,7 +48,7 @@ class ScoreService:
         # Delete a score
         result = score_collection.delete_one({"_id": ObjectId(id)})
         if result.deleted_count == 1:
-            return {"message": "User deleted successfully"}, 200
+            return {"message": "Score deleted successfully"}, 200
         else:
             return {"message": "An error occurred while deleting the score " + id + ": score not deleted"}, 400
 
@@ -57,6 +57,6 @@ class ScoreService:
         # Update a score
         result = score_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         if result.modified_count == 1:
-            return {"message": "User updated successfully"}, 200
+            return {"message": "Score updated successfully"}, 200
         else:
             return {"message": "An error occurred while updating the score " + id + ": score not updated"}, 400

@@ -16,7 +16,7 @@ class MessagesService:
             # Save the message to the database, etc.
             messages_collection.insert_one(data)
             # Return a JSON response
-            return {"message": "User added successfully"}, 200
+            return {"message": "Meassage added successfully"}, 200
         except ValidationError as e:
             # If the JSON data doesn't match the Pydantic model, return a 400 Bad Request response
             return {"message": str(e.errors()[0]['msg'])}, 400
@@ -48,6 +48,6 @@ class MessagesService:
         # Delete a message
         result = messages_collection.delete_one({"_id": ObjectId(id)})
         if result.deleted_count == 1:
-            return {"message": "User deleted successfully"}, 200
+            return {"message": "Meassage deleted successfully"}, 200
         else:
             return {"message": "An error occurred while deleting the message " + id + ": message not deleted"}, 400

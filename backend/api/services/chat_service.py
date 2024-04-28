@@ -17,7 +17,7 @@ class ChatService:
             # Save the chat to the database, etc.
             chats_collection.insert_one(data)
             # Return a JSON response
-            return {"message": "User added successfully"}, 200
+            return {"message": "Chat added successfully"}, 200
         except ValidationError as e:
             # If the JSON data doesn't match the Pydantic model, return a 400 Bad Request response
             return {"message": str(e.errors()[0]['msg'])}, 400
@@ -39,7 +39,7 @@ class ChatService:
         # Delete a chat
         result = chats_collection.delete_one({"_id": ObjectId(id)})
         if result.deleted_count == 1:
-            return {"message": "User deleted successfully"}, 200
+            return {"message": "Chat deleted successfully"}, 200
         else:
             return {"message": "An error occurred while deleting the chat " + id + ": chat not deleted"}, 400
 
@@ -48,6 +48,6 @@ class ChatService:
         # Update a chat
         result = chats_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         if result.modified_count == 1:
-            return {"message": "User updated successfully"}, 200
+            return {"message": "Chat updated successfully"}, 200
         else:
             return {"message": "An error occurred while updating the chat " + id + ": chat not updated"}, 400

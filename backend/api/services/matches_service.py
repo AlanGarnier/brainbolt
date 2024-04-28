@@ -16,7 +16,7 @@ class MatchesService:
             # Save the match to the database, etc.
             matches_collection.insert_one(data)
             # Return a JSON response
-            return {"message": "User added successfully"}, 200
+            return {"message": "Match added successfully"}, 200
         except ValidationError as e:
             # If the JSON data doesn't match the Pydantic model, return a 400 Bad Request response
             return {"message": str(e.errors()[0]['msg'])}, 400
@@ -48,7 +48,7 @@ class MatchesService:
         # Delete a match
         result = matches_collection.delete_one({"_id": ObjectId(id)})
         if result.deleted_count == 1:
-            return {"message": "User deleted successfully"}, 200
+            return {"message": "Match deleted successfully"}, 200
         else:
             return {"message": "An error occurred while deleting the match " + id + ": match not deleted"}, 400
 
@@ -57,6 +57,6 @@ class MatchesService:
         # Update a match
         result = matches_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         if result.modified_count == 1:
-            return {"message": "User updated successfully"}, 200
+            return {"message": "Match updated successfully"}, 200
         else:
             return {"message": "An error occurred while updating the match " + id + ": match not updated"}, 400
