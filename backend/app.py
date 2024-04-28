@@ -1,8 +1,8 @@
 # RESOURCES
 
 from flask import Flask
-from backend.api.controllers.game import game_api
-from backend.api.controllers.user import user_api
+from api.controllers.game import game_api
+from api.controllers.user import user_api
 
 
 app = Flask(__name__)

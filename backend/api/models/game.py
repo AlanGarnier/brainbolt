@@ -1,5 +1,5 @@
 # RESOURCES
-from backend.api.config import db
+from ..config.database import db
 
 # Get reference to 'jeux' collection
 games_collection = db.jeux
