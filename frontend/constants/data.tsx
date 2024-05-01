@@ -46,21 +46,21 @@ export const DashboardTopLinks: DashboardTopLinksInterface[] = [
     {
         title: 'Accueil',
         render: () => (
-            <LayoutDashboard size={24} color="#B2B2B2" /> 
+            <LayoutDashboard className="text-primary-grey group-hover:text-white" size={26} /> 
         ),
     },
     {
         title: 'Nouveautés',
         render: () => (
-            <BadgeInfo size={24} color="#B2B2B2" />
+            <BadgeInfo className="text-primary-grey group-hover:text-white" size={26} />
         ),
     },
-    {
-        title: 'Jeux populaires',
-        render: () => (
-            <Flame size={24} color="#B2B2B2" />
-        ),
-    }
+    // {
+    //     title: 'Jeux populaires',
+    //     render: () => (
+    //         <Flame size={24} color="#B2B2B2" />
+    //     ),
+    // }
 ];
 
 export const DashboardBottomLinks: DashboardBottomLinksInterface[] = [
