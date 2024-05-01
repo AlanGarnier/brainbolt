@@ -1,10 +1,10 @@
-
 from ..services.user_service import UserService
 from flask_jwt_extended import create_access_token
 import bcrypt
 import io
 import urllib.request
 from PIL import Image
+
 
 def is_valid_image_url(url):
     try:
@@ -17,6 +17,7 @@ def is_valid_image_url(url):
         return True
     except Exception as e:
         return False
+
 
 # Call UserService
 user_service = UserService
@@ -47,7 +48,7 @@ class AuthService:
             return {"message": "Email already exists. Choose a different one."}, 400
         else:
             if data.get('picture') and not is_valid_image_url(data.get('picture')):
-                    return {"message": "Image invalid"}, 400
+                return {"message": "Image invalid"}, 400
             default_image = 'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'
             # Password encryption before registration
             password = crypt_password(data.get('password'))
