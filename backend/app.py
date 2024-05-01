@@ -1,14 +1,15 @@
 # RESOURCES
 from flask import Flask
 from flask_jwt_extended import JWTManager
-from api.controllers.game_controller import game_api
-from api.controllers.user_controller import user_api
-from api.controllers.auth_controller import auth_api
-
-from api.config.auth import AuthConfig
+from backend.api.controllers.game_controller import game_api
+from backend.api.controllers.user_controller import user_api
+from backend.api.controllers.auth_controller import auth_api
+import os
+from backend.api.config.auth import AuthConfig
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['MONGO_URI'] = os.getenv('MONGO_DB_CONN_STRING')
 # Set all routes
 app.register_blueprint(game_api)
 app.register_blueprint(user_api)
@@ -20,5 +21,9 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = AuthConfig.jwt_access_token_expires
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = AuthConfig.jwt_refresh_token_expires
 jwt = JWTManager(app)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route("/health", methods=["GET"])
+def check_api_health():
+    return "OK"
+
+# if __name__ == '__main__':
+#     app.run(host="0.0.0.0", port=5001)

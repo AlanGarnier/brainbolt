@@ -2,6 +2,21 @@
 from ..services.user_service import UserService
 from flask_jwt_extended import create_access_token
 import bcrypt
+import io
+import urllib.request
+from PIL import Image
+
+def is_valid_image_url(url):
+    try:
+        # Open the image URL
+        with urllib.request.urlopen(url) as response:
+            img_data = response.read()
+        # Check if the content type indicates it's an image
+        img = Image.open(io.BytesIO(img_data))
+        img.verify()  # Verify if it's a valid image
+        return True
+    except Exception as e:
+        return False
 
 # Call UserService
 user_service = UserService
@@ -22,18 +37,25 @@ class AuthService:
     def register(data):
         # Try to register a user
         pseudo = data.get('pseudo')
+        email = data.get('email')
         # Check if the user is already registered
-        already_registered = user_service.find_user({'pseudo': pseudo})
-        if already_registered is not None:
+        if user_service.find_user({'pseudo': pseudo}) and user_service.find_user({'email': email}):
+            return {"message": "Pseudo and email already exists. Choose a different one."}, 400
+        elif user_service.find_user({'pseudo': pseudo}):
             return {"message": "Pseudo already exists. Choose a different one."}, 400
+        elif user_service.find_user({'email': email}):
+            return {"message": "Email already exists. Choose a different one."}, 400
         else:
+            if data.get('picture') and not is_valid_image_url(data.get('picture')):
+                    return {"message": "Image invalid"}, 400
+            default_image = 'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'
             # Password encryption before registration
             password = crypt_password(data.get('password'))
             # Set user data
             user_data = {
                 "pseudo": data.get('pseudo'),
                 "email": data.get('email'),
-                "picture": data.get('picture'),
+                "picture": data.get('picture', default_image),
                 "score": data.get('score'),
                 "password": password,
             }
