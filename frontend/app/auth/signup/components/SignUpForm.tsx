@@ -51,13 +51,13 @@ const SignUpForm = () => {
   });
 
   const handleUpload = (result: any) => {
-    setValue("image", result.info.secure_url, {
+    setValue("picture", result.info.secure_url, {
       shouldValidate: true,
     });
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const res = await fetch(`${process.env.BACKEND_API_URL}/api/register`, {
+    const res = await fetch(`http://localhost:5000/api/register`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -90,7 +90,7 @@ const SignUpForm = () => {
   const next = async () => {
     const fields = steps[currentStep].fields
     const output = await trigger(fields as FieldName[], { shouldFocus: true })
-    const {image} = getValues()
+    const {picture} = getValues()
 
     if (!output) return
 
@@ -100,7 +100,7 @@ const SignUpForm = () => {
       setPreviousStep(currentStep);
       setCurrentStep(step => step + 1);
       // console.log('en cours')
-    } else if (currentStep === steps.length - 1 && getValues().image) {
+    } else if (currentStep === steps.length - 1 && getValues().picture) {
       await handleSubmit(onSubmit)();
     }
   }
@@ -168,8 +168,8 @@ const SignUpForm = () => {
                 label="username"
                 type="text"
                 placeholder="Nom d'utilisateur"
-                register={register("username")}
-                error={errors.username?.message}
+                register={register("pseudo")}
+                error={errors.pseudo?.message}
               />
             </motion.div>
           )}
@@ -195,7 +195,7 @@ const SignUpForm = () => {
                     htmlFor="file">
                       <FileUp className="h-24 w-24" />
                   </label>
-                  <Input id="image" type="file" register={register("image")} className="hidden" />
+                  <Input id="image" type="file" register={register("picture")} className="hidden" />
                 </CldUploadButton>
               </div>
             </motion.div>
@@ -217,7 +217,7 @@ const SignUpForm = () => {
               onClick={next}
               type="submit"
               variant="navigation"
-              disabled={currentStep === steps.length - 1 && !getValues().image}
+              disabled={currentStep === steps.length - 1 && !getValues().picture}
             >
               {
                 currentStep === steps.length - 1 ? 'Valider' : <ChevronRight className='h-5 w-5' />
