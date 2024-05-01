@@ -5,14 +5,15 @@ import Input from '@/components/forms/Input';
 import { SectionTitle } from '@/components/CustomTexts';
 import { ChevronLeft, ChevronRight, FileUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
+import { toast } from 'react-hot-toast';
 import z from 'zod';
 import { SignUpFormSchema } from '@/lib/schemas';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-
+import { useRouter } from 'next/navigation'
 import { CldUploadButton } from 'next-cloudinary';
 import { motion } from 'framer-motion'
+import { signIn } from 'next-auth/react';
 
 const steps = [
   {
@@ -36,6 +37,8 @@ const SignUpForm = () => {
   
   const delta = currentStep - previousStep
 
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -53,9 +56,31 @@ const SignUpForm = () => {
     });
   };
 
-  const onSubmit: SubmitHandler<Inputs> = data => {
-    // console.log(data)
-    // console.log('Form submitted')
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const res = await fetch(`${process.env.BACKEND_API_URL}/api/register`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await res.json();
+
+    if (result?.error) {
+      toast.error(result.error);
+      return;
+    } else {
+      toast.success("Inscription réussie");
+      await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+      });
+      router.refresh();
+      router.push('/');
+    }
+    console.log(data)
+    console.log('Form submitted successfully')
     return data
  
   }
