@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import React, { ReactNode } from 'react'
 
+export const metadata = {
+  title: 'Inscription - Rejoignez Brainbolt pour des jeux en ligne gratuits et passionnants',
+  description: 'Inscrivez-vous dès maintenant sur Brainbolt pour accéder à une multitude de jeux en ligne gratuits.',
+};
+
 interface LayoutProps {
     children: ReactNode
 }
