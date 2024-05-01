@@ -20,10 +20,12 @@
     "framer-motion": "^11.0.8",
     "lucide-react": "^0.323.0",
     "next": "14.1.0",
+    "next-auth": "^4.24.7",
     "next-cloudinary": "^6.2.1",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.0",
+    "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
