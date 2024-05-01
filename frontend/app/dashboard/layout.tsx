@@ -8,8 +8,10 @@ interface LayoutProps {
 const Layout = ({children}: LayoutProps) => {
   return (
     <>
-        <DashboardLayout />
-        {children}
+        <DashboardLayout>
+          {children}
+        </DashboardLayout>
+        
     </>
   )
 }
