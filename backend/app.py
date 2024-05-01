@@ -6,10 +6,12 @@ from backend.api.controllers.user_controller import user_api
 from backend.api.controllers.auth_controller import auth_api
 import os
 from backend.api.config.auth import AuthConfig
+from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MONGO_URI'] = os.getenv('MONGO_DB_CONN_STRING')
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 # Set all routes
 app.register_blueprint(game_api)
 app.register_blueprint(user_api)
