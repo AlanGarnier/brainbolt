@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Ubuntu, Jost } from "next/font/google";
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
+import AuthProvider from "@/providers/auth-provider";
+import ToastProvider from "@/providers/toast-provider";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -28,8 +30,11 @@ export default function RootLayout({
     <html lang="fr">
       <link rel="icon" href="/favicon.ico" />
       <body className={`${ubuntu.variable} ${jost.variable}`}>
-        {children}
-        <GoogleTagManager gtmId="GTM-NQ3HFVFF" />
+        <AuthProvider>
+          <ToastProvider />
+          {children}
+          <GoogleTagManager gtmId="GTM-NQ3HFVFF" />
+        </AuthProvider>
       </body>
     </html>
   );
