@@ -4,6 +4,7 @@ from flask import Response
 from flask import request
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
+from flask import jsonify
 
 from ..services.auth_service import AuthService
 
@@ -17,8 +18,11 @@ auth_service = AuthService
 def register():
     # Call register service
     _json = request.json
-    response, status_code = auth_service.register(_json)
-    return Response(response, status_code, mimetype="application/json")
+    response = auth_service.register(_json)
+    auth_service.register(_json)
+    return jsonify(response)
+    # response, status_code = auth_service.register(_json)
+    # return Response(response, status_code, mimetype="application/json")
 
 
 @auth_api.route('/api/login', methods=['POST'])
