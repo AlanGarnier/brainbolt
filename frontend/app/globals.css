@@ -182,6 +182,20 @@
   .bg-features {
     @apply bg-[url('/assets/img/half-circle.png')] bg-no-repeat bg-cover;
   }
+
+  .dashboard-title {
+    @apply  text-3xl lg:text-3xl font-ubuntu font-bold; 
+  }
+
+  .dashboard-subtitle {
+    @apply text-base font-ubuntu font-bold mt-6; 
+  }
+  .dashboard-text{
+    @apply font-jost font-light text-[15px] lg:text-[15px] text-white text-opacity-80 mt-6;
+
+  }
+ 
+  
 }
 
   
