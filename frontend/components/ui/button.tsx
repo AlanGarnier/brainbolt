@@ -17,6 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
+        white: "border-2 border-white hover:bg-white text-white hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         navigation: "flex items-center justify-center space-x-2 bg-white text-primary-black text-base disabled:cursor-not-allowed disabled:opacity-50 shado-md",
       },
