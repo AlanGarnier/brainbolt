@@ -131,6 +131,14 @@
   .banner-text {
     @apply text-base font-jost font-normal;
   }
+  .feature-title {
+    @apply font-ubuntu font-bold text-[24px] lg:text-[32px] text-white;
+ 
+  }
+    .feature-text {
+    @apply font-jost font-normal text-[16px] lg:text-[24px] text-white;
+ 
+  }
 
   .feature-title {
     @apply font-ubuntu font-bold text-lg lg:text-xl text-white;
@@ -158,6 +166,9 @@
 
   .bg-signup {
     @apply bg-[url('/assets/img/bg-signup.webp')] bg-cover bg-center bg-no-repeat;
+  }
+  .bg-login {
+    @apply bg-[url('/assets/img/bg-login.png')] bg-cover bg-center bg-no-repeat;
   }
 
   .input {
