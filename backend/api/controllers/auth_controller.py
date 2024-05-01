@@ -18,7 +18,7 @@ def register():
     # Call register service
     _json = request.json
     response, status_code = auth_service.register(_json)
-    return Response(response.get('message'), status_code, mimetype="application/json")
+    return Response(response, status_code, mimetype="application/json")
 
 
 @auth_api.route('/api/login', methods=['POST'])

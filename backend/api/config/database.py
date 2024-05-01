@@ -8,7 +8,7 @@ from pymongo import MongoClient
 load_dotenv()
 
 # Get MongoDB connexion chain
-mongo_db_url = os.environ.get("MONGO_DB_CONN_STRING")
+mongo_db_url = os.getenv("MONGO_DB_CONN_STRING")
 # Try to create a MongoDB client and connect to the server
 try:
     # Create a MongoClient to connect to the MongoDB server
@@ -18,6 +18,8 @@ try:
 
     # Printing a message indicating a successful connection
     print("Connection established")
+
+    
 
 except Exception as e:
     # Handling exceptions and printing an error message if connection failed
