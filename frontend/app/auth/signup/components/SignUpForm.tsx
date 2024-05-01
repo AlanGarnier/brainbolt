@@ -159,7 +159,7 @@ const SignUpForm = () => {
                 className='bg-clip-text text-transparent mb-8 bg-gradient-to-br from-white to-[#52525B]'>
                 Presque fini ! Pimp ton profil en ajoutant une image d&apos;avatar !
               </SectionTitle>
-              <div className="w-full rounded-md py-12 flex justify-center items-center bg-gradient-to-r from-primary-purple to-primary-skyblue">
+              <div className="relative w-48 h-48 bg-gradient-to-r from-primary-purple to-primary-skyblue rounded-full flex justify-center items-center">
                 <CldUploadButton
                   options={{ maxFiles: 1 }}
                   uploadPreset="pemdkgyj"
