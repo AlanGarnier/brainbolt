@@ -57,7 +57,7 @@ const SignUpForm = () => {
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const res = await fetch(`http://localhost:5000/api/register`, {
+    const res = await fetch(`${process.env.BACKEND_API_URL}/api/register`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
