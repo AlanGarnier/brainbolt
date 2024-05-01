@@ -114,7 +114,7 @@ export const NavLink = ({children, link}: NavLinkProps) => {
 
 export const DashboardTitle = ({children}: CustomTextProps) => {
     return (
-        <h1 className="dashbord-title">
+        <h1 className="dashboard-title">
             {children}
         </h1>
     )

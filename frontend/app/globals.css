@@ -184,7 +184,7 @@
   }
 
   .dashboard-title {
-    @apply  text-3xl lg:text-6xl font-ubuntu font-bold; 
+    @apply  text-3xl lg:text-3xl font-ubuntu font-bold; 
   }
 
   .dashboard-subtitle {
@@ -192,8 +192,6 @@
   }
   .dashboard-text{
     @apply font-jost font-light text-[15px] lg:text-[15px] text-white text-opacity-80 mt-6;
-
-
 
   }
  
