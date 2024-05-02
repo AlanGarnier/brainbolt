@@ -23,6 +23,7 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = AuthConfig.jwt_access_token_expires
 app.config["JWT_REFRESH_TOKEN_EXPIRES"] = AuthConfig.jwt_refresh_token_expires
 jwt = JWTManager(app)
 
+
 @app.route("/health", methods=["GET"])
 def check_api_health():
     return "OK"

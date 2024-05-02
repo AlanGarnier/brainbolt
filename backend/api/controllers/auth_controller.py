@@ -1,9 +1,9 @@
 # Resources
 from flask import Blueprint, jsonify
-from flask import Response
 from flask import request
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
+from flask import jsonify
 
 from ..services.auth_service import AuthService
 
@@ -18,7 +18,7 @@ def register():
     # Call register service
     _json = request.json
     response, status_code = auth_service.register(_json)
-    return Response(response, status_code, mimetype="application/json")
+    return jsonify(response), status_code
 
 
 @auth_api.route('/api/login', methods=['POST'])
@@ -26,7 +26,7 @@ def login():
     # Call login service
     _json = request.json
     response, status_code = auth_service.login(_json)
-    return Response(response, status_code, mimetype="application/json")
+    return jsonify(response), status_code
 
 
 @auth_api.route('/api/protected', methods=['GET'])

@@ -6,6 +6,8 @@ from flask import Blueprint
 from ..services.friend_service import FriendService
 
 friend_api = Blueprint("friend", __name__)
+
+
 @friend_api.route('/add_friend', methods=['POST'])
 def add_friend():
     user_id = request.json.get('user_id')
@@ -18,15 +20,18 @@ def add_friend():
     else:
         return {'error': 'Missing user_id or friend_id'}, 400
 
+
 @friend_api.route('/friends/<user_id>', methods=['GET'])
 def get_friends(user_id):
     friends = FriendService.get_friends(user_id)
     return {'friends': friends}, 200
 
+
 @friend_api.route('/pending_requests/<user_id>', methods=['GET'])
 def get_pending_requests(user_id):
     pending_requests = FriendService.get_pending_requests(user_id)
     return {'pending_requests': pending_requests}, 200
+
 
 @friend_api.route('/accept_friend', methods=['POST'])
 def accept_friend():
