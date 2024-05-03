@@ -104,7 +104,7 @@ const LoginForm = () => {
                     <p>Vous n’avez pas de compte ?
 
                         <Link href="/auth/signup">
-                            <span className="font-semibold font-jost  bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent  bg-clip-text text-[16px] group-hover:text-white  "> Inscrivez-vous ici </span>
+                            <span className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px]"> Inscrivez-vous ici </span>
                         </Link>
                     </p>
                 </div>
