@@ -7,7 +7,7 @@ const NewsPage = () => {
   
   return (
     <>
-      <div className="w-11/12  mx-auto">
+      <div className="w-11/12 mx-auto">
         <DashboardTitle>Nouveautés ✨</DashboardTitle>
       </div>
       <div className="w-11/12  mx-auto">
