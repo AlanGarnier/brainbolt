@@ -184,14 +184,14 @@
   }
 
   .dashboard-title {
-    @apply  text-3xl lg:text-3xl font-ubuntu font-bold; 
+    @apply  text-3xl lg:text-3xl text-primary-black dark:text-white font-ubuntu font-bold; 
   }
 
   .dashboard-subtitle {
-    @apply text-base font-ubuntu font-bold mt-6; 
+    @apply text-base text-primary-black dark:text-white font-ubuntu font-bold mt-6; 
   }
   .dashboard-text{
-    @apply font-jost font-light text-[15px] lg:text-[15px] text-white text-opacity-80 mt-6;
+    @apply font-jost font-light text-[15px] lg:text-[15px] text-primary-black dark:text-white text-opacity-80 mt-6;
 
   }
  
