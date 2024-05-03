@@ -13,6 +13,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CldUploadButton } from 'next-cloudinary';
 import { motion } from 'framer-motion'
+import Link from 'next/link';
 
 const steps = [
   {
@@ -203,6 +204,13 @@ const SignUpForm = () => {
                 currentStep === steps.length - 1 ? 'Valider' : <ChevronRight className='h-5 w-5' />
               }
             </Button>
+          </div>
+          <div className="text-center mt-4">
+            <p>Déjà un compte ? {` `}
+                <Link href="/auth/login">
+                    <span className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px]">Connectez-vous ici</span>
+                </Link>
+            </p>
           </div>
         </div>
     </>
