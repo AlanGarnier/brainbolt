@@ -8,7 +8,7 @@ import NotificationsList from './notifications/NotificationsList';
 
 const DashboardNav = () => {
   return (
-    <nav className="fixed z-20 top-0 w-full border-b border-dark-grey">
+    <nav className="fixed z-20 top-0 w-full border-b bg-white dark:bg-primary-black border-lighter-grey dark:border-dark-grey">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
@@ -24,10 +24,10 @@ const DashboardNav = () => {
               <label className="sr-only">Search</label>
               <div className="relative mt-1 lg:w-96">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <Search size={20} color="#BBBBBF" />
+                  <Search size={20} className="text-primary-black dark:text-[#BBBBBF]" />
                   {/* <svg className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg> */}
                 </div>
-                <input type="text" name="search" id="topbar-search" className="bg-primary-black border font-jost text-white/80 md:text-sm rounded-lg  focus:ring-white block w-full pl-10 p-2.5 border-light-grey placeholder-light-grey focus:outline-none focus:border-white" placeholder="Rechercher un jeu/ami..." />
+                <input type="text" name="search" id="topbar-search" className="bg-white dark:bg-primary-black border font-jost text-white/80 md:text-sm rounded-lg  focus:ring-white block w-full pl-10 p-2.5 border-primary-black/60 dark:border-light-grey placeholder-primary-black/60 dark:placeholder-light-grey focus:outline-none focus:border-primary-black focus:border-[1.5px] dark:focus:border-white" placeholder="Rechercher un jeu/ami..." />
               </div>
             </form>
           </div>

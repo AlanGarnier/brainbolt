@@ -17,7 +17,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({children}) => {
   return (
     <>
         <DashboardNav />
-        <div className="flex overflow-hidden">
+        <div className="bg-white dark:bg-primary-black flex overflow-hidden">
           <DashboardSidebar open={open} handleButtonClick={handleButtonClick} />
             <DashboardContent>
               {children}

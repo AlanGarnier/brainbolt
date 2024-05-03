@@ -13,7 +13,7 @@ interface DashboardSidebarProps {
 const DashboardSidebar: React.FC<DashboardSidebarProps> = ({open, handleButtonClick}) => {
 
   return (
-    <aside className={`${open ? 'w-[250px] flex-shrink-0' : 'w-[80px]'} hidden z-40 bg-primary-black sticky top-0 left-0 md:flex md:flex-col md:space-y-16 border border-dark-grey min-h-screen pl-6 pr-4 py-6`}>
+    <aside className={`${open ? 'w-[250px] flex-shrink-0' : 'w-[80px]'} hidden z-40 bg-white dark:bg-primary-black sticky top-0 left-0 md:flex md:flex-col md:space-y-16 border border-lighter-grey dark:border-dark-grey border-t-0 min-h-screen pl-6 pr-4 py-6`}>
         {/* sidebar-top-wrapper */}
         <div className="flex items-center justify-between min-h-12">
             {/* sidebar top */}
@@ -27,10 +27,10 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({open, handleButtonCl
                         className="block w-8 h-8" />
                 </div>
                 <div>
-                    <h2 className={` ${!open ? "hidden" : ""} ml-2 text-3xl font-ubuntu font-medium text-white`}>Brainbolt</h2>
+                    <h2 className={` ${!open ? "hidden" : ""} ml-2 text-3xl font-ubuntu font-medium text-primary-black dark:text-white`}>Brainbolt</h2>
                 </div>
             </div>
-            <button onClick={handleButtonClick} className="absolute grid cursor-pointer z-2 top-16 -right-4 p-[5px] bg-dark-grey rounded-lg">
+            <button onClick={handleButtonClick} className="absolute grid cursor-pointer z-2 top-16 -right-4 p-[5px] bg-lighter-dark-grey dark:bg-dark-grey rounded-lg">
                 {
                     open ? <ChevronLeft size={16} color="#fff" /> : <ChevronRight size={16} color="#fff" />
                 }
@@ -41,9 +41,9 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({open, handleButtonCl
                 {
                     DashboardTopLinks.map((link, index) => (
                         <li key={index} className="-ml-[3px] mb-1">
-                            <Link href="#" className="px-2 py-[7px] flex items-center space-x-3 font-jost hover:bg-white/20 rounded group transition-colors duration-300">
+                            <Link href={link.link} className="px-2 py-[7px] flex items-center space-x-3 font-jost hover:bg-primary-black/20 dark:hover:bg-white/20 rounded group transition-colors duration-300">
                                 {link.render()}
-                                <span className={`ml-2 ${!open ? "hidden" : ""} text-primary-grey group-hover:text-white`}>{link.title}</span>
+                                <span className={`ml-2 ${!open ? "hidden" : ""} text-primary-black dark:text-primary-grey dark:group-hover:text-white`}>{link.title}</span>
                             </Link>
                         </li>
                     ))
@@ -53,9 +53,9 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({open, handleButtonCl
                 {
                     DashboardBottomLinks.map((link, index) => (
                         <li key={index} className="-ml-1 mb-1">
-                            <Link href="#" className="px-2 py-[3px] flex items-center space-x-3 font-jost hover:bg-white/20 rounded group transition-colors duration-300">
+                            <Link href={link.link} className="px-2 py-[3px] flex items-center space-x-3 font-jost hover:bg-primary-black/20 dark:hover:bg-white/20 rounded group transition-colors duration-300">
                                 <span className="text-[24px]">{link.icon}</span> 
-                                <span className={`ml-2 ${!open ? "hidden" : ""} text-primary-grey group-hover:text-white`}>{link.title}</span>
+                                <span className={`ml-2 ${!open ? "hidden" : ""} text-primary-black dark:text-primary-grey dark:group-hover:text-white`}>{link.title}</span>
                             </Link>
                         </li>
                     ))
