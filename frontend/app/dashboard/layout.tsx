@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import DashboardLayout from './components/layout/DashboardLayout'
+import { ThemeProvider } from '@/providers/ThemeProvider'
 
 interface LayoutProps {
     children: ReactNode
@@ -8,10 +9,16 @@ interface LayoutProps {
 const Layout = ({children}: LayoutProps) => {
   return (
     <>
-        <DashboardLayout>
-          {children}
-        </DashboardLayout>
-        
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <DashboardLayout>
+            {children}
+          </DashboardLayout>
+        </ThemeProvider>
     </>
   )
 }
