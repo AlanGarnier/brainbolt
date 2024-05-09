@@ -12,11 +12,13 @@ export interface GameDataInterface {
 export interface DashboardTopLinksInterface {
     title: string;
     render: () => JSX.Element;
+    link:string;
 }
 
 export interface DashboardBottomLinksInterface {
     title: string;
     icon: string;
+    link: string;
 }
 
 export const gameData: GameDataInterface[] = [
@@ -45,14 +47,16 @@ export const gameData: GameDataInterface[] = [
 export const DashboardTopLinks: DashboardTopLinksInterface[] = [
     {
         title: 'Accueil',
+        link: '/dashboard',
         render: () => (
-            <LayoutDashboard className="text-primary-grey group-hover:text-white" size={26} /> 
+            <LayoutDashboard className="text-primary-black dark:text-primary-grey group-hover:text-primary-black dark:group-hover:text-white" size={26} /> 
         ),
     },
     {
         title: 'Nouveautés',
+        link: '/dashboard/news',
         render: () => (
-            <BadgeInfo className="text-primary-grey group-hover:text-white" size={26} />
+            <BadgeInfo className="text-primary-black dark:text-primary-grey group-hover:text-primary-black dark:group-hover:text-white" size={26} />
         ),
     },
     // {
@@ -66,14 +70,17 @@ export const DashboardTopLinks: DashboardTopLinksInterface[] = [
 export const DashboardBottomLinks: DashboardBottomLinksInterface[] = [
     {
         title: 'Catégories',
+        link: '/dashboard/categories',
         icon: '🎮'
     },
     {
         title: 'Jeux favoris',
+        link: '/dashboard/favorites',
         icon: '💜'
     },
     {
         title: 'Amis',
+        link: '/dashboard/friends',
         icon: '👥'
     }
 ];

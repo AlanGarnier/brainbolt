@@ -47,7 +47,7 @@ const Header = () => {
   return (
     <>
       {/* Desktop Header */}
-      <header className={`${show} ${blurHeader ? 'backdrop-blur-lg' : ''} sticky top-0 transition-transform duration-300 px-8 pt-5 pb-8 lg:py-4 lg:px-[110px]`}>
+      <header className={`${show} ${blurHeader ? 'backdrop-blur-lg' : ''} sticky top-0 transition-transform duration-300 px-8 pt-5 pb-8 lg:pt-4 lg:pb-6 lg:px-[110px]`}>
         <div className="relative flex justify-between h-16 mx-auto">
           <Link
             href="/"
@@ -91,10 +91,9 @@ const Header = () => {
               height={40} />
           </button>
         </div>
+        {/* Radial gradient at the bottom of the header */}
+        <RadialBorderGradient direction="bottom" />
       </header>
-
-      {/* Radial gradient at the bottom of the header */}
-      <RadialBorderGradient direction="bottom" />
 
       {/* Mobile Header */}
       <div className="lg:hidden !z-[999]">
