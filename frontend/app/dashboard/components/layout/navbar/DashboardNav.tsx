@@ -1,25 +1,51 @@
+"use client";
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
-import { Search } from 'lucide-react';
+import React, { useEffect, useState } from 'react'
+import { Search, AlignLeft, LogOut, X } from 'lucide-react';
 import UserMenu from './user/UserMenu';
 import ToggleThemeDropdown from './theme/ToggleThemeDropdown';
 import NotificationsList from './notifications/NotificationsList';
+import { DashboardBottomLinks, DashboardTopLinks } from '@/constants/data';
 
 const DashboardNav = () => {
+  const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Function to toggle body overflow
+    const toggleBodyOverflow: () => void = () => {
+      if (openMobileMenu) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+    };
+    // Call toggleBodyOverflow when isMenuOpen changes
+    toggleBodyOverflow();
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [openMobileMenu]);
+
   return (
     <nav className="fixed z-20 top-0 w-full border-b bg-white dark:bg-primary-black border-lighter-grey dark:border-dark-grey">
       <div className="px-3 py-3 lg:px-5 lg:pl-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center justify-start">
-            <Link href="/" className="flex lg:hidden ml-2 md:mr-24">
+            <button
+              className="lg:hidden ml-2 md:mr-24">
+              <AlignLeft onClick={() => setOpenMobileMenu(!openMobileMenu)} className='h-8 w-8 text-primary-black dark:text-[#BBBBBF]' />
+            </button>
+            {/* <Link href="/" className="flex lg:hidden ml-2 md:mr-24">
               <Image 
                 src="/assets/img/brainbolt-white-logo.svg" 
                 width={155}
                 height={24}
                 className="h-8 mr-3" 
                 alt="Brainbolt Logo" />
-            </Link>
+            </Link> */}
             <form action="#" method="GET" className="hidden lg:block lg:ml-[260px]">
               <label className="sr-only">Search</label>
               <div className="relative mt-1 lg:w-96">
@@ -57,6 +83,70 @@ const DashboardNav = () => {
             </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      <div className={`${openMobileMenu ? 'left-0' : '-left-full'} transition-all duration-200 fixed z-20 top-0 h-screen overflow-hidden shadow-lg`}>
+        <div className='w-[360px] flex flex-col space-y-16 border md:hidden z-40 bg-white dark:bg-primary-black sticky top-0 left-0 min-h-screen pl-6 pr-4 py-6'>
+          {/* sidebar-top-wrapper */}
+          <div className="flex items-center justify-between min-h-12">
+              {/* sidebar top */}
+              <div className="flex items-center"> 
+                  <div>
+                      <Image 
+                          src="/favicon.ico" 
+                          alt="Logo"
+                          width={32}
+                          height={32} 
+                          className="block w-8 h-8" />
+                  </div>
+                  <div>
+                      <h2 className={` ml-2 text-3xl font-ubuntu font-medium text-primary-black dark:text-white`}>Brainbolt</h2>
+                  </div>
+              </div>
+              {/* close button */}
+              <div className="cursor-pointer">
+                  <X onClick={() => setOpenMobileMenu(!openMobileMenu)} size={32} className="text-primary-black dark:text-white" />
+              </div>
+          </div>
+          <div className="flex flex-col space-y-16">
+              <ul>
+                  {
+                      DashboardTopLinks.map((link, index) => (
+                          <li key={index} className="-ml-[3px] mb-1">
+                              <Link href={link.link} className="px-2 py-[7px] flex items-center space-x-3 font-jost hover:bg-primary-black/20 dark:hover:bg-white/20 rounded group transition-colors duration-300">
+                                  {link.render()}
+                                  <span className={`ml-2 text-primary-black dark:text-primary-grey dark:group-hover:text-white`}>{link.title}</span>
+                              </Link>
+                          </li>
+                      ))
+                  }
+              </ul>
+              <ul>
+                  {
+                      DashboardBottomLinks.map((link, index) => (
+                          <li key={index} className="-ml-1 mb-1">
+                              <Link href={link.link} className="px-2 py-[3px] flex items-center space-x-3 font-jost hover:bg-primary-black/20 dark:hover:bg-white/20 rounded group transition-colors duration-300">
+                                  <span className="text-[24px]">{link.icon}</span> 
+                                  <span className={`ml-2 text-primary-black dark:text-primary-grey dark:group-hover:text-white`}>{link.title}</span>
+                              </Link>
+                          </li>
+                      ))
+                  }
+                  
+              </ul>
+              <ul>
+                  <li className="ml-1 mb-1">
+                      <Link href="#" className="flex items-center space-x-3 font-jost text-primary-red">
+                          <LogOut size={24}/>
+                          <span className={`ml-2 text-primary-red`}>Déconnexion</span>
+                      </Link>
+                  </li>
+              </ul>
+          </div>
+        </div>
+      </div>
+      {/* Background Overlay active when mobile menu is open */}
+      <div className={`${openMobileMenu ? 'block' : 'hidden'} fixed inset-0 z-10 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0`}></div>
     </nav>
   )
 }
