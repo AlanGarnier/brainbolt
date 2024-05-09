@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Steps from './Steps';
 import Input from '@/components/forms/Input';
 import { SectionTitle } from '@/components/CustomTexts';
-import { ChevronLeft, ChevronRight, FileUp } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Upload } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'react-hot-toast';
 import z from 'zod';
@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation'
 import { CldUploadButton } from 'next-cloudinary';
 import { motion } from 'framer-motion'
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 
 const steps = [
   {
@@ -32,8 +33,9 @@ const steps = [
 type Inputs = z.infer<typeof SignUpFormSchema>;
 
 const SignUpForm = () => {
-  const [previousStep, setPreviousStep] = useState(0)
-  const [currentStep, setCurrentStep] = useState(0)
+  const [previousStep, setPreviousStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [avatarUrl, setAvatarUrl] = useState('/assets/img/user-placeholder.png');
   
   const delta = currentStep - previousStep
 
@@ -54,6 +56,7 @@ const SignUpForm = () => {
     setValue("picture", result.info.secure_url, {
       shouldValidate: true,
     });
+    setAvatarUrl(result.info.secure_url);
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -184,8 +187,11 @@ const SignUpForm = () => {
                 className='bg-clip-text text-transparent mb-8 bg-gradient-to-br from-white to-[#52525B]'>
                 Presque fini ! Pimp ton profil en ajoutant une image d&apos;avatar !
               </SectionTitle>
-              <div className="w-full rounded-md py-12 flex justify-center items-center bg-gradient-to-r from-primary-purple to-primary-skyblue">
+              {/* rounded-md py-12 flex justify-center items-center bg-gradient-to-r from-primary-purple to-primary-skyblue */}
+              <div 
+                className="w-[200px] h-[200px] relative bg-cover mx-auto rounded-full border-4 border-white" style={{ backgroundImage: `url(${avatarUrl})` }}>
                 <CldUploadButton
+                  className="w-[48px] h-[48px] absolute flex justify-center items-center bottom-0 right-0 rounded-full bg-white"
                   options={{ maxFiles: 1 }}
                   uploadPreset="pemdkgyj"
                   onUpload={handleUpload}
@@ -193,7 +199,7 @@ const SignUpForm = () => {
                   <label 
                     className="cursor-pointer" 
                     htmlFor="file">
-                      <FileUp className="h-24 w-24" />
+                      <Upload color='#333' className="h-7 w-7" />
                   </label>
                   <Input id="image" type="file" register={register("picture")} className="hidden" />
                 </CldUploadButton>
@@ -223,6 +229,13 @@ const SignUpForm = () => {
                 currentStep === steps.length - 1 ? 'Valider' : <ChevronRight className='h-5 w-5' />
               }
             </Button>
+          </div>
+          <div className="text-center mt-4">
+            <p>Déjà un compte ? {` `}
+                <Link href="/auth/login">
+                    <span className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px]">Connectez-vous ici</span>
+                </Link>
+            </p>
           </div>
         </div>
     </>

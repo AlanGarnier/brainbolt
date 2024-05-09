@@ -26,25 +26,25 @@ const UserMenu = () => {
             className="w-8 h-8 cursor-pointer object-contain rounded-full"
         />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 bg-primary-black border-dark-grey">
-        <DropdownMenuLabel className="text-white">shadn@gmail.com</DropdownMenuLabel>
-        <DropdownMenuSeparator className="border-[0.5px] border-dark-grey" />
+      <DropdownMenuContent className="w-56 bg-white dark:bg-primary-black border-lighter-grey dark:border-dark-grey">
+        <DropdownMenuLabel className="text-primary-black dark:text-white">shadn@gmail.com</DropdownMenuLabel>
+        <DropdownMenuSeparator className="border-[0.5px] border-lighter-grey dark:border-dark-grey" />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="focus:bg-dark-grey cursor-pointer">
-            <User className="text-white mr-2 h-4 w-4" />
-            <span>Profil</span>
+          <DropdownMenuItem className="focus:bg-lighter-grey dark:focus:bg-dark-grey cursor-pointer">
+            <User className="text-primary-black dark:text-white mr-2 h-4 w-4" />
+            <span className="text-primary-black dark:text-white">Profil</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="focus:bg-dark-grey cursor-pointer">
-            <Users className="text-white mr-2 h-4 w-4" />
-            <span>Amis</span>
+          <DropdownMenuItem className="focus:bg-lighter-grey dark:focus:bg-dark-grey cursor-pointer">
+            <Users className="text-primary-black dark:text-white mr-2 h-4 w-4" />
+            <span className="text-primary-black dark:text-white">Amis</span>
           </DropdownMenuItem>
-          <DropdownMenuItem className="focus:bg-dark-grey cursor-pointer">
-            <Settings className="text-white mr-2 h-4 w-4" />
-            <span>Settings</span>
+          <DropdownMenuItem className="focus:bg-lighter-grey dark:focus:bg-dark-grey cursor-pointer">
+            <Settings className="text-primary-black dark:text-white mr-2 h-4 w-4" />
+            <span className="text-primary-black dark:text-white">Settings</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator className="border-[0.5px] border-dark-grey" />
-        <DropdownMenuItem className="focus:bg-primary-black cursor-pointer">
+        <DropdownMenuSeparator className="border-[0.5px] border-lighter-grey dark:border-dark-grey" />
+        <DropdownMenuItem className="focus:bg-lighter-grey dark:focus:bg-dark-grey cursor-pointer">
           <LogOut className="text-primary-red mr-2 h-4 w-4" />
           <span className="text-primary-red">Log out</span>
         </DropdownMenuItem>
