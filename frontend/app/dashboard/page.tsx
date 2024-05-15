@@ -9,7 +9,6 @@ const DashboardPage = () => {
       <div className="pl-0 lg:pr-10">
         <GamesCarousel />
       </div>
-      
     </>
   )
 }
