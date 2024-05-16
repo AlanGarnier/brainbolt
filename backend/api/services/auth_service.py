@@ -96,8 +96,8 @@ class AuthService:
                 return {"user": user_info, "access_token": access_token}, 200
 
     @staticmethod
-    def check_username(pseudo):
-        user = user_service.find_user({'pseudo': pseudo})
+    def check_credentials(field, value):
+        user = user_service.find_user({field: value})
         if user:
             return {"isAvailable": False}
         else:
