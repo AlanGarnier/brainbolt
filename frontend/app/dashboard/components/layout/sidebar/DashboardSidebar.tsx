@@ -4,6 +4,7 @@ import { ChevronRight, ChevronLeft, LogOut } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { DashboardBottomLinks, DashboardTopLinks } from '@/constants/data';
+import { signOut } from 'next-auth/react';
 
 interface DashboardSidebarProps {
     open: boolean;
@@ -11,6 +12,10 @@ interface DashboardSidebarProps {
 }
 
 const DashboardSidebar: React.FC<DashboardSidebarProps> = ({open, handleButtonClick}) => {
+
+    const handleSignOut = async () => {
+        await signOut();
+    }
 
   return (
     <aside className={`${open ? 'w-[250px] flex-shrink-0' : 'w-[80px]'} hidden z-40 bg-white dark:bg-primary-black sticky top-0 left-0 md:flex md:flex-col md:space-y-16 border border-lighter-grey dark:border-dark-grey border-t-0 min-h-screen pl-6 pr-4 py-6`}>
@@ -20,7 +25,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({open, handleButtonCl
             <div className="flex items-center"> 
                 <div>
                     <Image 
-                        src="/favicon.ico" 
+                        src="/favicon.ico"
                         alt="Logo"
                         width={32}
                         height={32} 
@@ -64,10 +69,10 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({open, handleButtonCl
             </ul>
             <ul>
                 <li className="ml-1 mb-1">
-                    <Link href="#" className="flex items-center space-x-3 font-jost text-primary-red">
+                    <button onClick={handleSignOut} className="flex items-center space-x-3 font-jost text-primary-red">
                         <LogOut size={24}/>
                         <span className={`ml-2 ${!open ? "hidden" : ""} text-primary-red`}>Déconnexion</span>
-                    </Link>
+                    </button>
                 </li>
             </ul>
         </nav>
