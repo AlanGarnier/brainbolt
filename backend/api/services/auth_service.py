@@ -70,10 +70,10 @@ class AuthService:
         login = data.get('email')
         password = data.get('password')
         # Get user from credentials
-        user = user_service.find_user_credentials({"email": login}, {'_id': 1, "email": 1, "password": 1})
-        # Check is the user is found
+        user = user_service.find_user_credentials({"email": login}, {'_id': 1, "email": 1, "password": 1, "pseudo": 1, "picture": 1})
+        # Check if the user is found
         if user is None:
-            message = {"User not found. Check your login and try again"}
+            message = {"message": "User not found. Check your login and try again"}
             return message, 400
         else:
             # Encode password entered by user
@@ -81,11 +81,16 @@ class AuthService:
             # Check between password entered and password in database
             result = bcrypt.checkpw(encoded_pwd, user[0]['password'])
             if not result:
-                message = {"The entered password is incorrect. Check your password and try again"}
+                message = {"message": "The entered password is incorrect. Check your password and try again"}
                 return message, 401
             else:
                 # Make user authentication
                 user_id = str(user[0]['_id'])
                 access_token = create_access_token(identity=user_id)
-                print(access_token)
-                return access_token, 200
+                user_info = {
+                    "id": user_id,
+                    "email": user[0]['email'],
+                    "pseudo": user[0]['pseudo'],
+                    "picture": user[0]['picture']
+                }
+                return {"user": user_info, "access_token": access_token}, 200
