@@ -3,12 +3,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { Search, AlignLeft, LogOut, X } from 'lucide-react';
-import UserMenu from './user/UserMenu';
 import ToggleThemeDropdown from './theme/ToggleThemeDropdown';
 import NotificationsList from './notifications/NotificationsList';
 import { DashboardBottomLinks, DashboardTopLinks } from '@/constants/data';
+import { User } from '@/lib/types';
+import UserMenu from './user/UserMenu';
 
-const DashboardNav = () => {
+interface DashboardNavProps {
+  user: User;
+}
+
+const DashboardNav: React.FC<DashboardNavProps> = ({user}) => {
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
 
   useEffect(() => {
@@ -71,7 +76,7 @@ const DashboardNav = () => {
             <NotificationsList />
             
             {/* User Profile Menu */}
-            <UserMenu />
+            <UserMenu user={user} />
             
             <div className="flex items-center ml-3">
               <div>
@@ -89,7 +94,6 @@ const DashboardNav = () => {
         <div className='w-[360px] flex flex-col space-y-16 border md:hidden z-40 bg-white dark:bg-primary-black sticky top-0 left-0 min-h-screen pl-6 pr-4 py-6'>
           {/* sidebar-top-wrapper */}
           <div className="flex items-center justify-between min-h-12">
-              {/* sidebar top */}
               <div className="flex items-center"> 
                   <div>
                       <Image 
@@ -103,7 +107,7 @@ const DashboardNav = () => {
                       <h2 className={` ml-2 text-3xl font-ubuntu font-medium text-primary-black dark:text-white`}>Brainbolt</h2>
                   </div>
               </div>
-              {/* close button */}
+              
               <div className="cursor-pointer">
                   <X onClick={() => setOpenMobileMenu(!openMobileMenu)} size={32} className="text-primary-black dark:text-white" />
               </div>
@@ -145,8 +149,9 @@ const DashboardNav = () => {
           </div>
         </div>
       </div>
+    
       {/* Background Overlay active when mobile menu is open */}
-      <div className={`${openMobileMenu ? 'block' : 'hidden'} fixed inset-0 z-10 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0`}></div>
+       <div className={`${openMobileMenu ? 'block' : 'hidden'} fixed inset-0 z-10 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0`}></div>
     </nav>
   )
 }
