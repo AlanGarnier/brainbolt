@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Ubuntu, Jost } from "next/font/google";
 import "./globals.css";
 import { GoogleTagManager } from "@next/third-parties/google";
-import AuthProvider from "@/providers/auth-provider";
-import ToastProvider from "@/providers/toast-provider";
+import AuthProvider from "@/providers/AuthProvider";
+import ToastProvider from "@/providers/ToastProvider";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
