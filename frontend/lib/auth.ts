@@ -1,64 +1,71 @@
-import {AuthOptions} from 'next-auth'
-import {JWT} from 'next-auth/jwt'
-import CredentialsProvider from 'next-auth/providers/credentials'
-
-// async function refreshToken(token: JWT): Promise<JWT> {
-//   const res = await fetch(
-//     process.env.BACKEND_API_URL + '/auth/refresh-token',
-//     {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({refresh_token: token.refresh_token})
-//     }
-//   )
-//   const response = await res.json()
-
-//   return {
-//     ...response,
-//     access_token_exp: Date.now() + 30 * 60 * 1000
-//   }
-// }
+import { AuthOptions, User } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        email: {label: 'Email', type: 'text'},
-        password: {label: 'Password', type: 'password'}
+        email: { label: 'Email', type: 'text' },
+        password: { label: 'Password', type: 'password' }
       },
-      async authorize(credentials) {
-        const response = await fetch(
-          `${process.env.BACKEND_API_URL}`,
-          {
-            method: 'POST',
-            body: JSON.stringify({
+      authorize: async (credentials) => {
+        const res = await fetch(`http://127.0.0.1:5000/api/login`, {
+          method: 'POST',
+          body: JSON.stringify(
+            {
               email: credentials?.email,
               password: credentials?.password
-            }),
-            headers: {'Content-Type': 'application/json'}
-          }
-        )
+            }
+          ),
+          headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await res.json();
 
-        const data = await response.json()
-
-        if (data.error) {
-          throw new Error(data.message)
+        if (res.ok && data.user) {
+          return {
+            id: data.user.id,
+            email: data.user.email,
+            pseudo: data.user.pseudo,
+            picture: data.user.picture,
+            token: data.access_token
+          } as User;
+        } else {
+          return null;
         }
-
-        return data
       }
     })
   ],
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: '/auth/',
+    signIn: '/auth/login',
   },
   session: {
-    strategy: "jwt",
- },
-}
+    strategy: 'jwt',
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.pseudo = user.pseudo;
+        token.picture = user.picture;
+        token.accessToken = user.token; // Store the token in the JWT
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user = {
+        id: token.id,
+        email: token.email,
+        pseudo: token.pseudo,
+        picture: token.picture,
+        token: token.accessToken,
+      } as User;
+      session.accessToken = token.accessToken; // Include the token in the session
+      return session;
+    }
+  }
+};
 
-export default authOptions
+export default authOptions;
