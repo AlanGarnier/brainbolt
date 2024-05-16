@@ -35,8 +35,9 @@ def protected():
     current_user = get_jwt_identity()
     return jsonify(logged_in_as=current_user), 200
 
-@auth_api.route('/api/check-username', methods=['GET'])
-def check_username():
-    pseudo = request.args.get('pseudo')
-    response = auth_service.check_username(pseudo)
+@auth_api.route('/api/check-credentials', methods=['GET'])
+def check_credentials():
+    field = request.args.get('field')
+    value = request.args.get('value')
+    response = auth_service.check_credentials(field, value)
     return jsonify(response)
