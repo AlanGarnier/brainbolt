@@ -15,6 +15,7 @@ import { CldUploadButton } from 'next-cloudinary';
 import { motion } from 'framer-motion'
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
+import { checkUsernameAvailability } from '@/utils/validations';
 
 const steps = [
   {
@@ -101,6 +102,16 @@ const SignUpForm = () => {
 
     if (!output) return
 
+    if (currentStep === 1) {
+      const pseudo = getValues().pseudo;
+      const isAvailable = await checkUsernameAvailability(pseudo);
+
+      if (!isAvailable) {
+        toast.error("Le nom d'utilisateur est déjà pris");
+        return;
+      }
+    }
+
     // console.log('valeurs actuelles', getValues())
 
     if (currentStep < steps.length - 1) {
@@ -156,6 +167,14 @@ const SignUpForm = () => {
                   register={register("password")}
                   error={errors.password?.message}
                 />
+                {errors.password && (
+                  <div>
+                    {errors.password.types?.min && <p>{errors.password.types.min}</p>}
+                    {errors.password.types?.uppercase && <p>{errors.password.types.uppercase}</p>}
+                    {errors.password.types?.special && <p>{errors.password.types.special}</p>}
+                    {errors.password.types?.number && <p>{errors.password.types.number}</p>}
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
