@@ -4,7 +4,17 @@ import { z } from 'zod';
 // Schema pour le formulaire d'inscription
 export const SignUpFormSchema = z.object({
     email: z.string({required_error: "L'email est requis"},).email({ message: "Email invalide" }),
-    password: z.string({required_error: "Le mot de passe est requis"},).min(8, "Le mot de passe doit contenir au moins 8 caractères"),
+    password: z.string({ required_error: "Le mot de passe est requis" })
+        .min(8, "Le mot de passe doit contenir au moins 8 caractères")
+        .refine((value) => /[A-Z]/.test(value), {
+            message: "Le mot de passe doit contenir au moins une majuscule",
+        })
+        .refine((value) => /[!@#$%^&*(),.?":{}|<>]/.test(value), {
+            message: "Le mot de passe doit contenir au moins un caractère spécial",
+        })
+        .refine((value) => /[0-9]/.test(value), {
+            message: "Le mot de passe doit contenir au moins un chiffre",
+        }),
     pseudo: z.string({required_error: "Le nom d'utilisateur est requis"},).min(3, "Le nom d'utilisateur doit contenir au moins 3 caractères"), 
     picture: z.string({ required_error: "L'image est requise" }).url({ message: "L'URL de l'image est invalide" })
 });
