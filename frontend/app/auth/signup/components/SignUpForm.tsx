@@ -15,7 +15,7 @@ import { CldUploadButton } from 'next-cloudinary';
 import { motion } from 'framer-motion'
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-import { checkUsernameAvailability } from '@/utils/validations';
+import { checkCredentialsAvailability } from '@/utils/validations';
 
 const steps = [
   {
@@ -102,17 +102,25 @@ const SignUpForm = () => {
 
     if (!output) return
 
+    if (currentStep === 0) {
+      const email = getValues().email;
+      const isAvailable = await checkCredentialsAvailability('email', email);
+
+      if (!isAvailable) {
+        toast.error("Cet email est déjà associé à un compte");
+        return;
+      }
+    }
+
     if (currentStep === 1) {
       const pseudo = getValues().pseudo;
-      const isAvailable = await checkUsernameAvailability(pseudo);
+      const isAvailable = await checkCredentialsAvailability('pseudo', pseudo);
 
       if (!isAvailable) {
         toast.error("Le nom d'utilisateur est déjà pris");
         return;
       }
     }
-
-    // console.log('valeurs actuelles', getValues())
 
     if (currentStep < steps.length - 1) {
       setPreviousStep(currentStep);
