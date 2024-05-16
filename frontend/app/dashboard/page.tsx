@@ -6,7 +6,7 @@ const DashboardPage = () => {
     <>
       <h1>Dashboard</h1>
       <p>Welcome to your dashboard</p>
-      <div className="pl-0 lg:pr-10">
+      <div className="pl-0 h-screen lg:pr-10">
         <GamesCarousel />
       </div>
     </>
