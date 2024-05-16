@@ -60,9 +60,16 @@ const SignUpForm = () => {
   };
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const res = await fetch(`${process.env.BACKEND_API_URL}/api/register`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/register`, {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(
+        {
+          email: data.email,
+          password: data.password,
+          pseudo: data.pseudo,
+          picture: data.picture,
+        }
+      ),
       headers: {
         "Content-Type": "application/json",
       },
@@ -78,14 +85,11 @@ const SignUpForm = () => {
         redirect: false,
         email: data.email,
         password: data.password,
+        callbackUrl: "/auth/login",
       });
       router.refresh();
-      router.push('/');
+      router.push('/auth/login');
     }
-    console.log(data)
-    console.log('Form submitted successfully')
-    return data
- 
   }
 
   type FieldName = keyof Inputs
