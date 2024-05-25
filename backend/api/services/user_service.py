@@ -70,3 +70,12 @@ class UserService:
             return {"message": "User updated successfully"}, 200
         else:
             return {"message": "An error occurred while updating the user " + id + ": user not updated"}, 400
+        
+    @staticmethod
+    def search_user_by_pseudo(pseudo):
+        # Recherche d'utilisateurs par pseudo
+        users = list(users_collection.find({"pseudo": {"$regex": pseudo, "$options": "i"}}))
+        if users:
+            return users, 200
+        else:
+            return {"message": "Aucun utilisateur trouvé 😞."}, 404
