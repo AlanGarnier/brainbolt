@@ -1,56 +1,83 @@
-# from ..config.database import db
-# from ..models.friend import User
-# from pydantic import ValidationError
-# from bson.objectid import ObjectId
+import logging
+from ..config.database import db
+from bson.objectid import ObjectId
+import datetime
 
-# # Get reference to 'users' collection
-# friends_collection = db.friends
+# Get reference to 'friends' collection
+friends_collection = db.friends
 
+# Configure logging
+logging.basicConfig(level=logging.DEBUG)
 
-# class FriendService:
-#     def __init__(self, user_id, friend_id, status='pending'):
-#         self.user_id = user_id
-#         self.friend_id = friend_id
-#         self.status = status
+class FriendService:
+    def __init__(self, user_id, friend_id, status='pending'):
+        self.user_id = ObjectId(user_id)
+        self.friend_id = ObjectId(friend_id)
+        self.status = status
+        self.created_at = datetime.datetime.now()
 
-#     def save(self):
-#         db.friends.insert_one({
-#             'user_id': self.user_id,
-#             'friend_id': self.friend_id,
-#             'status': self.status,
-#             'created_at': self.created_at
-#         })
+    def save(self):
+        friends_collection.insert_one({
+            'user_id': self.user_id,
+            'friend_id': self.friend_id,
+            'status': self.status,
+            'created_at': self.created_at
+        })
 
-#     @staticmethod
-#     def get_friends(user_id):
-#         friends1 = list(friends_collection.find({'user_id': user_id, 'status': 'accepted'}));
-#         friends2 = list(friends_collection.find({'friend_id': user_id, 'status': 'accepted'}));
-#         return friends1 + friends2
+    @staticmethod
+    def friend_request_exists(user_id, friend_id):
+        user_id = ObjectId(user_id)
+        friend_id = ObjectId(friend_id)
+        existing_request = friends_collection.find_one({
+            'user_id': user_id,
+            'friend_id': friend_id,
+            'status': 'pending'
+        })
+        return existing_request is not None
 
-#     @staticmethod
-#     def get_pending_requests(user_id):
-#         return list(db.friends.find({'friend_id': user_id, 'status': 'pending'}))
-    
-#     @staticmethod
-#     def accept_request(user_id, friend_id):
-#         friends_collection.update_one(
-#             {'user_id': friend_id, 'friend_id': user_id, 'status': 'pending'},
-#             {'$set': {'status': 'accepted'}}
-#         )
+    @staticmethod
+    def get_pending_requests(user_id):
+        user_id = ObjectId(user_id)
+        pending_requests = list(friends_collection.find({'user_id': user_id, 'status': 'pending'}))
+        return FriendService.convert_to_json_compatible(pending_requests)
 
-#         # Update the status of the friend request to 'accepted' for the friend
-#         friends_collection.update_one(
-#             {'user_id': user_id, 'friend_id': friend_id, 'status': 'pending'},
-#             {'$set': {'status': 'accepted'}}
-#         )
+    @staticmethod
+    def accept_request(user_id, friend_id):
+        user_id = ObjectId(user_id)
+        friend_id = ObjectId(friend_id)
+        friends_collection.update_one(
+            {'user_id': friend_id, 'friend_id': user_id, 'status': 'pending'},
+            {'$set': {'status': 'accepted'}}
+        )
 
-#         # Add each user to the other's list of accepted friends
-#         friends_collection.update_one(
-#             {'_id': ObjectId(user_id)},
-#             {'$addToSet': {'friends': ObjectId(friend_id)}}
-#         )
+    @staticmethod
+    def reject_request(user_id, friend_id):
+        user_id = ObjectId(user_id)
+        friend_id = ObjectId(friend_id)
+        friends_collection.delete_one({'user_id': friend_id, 'friend_id': user_id, 'status': 'pending'})
 
-#         friends_collection.update_one(
-#             {'_id': ObjectId(friend_id)},
-#             {'$addToSet': {'friends': ObjectId(user_id)}}
-#         )
+    @staticmethod
+    def remove_friend_request(user_id, friend_id):
+        user_id = ObjectId(user_id)
+        friend_id = ObjectId(friend_id)
+        friends_collection.delete_one({'user_id': user_id, 'friend_id': friend_id, 'status': 'pending'})
+        return {'message': 'Friend request removed successfully'}, 200
+
+    @staticmethod
+    def convert_to_json_compatible(data):
+        """
+        Convert MongoDB documents (BSON) to a format that is JSON serializable.
+        """
+        def convert(doc):
+            if isinstance(doc, list):
+                return [convert(item) for item in doc]
+            elif isinstance(doc, dict):
+                return {key: convert(value) for key, value in doc.items()}
+            elif isinstance(doc, ObjectId):
+                return str(doc)
+            elif isinstance(doc, datetime.datetime):
+                return doc.isoformat()
+            else:
+                return doc
+
+        return convert(data)
