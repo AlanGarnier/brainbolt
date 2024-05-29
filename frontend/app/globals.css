@@ -196,7 +196,7 @@
   }
   
   .input-search {
-    @apply bg-white dark:bg-primary-black border font-jost text-white/80 md:text-sm rounded-lg  focus:ring-white block w-full pl-10 p-2.5 border-primary-black/60 dark:border-light-grey placeholder-primary-black/60 dark:placeholder-light-grey focus:outline-none focus:border-primary-black focus:border-[1.5px] dark:focus:border-white;
+    @apply bg-white dark:bg-primary-black border font-jost text-primary-black/80 dark:text-white/80 md:text-sm rounded-lg  focus:ring-white block w-full pl-10 p-2.5 border-primary-black/60 dark:border-light-grey placeholder-primary-black/60 dark:placeholder-light-grey focus:outline-none focus:border-primary-black focus:border-[1.5px] dark:focus:border-white;
   }
   
 }

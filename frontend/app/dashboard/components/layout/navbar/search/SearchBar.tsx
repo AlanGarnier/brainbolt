@@ -1,10 +1,14 @@
 "use client";
-import { Search } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import React, { useState } from 'react'
 import SearchResults from './SearchResults';
 import { User } from 'next-auth';
 
-const SearchBar = () => {
+interface SearchBarProps {
+    user: User;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({user}) => {
     const [query, setQuery] = useState<string>('');
     const [results, setResults] = useState<User[]>([]);
     const [showResults, setShowResults] = useState<boolean>(false);
@@ -35,6 +39,11 @@ const SearchBar = () => {
         }
       };
 
+      const handleResetValue = () => {
+        setQuery('');
+        setShowResults(false);
+      }
+
   return (
     <div className="hidden lg:block lg:ml-[260px]">
         <label className="sr-only">Search</label>
@@ -51,7 +60,18 @@ const SearchBar = () => {
                 value={query}
                 onChange={handleSearch}
             />
-            {showResults && <SearchResults results={results} errorMessage={errorMessage} />}
+            {
+              showResults && <button
+                              className="absolute inset-y-0 right-0 flex items-center pr-3"
+                              onClick={handleResetValue}>
+                                <X size={20} className="text-primary-black dark:text-[#BBBBBF]" />
+                             </button>
+            }
+            {showResults && <SearchResults 
+                              results={results} 
+                              errorMessage={errorMessage}
+                              user={user} 
+                            />}
         </div>
     </div>
   )
