@@ -6,7 +6,7 @@ import { Search, AlignLeft, LogOut, X } from 'lucide-react';
 import ToggleThemeDropdown from './theme/ToggleThemeDropdown';
 import NotificationsList from './notifications/NotificationsList';
 import { DashboardBottomLinks, DashboardTopLinks } from '@/constants/data';
-import { User } from '@/lib/types';
+import { User } from 'next-auth';
 import UserMenu from './user/UserMenu';
 import SearchBar from './search/SearchBar';
 
@@ -53,7 +53,7 @@ const DashboardNav: React.FC<DashboardNavProps> = ({user}) => {
                 alt="Brainbolt Logo" />
             </Link> */}
             <div className="relative inline">
-              <SearchBar />
+              <SearchBar user={user} />
             </div>
           </div>
           <div className="flex items-center space-x-2">
