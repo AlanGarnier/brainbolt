@@ -41,6 +41,7 @@ const config = {
         "primary-purple": "#918EF4",
         "primary-skyblue": "#62C7E4",
         "primary-red": "#D34747",
+        "primary-orange": "#FFC130",
         "primary-green": "#3EAF3F",
         "dark-grey": "#404040",
         "lighter-grey": "#D5D5D7",

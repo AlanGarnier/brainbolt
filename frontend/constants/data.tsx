@@ -79,6 +79,11 @@ export const DashboardBottomLinks: DashboardBottomLinksInterface[] = [
         icon: '💜'
     },
     {
+        title: 'Demandes en amis',
+        link: '/dashboard/friends/requests',
+        icon: '📩'
+    },
+    {
         title: 'Amis',
         link: '/dashboard/friends',
         icon: '👥'
