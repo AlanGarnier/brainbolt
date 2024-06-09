@@ -128,9 +128,9 @@ export const DashboardSubtitle = ({children}: CustomTextProps) => {
 
     
 }
-export const DashboardText = ({children}: CustomTextProps) => {
+export const DashboardText = ({children, className}: CustomTextProps) => {
     return (
-        <p className="dashboard-text">
+        <p className={`dashboard-text ${className}`}>
             {children}
         </p>
     )
