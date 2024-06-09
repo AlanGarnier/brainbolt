@@ -1,10 +1,21 @@
-import { addFriend } from '@/app/actions/friends/addFriend';
-import { getPendingRequests } from '@/app/actions/friends/getPendingRequests';
-import { removeFriendRequest } from '@/app/actions/friends/removeFriendRequest';
-import { UserPlus } from 'lucide-react';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
+
+import { Skeleton } from "@/components/ui/skeleton"
+
+import { addFriend } from '@/app/actions/friends/addFriend';
+import { getFriends } from '@/app/actions/friends/getFriends';
+import { getPendingRequests } from '@/app/actions/friends/getPendingRequests';
+import { getReceivedRequests } from '@/app/actions/friends/getReceivedRequests';
+import { removeFriendRequest } from '@/app/actions/friends/removeFriendRequest';
+import { UserCheck, UserPlus } from 'lucide-react';
+
+
+
+
+
 
 type Props = {
     results: any[];
@@ -16,20 +27,34 @@ type Props = {
 
 const SearchResults: React.FC<Props> = ({ results, errorMessage, user }) => {
     const [friendRequests, setFriendRequests] = useState<string[]>([]);
+    const [friends, setFriends] = useState<string[]>([]);
+    const [receivedFriendRequests, setReceivedFriendRequests] = useState<string[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const router = useRouter();
 
     // On montre les demandes d'amis en attente
     useEffect(() => {
-        const fetchPendingRequests = async () => {
+        const fetchRequestsAndFriends = async () => {
+            setLoading(true);
             try {
-                const pendingRequests = await getPendingRequests(user.id);
-                setFriendRequests(pendingRequests);
-                // console.log('Friend requests:', pendingRequests);
+                const pendingRequests = await getPendingRequests(user.id); // Récupérer les demandes en attente
+                const receivedRequests = await getReceivedRequests(user.id); // Récupérer les demandes reçues
+                const friendIds = pendingRequests.map((req: any) => req.friend_id); // Récupérer les id des amis
+                const receivedFriendIds = receivedRequests.map((req: any) => req.user_id); 
+                setFriendRequests(friendIds);
+                setReceivedFriendRequests(receivedFriendIds);
+
+                const currentFriends = await getFriends(user.id);
+                const currentFriendIds = currentFriends.map((friend: any) => friend.friend_id);
+                setFriends(currentFriendIds);
             } catch (error) {
-                toast.error('Failed to fetch pending friend requests');
+                toast.error('Failed to fetch friend requests');
+            } finally {
+                setLoading(false); 
             }
         };
 
-        fetchPendingRequests();
+        fetchRequestsAndFriends();
     }, [user.id]);
 
     // fonction pour ajouter un ami
@@ -38,6 +63,7 @@ const SearchResults: React.FC<Props> = ({ results, errorMessage, user }) => {
             const userId = user.id;
             await addFriend(userId, friendId);
             setFriendRequests((prev) => [...prev, friendId]);
+            router.refresh();
             toast.success('Votre demande d\'ami a été envoyée');
         } catch (error) {
             if (error instanceof Error) {
@@ -48,16 +74,13 @@ const SearchResults: React.FC<Props> = ({ results, errorMessage, user }) => {
         }
     };
 
-    console.log('Results:', results);
-
-    // console.log('Friend requests:', friendRequests);
-
     // fonction pour retirer sa demande d'ami
     const handleRemoveFriendRequest = async (friendId: string) => {
         try {
             const userId = user.id;
             await removeFriendRequest(userId, friendId);
             setFriendRequests((prev) => prev.filter((id) => id !== friendId));
+            router.refresh();
             toast.success('Votre demande d\'ami a été retirée');
         } catch (error) {
             if (error instanceof Error) {
@@ -87,21 +110,36 @@ const SearchResults: React.FC<Props> = ({ results, errorMessage, user }) => {
                             </p>
                         </div>
                         {result._id.$oid !== user.id && (
-                            friendRequests.includes(result._id.$oid) ? (
-                                <button
-                                    className='p-2 rounded-lg border border-primary-red bg-transparent text-primary-red text-sm'
-                                    onClick={() => handleRemoveFriendRequest(result._id.$oid)}
-                                >
-                                    Retirer la demande
-                                </button>
+                            loading ? (
+                                <Skeleton className="w-20 h-8 rounded-lg" />
+                            ) : friends.includes(result._id.$oid) ? (
+                                <UserCheck className="text-primary-green font-bold" size={24} />
                             ) : (
-                                <button
-                                    className="p-2 rounded-lg bg-gradient-to-r from-primary-purple to-primary-skyblue text-white/70 hover:text-white/100"
-                                    onClick={() => handleAddFriend(result._id.$oid)}
-                                    disabled={friendRequests.includes(result._id.$oid)}
-                                >
-                                    <UserPlus size={20} />
-                                </button>
+                                receivedFriendRequests.includes(result._id.$oid) ? (
+                                    <button
+                                        className='p-2 rounded-lg border border-primary-orange bg-transparent text-primary-orange text-sm'
+                                        disabled
+                                    >
+                                        Demande reçue
+                                    </button>
+                                ) : (
+                                    friendRequests.includes(result._id.$oid) ? (
+                                        <button
+                                            className='p-2 rounded-lg border border-primary-red bg-transparent text-primary-red text-sm'
+                                            onClick={() => handleRemoveFriendRequest(result._id.$oid)}
+                                        >
+                                            Retirer la demande
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className="p-2 rounded-lg bg-gradient-to-r from-primary-purple to-primary-skyblue text-white/70 hover:text-white/100"
+                                            onClick={() => handleAddFriend(result._id.$oid)}
+                                            disabled={friendRequests.includes(result._id.$oid)}
+                                        >
+                                            <UserPlus size={20} />
+                                        </button>
+                                    )
+                                )
                             )
                         )}
                     </div>
