@@ -24,8 +24,8 @@ const Explore = () => {
           <motion.div 
             variants={fadeIn('right', 'tween', 0.2, 1)}
             className="flex flex-col space-y-5 lg:space-y-10 mb-10 lg:mb-14">
-            <TypingText text="| Lorem ipsum" />
-            <SectionTitle>Lorem ipsum dolor sit amet consectetur. Euismod nam</SectionTitle>
+            <TypingText text="| En ligne" />
+            <SectionTitle>Plongez dans l'Aventure Multijoueur.</SectionTitle>
           </motion.div>
 
           <motion.div 
@@ -39,8 +39,8 @@ const Explore = () => {
                 height={56}
                 className="-ml-1"
               />
-              <FeatureTitle>Lorem ipsum</FeatureTitle>
-              <FeatureText>Lorem ipsum dolor sit amet consectetur augue egestas varius</FeatureText>
+              <FeatureTitle>Ajoutez vos amis</FeatureTitle>
+              <FeatureText>Établissez une liste d'amis en incluant tous vos contacts.</FeatureText>
             </div>
 
             <div className="flex flex-col space-y-4">
@@ -51,8 +51,8 @@ const Explore = () => {
                 height={56}
                 className="-ml-1"
               />
-              <FeatureTitle>Lorem ipsum</FeatureTitle>
-              <FeatureText>Lorem ipsum dolor sit amet consectetur augue egestas varius</FeatureText>
+              <FeatureTitle>Messagerie</FeatureTitle>
+              <FeatureText>Restez connectés avec vos coéquipiers grâce à notre système de chat intégré.</FeatureText>
             </div>
           </motion.div>
         </div>

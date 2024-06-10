@@ -15,8 +15,8 @@ const Map = () => {
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
         className="mx-auto flex flex-col text-center items-center justify-center space-y-5 lg:space-y-10 lg:max-w-[763px] mb-9 lg:mb-20">
-        <TypingText text="| Lorem ipsum" />
-        <SectionTitle>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod. Proin fermentum mi vitae diam id.</SectionTitle>
+        <TypingText text="| Soyez connecté" />
+        <SectionTitle>Notre plateforme connecte des joueurs de tous horizons, permettant des sessions de jeu coopératif et compétitif avec des amis et des passionnés du monde entier.</SectionTitle>
       </motion.div>
       <motion.div
         variants={staggerContainer(0, 0)}

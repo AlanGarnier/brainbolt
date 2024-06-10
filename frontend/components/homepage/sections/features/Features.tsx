@@ -17,8 +17,8 @@ const Features = () => {
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
         className="flex flex-col space-y-8 lg:space-y-20 items-center justify-center h-full text-center">
-        <TypingText text="| Lorem ipsum" />
-        <SectionTitle>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod. Proin fermentum mi vitae diam id. Purus est urna lectus malesuada et gravida porttitor fames. Nullam aliquet aliquam eget malesuada id sed rhoncus.</SectionTitle>
+        <TypingText text="| Les étapes" />
+        <SectionTitle> Inscrivez-vous rapidement, plongez dans vos jeux préférés et suivez vos résultats en temps réel. Voici comment démarrer :</SectionTitle>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <motion.div 
@@ -31,7 +31,7 @@ const Features = () => {
               alt="Icône Inscription" />
             <FeatureTitle>Sign Up</FeatureTitle>
 
-            <FeatureText>Lorem ipsum dolor sit amet consectetur. Augue egestas varius malesuada a euismod mauris vitae ut tincidunt. Egestas elit donec quam volutpat.</FeatureText>
+            <FeatureText>Rejoignez notre communauté et accédez à des serveurs rapides. Jouez en coop avec vos amis dès aujourd'hui.</FeatureText>
           </motion.div>
 
           <motion.div 
@@ -44,7 +44,7 @@ const Features = () => {
               alt="Icône Joueur" />
             <FeatureTitle>Play Game</FeatureTitle>
 
-            <FeatureText>Lorem ipsum dolor sit amet consectetur. Augue egestas varius malesuada a euismod mauris vitae ut tincidunt. Egestas elit donec quam volutpat.</FeatureText>
+            <FeatureText>Jouez instantanément, en solo ou en coop, avec des performances optimales. Profitez d'une latence minimale pour une expérience fluide.</FeatureText>
           </motion.div>
 
           <motion.div 
@@ -57,7 +57,7 @@ const Features = () => {
               alt="Icône Résultats" />
             <FeatureTitle>See results</FeatureTitle>
 
-            <FeatureText>Lorem ipsum dolor sit amet consectetur. Augue egestas varius malesuada a euismod mauris vitae ut tincidunt. Egestas elit donec quam volutpat.</FeatureText>
+            <FeatureText>Suivez vos stats et améliorez vos compétences en coop. Partagez vos succès avec vos amis et voyez la différence.</FeatureText>
           </motion.div>
         </div>
 
