@@ -1,7 +1,6 @@
 # RESOURCES
 from flask import Flask
 from flask_jwt_extended import JWTManager
-# from backend.api.controllers.game_controller import game_api
 from backend.api.controllers.user_controller import user_api
 from backend.api.controllers.auth_controller import auth_api
 from backend.api.controllers.friend_controller import friend_api

@@ -3,6 +3,7 @@ from ..services.friend_service import FriendService
 
 friend_api = Blueprint("friend", __name__)
 
+
 @friend_api.route('/api/friends/add_friend', methods=['POST'])
 def add_friend():
     user_id = request.json.get('user_id')
@@ -24,6 +25,7 @@ def add_friend():
     else:
         return jsonify({'error': 'Missing user_id or friend_id'}), 400
 
+
 @friend_api.route('/api/friends/pending_requests/<string:user_id>', methods=['GET'])
 def get_pending_requests(user_id):
     if user_id:
@@ -31,7 +33,8 @@ def get_pending_requests(user_id):
         return jsonify({'pending_requests': pending_requests}), 200
     else:
         return jsonify({'error': 'Missing user_id'}), 400
-    
+
+
 @friend_api.route('/api/friends/received_requests/<string:user_id>', methods=['GET'])
 def get_received_requests(user_id):
     if user_id:
@@ -39,7 +42,8 @@ def get_received_requests(user_id):
         return jsonify({'received_requests': received_requests}), 200
     else:
         return jsonify({'error': 'Missing user_id'}), 400
-    
+
+
 @friend_api.route('/api/friends/accepted_requests/<string:user_id>', methods=['GET'])
 def get_accepted_requests(user_id):
     if user_id:
@@ -47,6 +51,7 @@ def get_accepted_requests(user_id):
         return jsonify({'accepted_requests': accepted_requests}), 200
     else:
         return jsonify({'error': 'Missing user_id'}), 400
+
 
 @friend_api.route('/api/friends/accept_friend', methods=['POST'])
 def accept_friend():
@@ -59,6 +64,7 @@ def accept_friend():
     else:
         return jsonify({'error': 'Missing user_id or friend_id'}), 400
 
+
 @friend_api.route('/api/friends/reject_friend', methods=['POST'])
 def reject_friend():
     user_id = request.json.get('user_id')
@@ -70,6 +76,7 @@ def reject_friend():
     else:
         return jsonify({'error': 'Missing user_id or friend_id'}), 400
 
+
 @friend_api.route('/api/friends/remove_friend_request', methods=['POST'])
 def remove_friend_request():
     user_id = request.json.get('user_id')
@@ -80,7 +87,8 @@ def remove_friend_request():
         return jsonify(message), status
     else:
         return jsonify({'error': 'Missing user_id or friend_id'}), 400
-    
+
+
 @friend_api.route('/api/friends/delete_friend', methods=['DELETE'])
 def delete_friend():
     user_id = request.json.get('user_id')
