@@ -5,6 +5,10 @@ from flask_jwt_extended import JWTManager
 from backend.api.controllers.user_controller import user_api
 from backend.api.controllers.auth_controller import auth_api
 from backend.api.controllers.friend_controller import friend_api
+from backend.api.controllers.game_controller import game_api
+from backend.api.controllers.message_controller import message_api
+from backend.api.controllers.match_controller import match_api
+from backend.api.controllers.room_controller import room_api
 import os
 from backend.api.config.auth import AuthConfig
 from flask_cors import CORS
@@ -18,6 +22,10 @@ CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 app.register_blueprint(user_api)
 app.register_blueprint(auth_api)
 app.register_blueprint(friend_api)
+app.register_blueprint(game_api)
+app.register_blueprint(message_api)
+app.register_blueprint(match_api)
+app.register_blueprint(room_api)
 
 # Set JWT config
 app.config["JWT_SECRET_KEY"] = AuthConfig.jwt_secret_key

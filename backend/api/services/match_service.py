@@ -1,41 +1,50 @@
 from ..config.database import db
-from ..models.matches import Matches
+from ..models.match import Match
 from pydantic import ValidationError
 from bson.objectid import ObjectId
 
-# Get reference to 'matches' collection
-matches_collection = db.matches
+# Get reference to 'match' collection
+match_collection = db.match
 
 
-class MatchesService:
+class MatchService:
     @staticmethod
     def create_match(data):
         try:
-            # Check JSON data with Pydantic Matches Model
-            Matches(**data)
+            # Check JSON data with Pydantic match Model
+            Match(**data)
             # Save the match to the database, etc.
-            matches_collection.insert_one(data)
+            res = match_collection.insert_one(data)
             # Return a JSON response
-            return {"message": "Match added successfully"}, 200
+            return res.inserted_id, 200
         except ValidationError as e:
             # If the JSON data doesn't match the Pydantic model, return a 400 Bad Request response
             return {"message": str(e.errors()[0]['msg'])}, 400
 
     @staticmethod
-    def get_all_matches(matches_ids):
+    def get_all_matches():
         # Get all matches
-        matches = list(matches_collection.find(matches_ids))
-        if matches:
-            # Return matches list
-            return matches, 200
+        match = list(match_collection.find())
+        if match:
+            # Return match list
+            return match, 200
         else:
-            return {"message": "An error occurred while retrieving all matches: no matches in database"}, 400
+            return {"message": "An error occurred while retrieving all match: no match in database"}, 400
 
+    @staticmethod
+    def get_all_user_matches(user_id):
+        # Get all matches
+        match = list(match_collection.find({"_id": ObjectId(user_id)}))
+        if match:
+            # Return match list
+            return match, 200
+        else:
+            return {"message": "An error occurred while retrieving all match: no match in database"}, 400
     @staticmethod
     def get_one_match(id):
         # Retrieve one match
         object_id = ObjectId(id)
-        match = matches_collection.find_one({"_id": object_id})
+        match = match_collection.find_one({"_id": object_id})
         if match:
             # Return match
             return match, 200
@@ -46,7 +55,7 @@ class MatchesService:
     @staticmethod
     def delete_match(id):
         # Delete a match
-        result = matches_collection.delete_one({"_id": ObjectId(id)})
+        result = match_collection.delete_one({"_id": ObjectId(id)})
         if result.deleted_count == 1:
             return {"message": "Match deleted successfully"}, 200
         else:
@@ -55,7 +64,7 @@ class MatchesService:
     @staticmethod
     def update_match(id, data):
         # Update a match
-        result = matches_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
+        result = match_collection.update_one({"_id": ObjectId(id)}, {"$set": data})
         if result.modified_count == 1:
             return {"message": "Match updated successfully"}, 200
         else:

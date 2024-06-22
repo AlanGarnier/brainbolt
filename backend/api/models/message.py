@@ -4,8 +4,9 @@ from datetime import datetime
 from typing import Optional
 
 
-class Messages(BaseModel):
+class Message(BaseModel):
     _id: str
-    contenu: str
-    heure: datetime
-    user: Optional[str]
+    content: str
+    time: datetime
+    user: str
+    room: str
