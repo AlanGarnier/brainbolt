@@ -11,6 +11,7 @@ import { getPendingRequests } from '@/app/actions/friends/getPendingRequests';
 import { getReceivedRequests } from '@/app/actions/friends/getReceivedRequests';
 import { removeFriendRequest } from '@/app/actions/friends/removeFriendRequest';
 import { UserCheck, UserPlus } from 'lucide-react';
+import Link from 'next/link';
 
 
 
@@ -104,10 +105,20 @@ const SearchResults: React.FC<Props> = ({ results, errorMessage, user }) => {
                             className="w-10 h-10 rounded-full object-cover mr-3"
                         />
                         <div className="flex-grow">
+                        {result._id.$oid !== user.id && (
+                        <Link href={`/dashboard/user/${result._id.$oid}`}>
+                            <p className="text-primary-black dark:text-white">
+                                {result.pseudo} {' '}
+                                
+                            </p>
+                        </Link>
+                        )}
+                        {/* if the user is himself */}
+                        {result._id.$oid === user.id && (
                             <p className="text-primary-black dark:text-white">
                                 {result.pseudo} {' '}
                                 {result._id.$oid === user.id && <span className="text-primary-black/80 dark:text-white/80">(vous)</span>}
-                            </p>
+                            </p>)}
                         </div>
                         {result._id.$oid !== user.id && (
                             loading ? (
