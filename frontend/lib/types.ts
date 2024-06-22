@@ -15,3 +15,8 @@ export interface User {
     status: "pending" | "accepted";
     created_at: string;
   }
+
+  export interface Score {
+    game: string;
+    value: number;
+}
