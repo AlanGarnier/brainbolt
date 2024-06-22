@@ -3,6 +3,7 @@ import {
     LogOut,
     Settings,
     Users,
+    User,
   } from "lucide-react"
   import {
     DropdownMenu,
@@ -19,6 +20,7 @@ import Link from 'next/link';
 
 interface UserMenuProps {
   user: {
+    id: string;
     email: string;
     pseudo: string;
     picture: string;
@@ -48,6 +50,12 @@ const UserMenu: React.FC<UserMenuProps> = ({user}) => {
           {user?.email}
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="border-[0.5px] border-lighter-grey dark:border-dark-grey" />
+        <Link href={`/dashboard/profile/${user.id}`}>
+            <DropdownMenuItem className="focus:bg-lighter-grey dark:focus:bg-dark-grey cursor-pointer">
+              <User className="text-primary-black dark:text-white mr-2 h-4 w-4" />
+              <span className="text-primary-black dark:text-white">Profil</span>
+            </DropdownMenuItem>
+          </Link>
         <DropdownMenuGroup>
           <Link href="/dashboard/friends">
             <DropdownMenuItem className="focus:bg-lighter-grey dark:focus:bg-dark-grey cursor-pointer">
