@@ -22,9 +22,8 @@ def get_matches():
 
 @match_api.route("/api/<string:user_id>", methods=["GET"])
 def get_user_matches(user_id):
-    matches, status_code = match_service.get_all_matches(user_id)
+    matches, status_code = match_service.get_all_user_matches(user_id)
     return Response(response=dumps(matches), status=status_code, mimetype="application/json")
-
 
 @match_api.route("/api/match/<string:match_id>", methods=["GET", "DELETE", "PUT"])
 def get_match(match_id):

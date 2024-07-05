@@ -4,6 +4,7 @@ from flask import request
 from flask import jsonify
 from bson.json_util import dumps
 from flask import Blueprint
+from flask_jwt_extended import jwt_required
 from ..services.user_service import UserService
 
 user_api = Blueprint("users", __name__)
@@ -13,6 +14,7 @@ user_service = UserService
 
 # User routes
 @user_api.route("/api/users", methods=["GET", "POST"])
+@jwt_required()
 def users():
     if request.method == "GET":
         # Call the service
