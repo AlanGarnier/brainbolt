@@ -7,14 +7,18 @@ import {
   } from "@/components/ui/carousel"
 import React from 'react'
 import GamesCarouselCard from "./GamesCarouselCard"
-import { gameData } from '@/constants/data'
+import { Game } from "@/lib/types";
 
-const GamesCarousel = () => {
+interface GamesCarouselProps {
+    games: Game[];
+}
+
+const GamesCarousel = ({games}: GamesCarouselProps) => {
   return (
     <Carousel className="relative mb-10">
         <CarouselContent className="mb-10">
             {
-                gameData.map((game, index) => (
+                games.map((game, index) => (
                     <CarouselItem key={index} className="max-w-[380px] lg:basis-1/2">
                         <GamesCarouselCard game={game} />
                     </CarouselItem>

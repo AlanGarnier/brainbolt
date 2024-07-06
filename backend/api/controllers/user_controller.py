@@ -49,12 +49,14 @@ def one_users(id):
         _json = request.json
         message, status_code = user_service.update_user(id, _json)
         return Response(message.get('message'), status_code, mimetype="application/json")
-    
+
+
 @user_api.route("/api/users/search", methods=["GET"])
 def search_user():
     pseudo = request.args.get('pseudo')
     if not pseudo:
-        return Response(response=dumps({"message": "Pseudo query parameter is required"}), status=400, mimetype="application/json")
-    
+        return Response(response=dumps({"message": "Pseudo query parameter is required"}), status=400,
+                        mimetype="application/json")
+
     users, status_code = user_service.search_user_by_pseudo(pseudo)
     return Response(response=dumps(users), status=status_code, mimetype="application/json")
