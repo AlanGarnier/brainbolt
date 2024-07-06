@@ -15,3 +15,20 @@ export interface User {
     status: "pending" | "accepted";
     created_at: string;
   }
+
+export interface Game {
+    id: string;
+    name: string;
+    theme: string;
+    picture: string;
+  }
+
+  export interface GameSession {
+    id: string;
+    game_id: string;
+    player1_id: string;
+    player2_id: string;
+    score: number;
+    created_at: string;
+    updated_at: string;
+  }
