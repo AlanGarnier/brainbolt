@@ -41,7 +41,7 @@ class UserService:
             return user, 200
         else:
             # Return error message
-            return {"message": "An error occurred while retrieving the user " + id + ": user not found"}, 400
+            return {"message": "An error occurred while retrieving the user "  ": user not found"}, 400
 
     @staticmethod
     def find_user(data):

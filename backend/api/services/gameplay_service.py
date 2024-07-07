@@ -1,16 +1,19 @@
 from random import randint
 
 class Player():
-    def __init__(self, sid): #, user_id, user_pseudo
+    def __init__(self, sid, user_id, user_pseudo): #, user_id, user_pseudo
         self.id = sid
-        # self.user_id = user_id
-        # self.pseudo = user_pseudo
+        self.user_id = user_id
+        self.pseudo = user_pseudo
         self.gameRoomId = ''
         self.gameScore = ''
         self.gameStartIntention = False
 
     def set_user_name(self, pseudo):
         self.pseudo = pseudo
+
+    def set_sid(self, sid):
+        self.sid = sid
 
     def set_requested_game_room(self, room):
         self.gameRoomId = room
@@ -82,7 +85,16 @@ class GameRoom():
             if player.id == sid:
                 return idx
             idx +=1
+
+    def getPlayerSid(self):
+        return self.onlineClients[0].id
     
+    def userAlreadyInRoom(self, pseudo):
+        for player in self.onlineClients:
+            if player.pseudo == pseudo:
+                return self.roomID
+        return False
+
     def getClientsInRoom(self, requestType = 'byID'):
         connectedPlayers = []
 

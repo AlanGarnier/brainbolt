@@ -14,7 +14,6 @@ user_service = UserService
 
 # User routes
 @user_api.route("/api/users", methods=["GET", "POST"])
-@jwt_required()
 def users():
     if request.method == "GET":
         # Call the service

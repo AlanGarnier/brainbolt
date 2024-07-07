@@ -29,35 +29,22 @@ var socket = null
 
 joinButton.addEventListener('click', async function(event) {
   event.preventDefault();
-  socket.emit('transmit-id', {"id": get.currentUSER(id)})
   const connectionEstablished = await connectUser();
   if (connectionEstablished) {
     socket.emit('check-game-room');
-
   };
-    socket.emit('readyToStart');
-    userConnectedHandlers();
-    document.getElementById('greetingsBackground').classList.remove('show');
-  // }; 
+  socket.emit('readyToStart');
+  userConnectedHandlers();
+  document.getElementById('greetingsBackground').classList.remove('show');
 });
 
 function connectUser() {
   return new Promise(function (resolve, reject) {
-    socket = io()
+    socket = io('http://127.0.0.1:5000/', {
+            query: { id: "668027a37e7bacfd2e344b06" }
+        });
     socket.on('connection-established', result => {
       socket.off('connection-established');
-      resolve(result);
-    });
-    setTimeout(reject, "700");
-  });
-};
-
-function roomAvalability() {
-  return new Promise(function (resolve, reject) {
-    socket.emit('check-game-room', { username: playerName.value, room : roomName.value});
-    
-    socket.on('tooManyPlayers', result => {
-      socket.off('tooManyPlayers');
       resolve(result);
     });
     setTimeout(reject, "700");
@@ -118,16 +105,16 @@ function userConnectedHandlers() {
     let currentMark = (turn['recentPlayer'] == 0) ? CIRCLE_CLASS : X_CLASS;
     console.log(`Last Position by ${turn['recentPlayer']}, is ${turn['lastPos']}`);
 
-    let txtmsg = `Dernière position par ${turn['recentPlayer']}, est ${turn['lastPos']}`;
+    let txtmsg = `Dernière position par ${turn['username']}, est ${turn['lastPos']}`;
     addMsg(txtmsg, 'msg-container center', 'msg-content refer');
     placeMark(cellElements[turn['lastPos']], currentMark);
 
     if (checkWin(currentMark)) {
       endGame(false, currentMark);
-      socket.emit('game_status', {'status': 'Win' , 'player':turn['recentPlayer']});
+      socket.emit('game_status', {'status': 'Win' , 'player':turn['username']});
     } else if (isDraw()) {
       endGame(true);
-      socket.emit('game_status', {'status': 'Draw' , 'player':turn['recentPlayer']});
+      socket.emit('game_status', {'status': 'Draw' , 'player':turn['username']});
 
     }
     activeId = turn['next'];

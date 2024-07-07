@@ -1,38 +1,36 @@
 
-from flask_jwt_extended import decode_token
 from ..services.gameplay_service import *
 from flask import Blueprint, jsonify, render_template, session, request
 from flask_socketio import emit, join_room, disconnect, leave_room
 from backend.app import socketio, app
 from random import randint
 import uuid
-import random
-import string
+# import random
+# import string
 from ..services.match_service import MatchService
-from flask_jwt_extended.exceptions import NoAuthorizationError
 from ..services.user_service import UserService
 match_service = MatchService
 user_service = UserService
-def generate_random_pseudo():
-    adjectives = [
-        'Brave', 'Clever', 'Witty', 'Happy', 'Lucky', 'Swift', 'Bright', 'Wise', 'Fierce', 'Gentle'
-    ]
-    nouns = [
-        'Lion', 'Tiger', 'Eagle', 'Hawk', 'Wolf', 'Fox', 'Bear', 'Shark', 'Panther', 'Dragon'
-    ]
+# def generate_random_pseudo():
+#     adjectives = [
+#         'Brave', 'Clever', 'Witty', 'Happy', 'Lucky', 'Swift', 'Bright', 'Wise', 'Fierce', 'Gentle'
+#     ]
+#     nouns = [
+#         'Lion', 'Tiger', 'Eagle', 'Hawk', 'Wolf', 'Fox', 'Bear', 'Shark', 'Panther', 'Dragon'
+#     ]
     
-    # Select a random adjective and noun
-    adjective = random.choice(adjectives)
-    noun = random.choice(nouns)
+#     # Select a random adjective and noun
+#     adjective = random.choice(adjectives)
+#     noun = random.choice(nouns)
     
-    # Optionally add a random number or special character
-    number = str(random.randint(1, 99))  # Adds a number between 1 and 99
-    special_char = random.choice(string.punctuation)  # Adds a random special character
+#     # Optionally add a random number or special character
+#     number = str(random.randint(1, 99))  # Adds a number between 1 and 99
+#     special_char = random.choice(string.punctuation)  # Adds a random special character
     
-    # Combine parts to create the pseudo
-    pseudo = f"{adjective}{noun}{number}{special_char}"
+#     # Combine parts to create the pseudo
+#     pseudo = f"{adjective}{noun}{number}{special_char}"
     
-    return pseudo
+#     return pseudo
 
 activeGamingRooms = []
 connectedToPortalUsers = []
@@ -44,36 +42,12 @@ def index():
 @socketio.event
 def connect():
     global connectedToPortalUsers
-    # auth_header = request.headers.get('Authorization', None)
-    # if auth_header is None:
-    #     print("Authorization header not included")
-    #     return jsonify({"msg": "Missing Authorization Header"}), 401
-
-    # parts = auth_header.split()
-    # if parts[0].lower() != 'bearer':
-    #     print("Invalid Authorization Header")
-    #     return jsonify({"msg": "Invalid Authorization Header"}), 401
-    # elif len(parts) == 1:
-    #     print("Token not found")
-    #     return jsonify({"msg": "Token not found"}), 401
-    # elif len(parts) > 2:
-    #     print("Invalid Authorization Header")
-    #     return jsonify({"msg": "Invalid Authorization Header"}), 401
-
-    # token = parts[1]
-    # try:
-        # decoded_token = decode_token(token)
-        # user_id = decoded_token['sub']
-        # user, status_code = user_service.find_user_by_id(user_id)
-    
-    # player = Player(request.sid, user['_id'], user['pseudo'])
-    socketio.on("transmit-id")
-    player = Player(request.sid)
+    user_id = request.args.get('id')
+    user, status_code = user_service.find_user_by_id(user_id)
+    player = Player(request.sid, user['_id'], user['pseudo'])
     connectedToPortalUsers.append(player)
     emit('connection-established', 'go', to=request.sid)
-    # return jsonify(logged_in_as=user_id), 200
-    # except NoAuthorizationError as e:
-    #     return jsonify({"msg": "Invalid token"}), 401
+    return jsonify(logged_in_as=user_id), status_code
     
 
 
@@ -82,12 +56,27 @@ def checkGameRoom():
     global onlineClients
     global connectedToPortalUsers
     global activeGamingRooms
-    pseudo = generate_random_pseudo()
+    # pseudo = generate_random_pseudo()
     userIdx = getPlayerIdx(connectedToPortalUsers, request.sid)
-    if userIdx is not None:
-        connectedToPortalUsers[userIdx].pseudo = pseudo
+    # if userIdx is not None:
+    #     connectedToPortalUsers[userIdx].pseudo = pseudo
+    # for room in activeGamingRooms:
+    #     if room.roomAvailable():
+    #         current_player = getPlayer(request.sid)
+    #         inRoom = room.userAlreadyInRoom(current_player.pseudo)
+    #         if inRoom:
+    #             print("YOU ARE ALREADY IN A ROOM")
+    #             # player_sid = room.getPlayerSid()
+    #             # print(player_sid)
+    #             # request.sid = current_player.set_sid = player_sid
+    #             # room.add_player(connectedToPortalUsers[userIdx])
+    #             # join_room(room.roomID)
+    #             # session['username'] = connectedToPortalUsers[userIdx].pseudo
+    #             # session['room'] = room.roomID
+    #             return
+            
     for room in activeGamingRooms:
-        if room.roomAvailable():
+        if room.roomAvailable():        
             connectedToPortalUsers[userIdx].gameRoomId = room.roomID
             room.add_player(connectedToPortalUsers[userIdx])
             join_room(room.roomID)
@@ -98,9 +87,9 @@ def checkGameRoom():
     room = GameRoom(roomID)
     connectedToPortalUsers[userIdx].gameRoomId = room.roomID
     room.add_player(connectedToPortalUsers[userIdx])
+    print(f"added player with SID : {request.sid}")
     activeGamingRooms.append(room)
     join_room(room.roomID)
-    print(connectedToPortalUsers[userIdx].pseudo)
     session['username'] = connectedToPortalUsers[userIdx].pseudo
     session['room'] = room.roomID
 
@@ -122,7 +111,6 @@ def readyToStart():
     emit('clientId', (playerId, session.get('room')))
     emit('connected-Players', [onlineClients], to=session['room'])
     emit('status', {'clientsNbs': len(onlineClients), 'clientId': request.sid, 'pseudo': activeGamingRooms[roomIdx].get_player_name(playerId)}, to=session['room'])
-
 
 
 @socketio.event
@@ -160,6 +148,20 @@ def startGame():
     else:
         emit('waiting second player start', to=session['room'])
 
+# @socketio.on('turn')
+# def turn(data):
+#     global activeGamingRooms
+#     roomIdx = getRoomIdx(activeGamingRooms, session['room'])
+
+#     activePlayer = activeGamingRooms[roomIdx].get_swap_player()
+
+#     # global activePlayer
+#     print('turn by {}: position {}'.format(session['username'], data['pos']))
+      
+#     # ! TODO set the fields
+#     # notify all clients that turn happend and over the next active id
+#     emit('turn', {'recentPlayer':session['username'], 'lastPos': data['pos'], 'next':activePlayer}, to=session['room'])
+
 @socketio.on('turn')
 def turn(data):
     global activeGamingRooms
@@ -167,12 +169,13 @@ def turn(data):
 
     activePlayer = activeGamingRooms[roomIdx].get_swap_player()
 
+
     # global activePlayer
-    print('turn by {}: position {}'.format(session['username'], data['pos']))
+    print('turn by {}: position {}'.format(data['player'], data['pos']))
       
     # ! TODO set the fields
     # notify all clients that turn happend and over the next active id
-    emit('turn', {'recentPlayer':session['username'], 'lastPos': data['pos'], 'next':activePlayer}, to=session['room'])
+    emit('turn', {'recentPlayer':data['player'], 'username':session['username'], 'lastPos': data['pos'], 'next':activePlayer}, to=session['room'])
 
 @socketio.on('game_status')
 def game_status(msg):
@@ -205,7 +208,13 @@ def getRoomIdx(obj, roomName):
         if room.roomID == roomName:
             return idx
         idx +=1
-        
+
+def getPlayer(sid):
+    global connectedToPortalUsers
+    for player in connectedToPortalUsers:
+        if player.id == sid:
+            return player
+    return None
 
 @socketio.event
 def disconnect():
