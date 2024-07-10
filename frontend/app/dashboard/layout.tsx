@@ -2,6 +2,8 @@ import React, { ReactNode } from 'react'
 import DashboardLayout from './components/layout/DashboardLayout'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import { getCurrentUser } from '../actions/getCurrentUser'
+import ReactQueryProvider from '@/providers/ReactQueryProvider'
+import { SocketProvider } from '@/context/SocketContext'
 
 interface LayoutProps {
     children: ReactNode
@@ -16,16 +18,20 @@ const Layout = async ({children}: LayoutProps) => {
 
   return (
     <>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <DashboardLayout user={user}>
-          {children}
-        </DashboardLayout>
-      </ThemeProvider>
+      <ReactQueryProvider>
+        <SocketProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <DashboardLayout user={user}>
+              {children}
+            </DashboardLayout>
+          </ThemeProvider>
+        </SocketProvider>
+      </ReactQueryProvider>
     </>
   )
 }
