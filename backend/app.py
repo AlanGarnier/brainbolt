@@ -19,7 +19,12 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MONGO_URI'] = os.getenv('MONGO_DB_CONN_STRING')
 # CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 CORS(app)
+<<<<<<< HEAD
 socketio = SocketIO(app, cors_allowed_origins="*")
+=======
+# socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app)
+>>>>>>> d809185 (x)
 # Set all routes
 # app.register_blueprint(game_api)
 app.register_blueprint(user_api)
