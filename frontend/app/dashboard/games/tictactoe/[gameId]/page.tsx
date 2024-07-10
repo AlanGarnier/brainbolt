@@ -1,5 +1,6 @@
 import { getCurrentUser } from "@/app/actions/getCurrentUser";
-import TicTacToe from "@/app/dashboard/components/games/tictactoe/Tictactoe";
+import TicTacToe from "@/app/dashboard/components/games/tictactoe/TicTacToe";
+import { DashboardTitle } from "@/components/CustomTexts";
 import { User } from "@/lib/types";
 
 export default async function Page({params} : {params: {gameId: string}}) {
@@ -9,11 +10,9 @@ export default async function Page({params} : {params: {gameId: string}}) {
     return (
         <>
         <div className="w-11/12 mx-auto">
-            <h2>Morpion 🎮</h2>
-            <p>Le jeu du Morpion est un jeu de réflexion qui se joue à deux joueurs. Le but du jeu est de créer une ligne de trois symboles identiques, horizontalement, verticalement ou en diagonale.</p>
+            <DashboardTitle>Morpion 🎮</DashboardTitle>
         </div>
-        <div className="w-11/12 mx-auto">
-            <p>{gameId}</p>
+        <div className="w-11/12 mt-6 mx-auto">
             <TicTacToe user={user as User} gameId={gameId} />
         </div>
         </>
