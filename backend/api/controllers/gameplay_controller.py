@@ -11,6 +11,7 @@ from ..services.match_service import MatchService
 from ..services.user_service import UserService
 match_service = MatchService
 user_service = UserService
+from bson.objectid import ObjectId
 # def generate_random_pseudo():
 #     adjectives = [
 #         'Brave', 'Clever', 'Witty', 'Happy', 'Lucky', 'Swift', 'Bright', 'Wise', 'Fierce', 'Gentle'
@@ -40,9 +41,13 @@ def index():
     return render_template('index.html')
 
 @socketio.event
-def connect():
+def connect(auth):
     global connectedToPortalUsers
     user_id = request.args.get('id')
+    if not user_id or not ObjectId.is_valid(user_id):
+        emit('error', 'Invalid user ID')
+        disconnect()
+        return
     user, status_code = user_service.find_user_by_id(user_id)
     player = Player(request.sid, user['_id'], user['pseudo'])
     connectedToPortalUsers.append(player)
@@ -82,6 +87,7 @@ def checkGameRoom():
             join_room(room.roomID)
             session['username'] = connectedToPortalUsers[userIdx].pseudo
             session['room'] = room.roomID
+            emit('room-assigned', {'roomId': room.roomID}, to=request.sid)
             return
     roomID = str(uuid.uuid4())
     room = GameRoom(roomID)
@@ -92,6 +98,7 @@ def checkGameRoom():
     join_room(room.roomID)
     session['username'] = connectedToPortalUsers[userIdx].pseudo
     session['room'] = room.roomID
+    emit('room-assigned', {'roomId': room.roomID}, to=request.sid)
 
 @socketio.event
 def readyToStart():
