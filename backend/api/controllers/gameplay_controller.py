@@ -1,16 +1,15 @@
-
+from json import dumps
 from ..services.gameplay_service import *
-from flask import Blueprint, jsonify, render_template, session, request
+from flask import Blueprint, Response, jsonify, render_template, session, request
 from flask_socketio import emit, join_room, disconnect, leave_room
 from backend.app import socketio, app
 from random import randint
 import uuid
-# import random
-# import string
 from ..services.match_service import MatchService
 from ..services.user_service import UserService
 match_service = MatchService
 user_service = UserService
+<<<<<<< HEAD
 from bson.objectid import ObjectId
 # def generate_random_pseudo():
 #     adjectives = [
@@ -32,10 +31,12 @@ from bson.objectid import ObjectId
 #     pseudo = f"{adjective}{noun}{number}{special_char}"
     
 #     return pseudo
+=======
+>>>>>>> 6ca750e (changed some files)
 
 activeGamingRooms = []
 connectedToPortalUsers = []
-
+ 
 @app.route("/api/gameplay", methods=["GET"])
 def index():
     return render_template('index.html')
@@ -54,7 +55,6 @@ def connect(auth):
     emit('connection-established', 'go', to=request.sid)
     return jsonify(logged_in_as=user_id), status_code
     
-
 
 @socketio.on('check-game-room')
 def checkGameRoom():
@@ -155,20 +155,6 @@ def startGame():
     else:
         emit('waiting second player start', to=session['room'])
 
-# @socketio.on('turn')
-# def turn(data):
-#     global activeGamingRooms
-#     roomIdx = getRoomIdx(activeGamingRooms, session['room'])
-
-#     activePlayer = activeGamingRooms[roomIdx].get_swap_player()
-
-#     # global activePlayer
-#     print('turn by {}: position {}'.format(session['username'], data['pos']))
-      
-#     # ! TODO set the fields
-#     # notify all clients that turn happend and over the next active id
-#     emit('turn', {'recentPlayer':session['username'], 'lastPos': data['pos'], 'next':activePlayer}, to=session['room'])
-
 @socketio.on('turn')
 def turn(data):
     global activeGamingRooms
@@ -183,6 +169,11 @@ def turn(data):
     # ! TODO set the fields
     # notify all clients that turn happend and over the next active id
     emit('turn', {'recentPlayer':data['player'], 'username':session['username'], 'lastPos': data['pos'], 'next':activePlayer}, to=session['room'])
+
+@socketio.on('winner')
+def check_winner(data):
+    user, status_code = user_service.increments_user_wins(data['winner_id'])
+    return Response(response=dumps(user), status=status_code, mimetype="application/json")
 
 @socketio.on('game_status')
 def game_status(msg):

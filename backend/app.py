@@ -8,6 +8,7 @@ from backend.api.controllers.game_controller import game_api
 from backend.api.controllers.message_controller import message_api
 from backend.api.controllers.match_controller import match_api
 from backend.api.controllers.room_controller import room_api
+from backend.api.controllers.ranking_controller import ranking_api
 import os
 from flask_socketio import SocketIO
 from backend.api.config.auth import AuthConfig
@@ -28,6 +29,7 @@ app.register_blueprint(game_api)
 app.register_blueprint(message_api)
 app.register_blueprint(match_api)
 app.register_blueprint(room_api)
+app.register_blueprint(ranking_api)
 
 # Set JWT config
 app.config["JWT_SECRET_KEY"] = AuthConfig.jwt_secret_key

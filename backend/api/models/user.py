@@ -10,6 +10,7 @@ class User(BaseModel):
     email: EmailStr
     score: Optional[list]
     password: str
+    wins: Optional[int]
 
     @field_validator('password')
     def validate_password(cls, value):
