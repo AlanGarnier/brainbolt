@@ -9,7 +9,6 @@ from ..services.match_service import MatchService
 from ..services.user_service import UserService
 match_service = MatchService
 user_service = UserService
-<<<<<<< HEAD
 from bson.objectid import ObjectId
 # def generate_random_pseudo():
 #     adjectives = [
@@ -31,8 +30,6 @@ from bson.objectid import ObjectId
 #     pseudo = f"{adjective}{noun}{number}{special_char}"
     
 #     return pseudo
-=======
->>>>>>> 6ca750e (changed some files)
 
 activeGamingRooms = []
 connectedToPortalUsers = []
