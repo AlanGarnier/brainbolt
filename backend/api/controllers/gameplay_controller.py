@@ -59,6 +59,7 @@ def checkGameRoom():
     global connectedToPortalUsers
     global activeGamingRooms
     # pseudo = generate_random_pseudo()
+    print("HERE")
     userIdx = getPlayerIdx(connectedToPortalUsers, request.sid)
     # if userIdx is not None:
     #     connectedToPortalUsers[userIdx].pseudo = pseudo
@@ -76,9 +77,9 @@ def checkGameRoom():
     #             # session['username'] = connectedToPortalUsers[userIdx].pseudo
     #             # session['room'] = room.roomID
     #             return
-            
     for room in activeGamingRooms:
-        if room.roomAvailable():        
+        print("TRUE OR FALSE ::: " + str(room.roomAvailable()))
+        if room.roomAvailable():     
             connectedToPortalUsers[userIdx].gameRoomId = room.roomID
             room.add_player(connectedToPortalUsers[userIdx])
             join_room(room.roomID)
@@ -96,6 +97,7 @@ def checkGameRoom():
     session['username'] = connectedToPortalUsers[userIdx].pseudo
     session['room'] = room.roomID
     emit('room-assigned', {'roomId': room.roomID}, to=request.sid)
+
 
 @socketio.event
 def readyToStart():

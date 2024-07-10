@@ -17,14 +17,16 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MONGO_URI'] = os.getenv('MONGO_DB_CONN_STRING')
-# CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
-CORS(app)
-<<<<<<< HEAD
-socketio = SocketIO(app, cors_allowed_origins="*")
-=======
+# CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:3000"}})
+# CORS(app, resources={r"/*":{"origins":"*"}})
+# CORS(app)
 # socketio = SocketIO(app, cors_allowed_origins="*")
-socketio = SocketIO(app)
->>>>>>> d809185 (x)
+# socketio = SocketIO(app)
+
+
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+socketio = SocketIO(app, cors_allowed_origins="*")
+
 # Set all routes
 # app.register_blueprint(game_api)
 app.register_blueprint(user_api)
@@ -50,3 +52,4 @@ import backend.api.controllers.gameplay_controller
 
 if __name__ == '__main__':
     socketio.run(app)
+    # socketio.run(app, host='0.0.0.0', port=5000, debug=True)

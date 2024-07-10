@@ -78,7 +78,7 @@ function userConnectedHandlers() {
   });
 
   // Event handler for server sent data <player message>
-  socket.on('player message', updateChatView);
+  socket.on('player message', updateChatView);x
 
   // get the active player id and set up html for game
   socket.on('start', (data) => {
