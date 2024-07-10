@@ -17,12 +17,6 @@ from flask_cors import CORS
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MONGO_URI'] = os.getenv('MONGO_DB_CONN_STRING')
-# CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:3000"}})
-# CORS(app, resources={r"/*":{"origins":"*"}})
-# CORS(app)
-# socketio = SocketIO(app, cors_allowed_origins="*")
-# socketio = SocketIO(app)
-
 
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 socketio = SocketIO(app, cors_allowed_origins="*")
