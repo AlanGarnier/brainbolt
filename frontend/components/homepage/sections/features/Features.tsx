@@ -10,14 +10,14 @@ import { fadeIn, staggerContainer } from '@/lib/motion';
 
 const Features = () => {
   return (
-    <Section background="bg-section">
+    <Section id="features" background="bg-section">
       <motion.div 
         variants={staggerContainer(0, 0)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
         className="flex flex-col space-y-8 lg:space-y-20 items-center justify-center h-full text-center">
-        <TypingText text="| Les étapes" />
+        <TypingText text="| Comment ça marche ?" />
         <SectionTitle> Inscrivez-vous rapidement, plongez dans vos jeux préférés et suivez vos résultats en temps réel. Voici comment démarrer :</SectionTitle>
 
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -29,7 +29,7 @@ const Features = () => {
               height={96}
               src="/assets/img/icone-inscription.webp" 
               alt="Icône Inscription" />
-            <FeatureTitle>Sign Up</FeatureTitle>
+            <FeatureTitle>Inscrivez-vous</FeatureTitle>
 
             <FeatureText>Rejoignez notre communauté et accédez à des serveurs rapides. Jouez en coop avec vos amis dès aujourd'hui.</FeatureText>
           </motion.div>
@@ -42,7 +42,7 @@ const Features = () => {
               height={96}
               src="/assets/img/icone-joueur.webp" 
               alt="Icône Joueur" />
-            <FeatureTitle>Play Game</FeatureTitle>
+            <FeatureTitle>Jouez</FeatureTitle>
 
             <FeatureText>Jouez instantanément, en solo ou en coop, avec des performances optimales. Profitez d'une latence minimale pour une expérience fluide.</FeatureText>
           </motion.div>
@@ -55,7 +55,7 @@ const Features = () => {
               height={96}
               src="/assets/img/icone-resultats.webp" 
               alt="Icône Résultats" />
-            <FeatureTitle>See results</FeatureTitle>
+            <FeatureTitle>Suivez vos résultats</FeatureTitle>
 
             <FeatureText>Suivez vos stats et améliorez vos compétences en coop. Partagez vos succès avec vos amis et voyez la différence.</FeatureText>
           </motion.div>

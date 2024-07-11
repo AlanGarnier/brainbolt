@@ -13,7 +13,7 @@ import { fadeIn, staggerContainer } from "@/lib/motion";
 
 const Explore = () => {
   return (
-    <Section>
+    <Section id="explore">
       <motion.div 
         variants={staggerContainer(0,0)}
         initial="hidden"
@@ -24,7 +24,7 @@ const Explore = () => {
           <motion.div 
             variants={fadeIn('right', 'tween', 0.2, 1)}
             className="flex flex-col space-y-5 lg:space-y-10 mb-10 lg:mb-14">
-            <TypingText text="| En ligne" />
+            <TypingText text="| Explorez" />
             <SectionTitle>Plongez dans l'Aventure Multijoueur.</SectionTitle>
           </motion.div>
 
