@@ -1,18 +1,16 @@
-FROM python:3.11.6
+FROM python:3.9
 
-RUN mkdir -p /app
-
+# RUN mkdir -p app
 WORKDIR /backend
 
-COPY requirements.txt /backend/
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# ENV FLASK_APP=app.py
-# ENV FLASK_ENV=production
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=production
 
-COPY . /backend/
+COPY . .
 
 EXPOSE 5000
 
-# CMD ["flask", "run", "--host=0.0.0.0"]
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--worker-class", "eventlet", "-w", "1", "app:app"]

@@ -1,7 +1,7 @@
 from random import randint
 
 class Player():
-    def __init__(self, sid, user_id, user_pseudo): #, user_id, user_pseudo
+    def __init__(self, sid, user_id, user_pseudo):
         self.id = sid
         self.user_id = user_id
         self.pseudo = user_pseudo

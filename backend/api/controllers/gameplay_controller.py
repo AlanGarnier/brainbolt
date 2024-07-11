@@ -2,7 +2,7 @@ from json import dumps
 from ..services.gameplay_service import *
 from flask import Blueprint, Response, jsonify, render_template, session, request
 from flask_socketio import emit, join_room, disconnect, leave_room
-from backend.app import socketio, app
+from app import socketio, app
 from random import randint
 import uuid
 from ..services.match_service import MatchService

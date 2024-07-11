@@ -1,24 +1,25 @@
 # RESOURCES
 from flask import Flask
 from flask_jwt_extended import JWTManager
-from backend.api.controllers.user_controller import user_api
-from backend.api.controllers.auth_controller import auth_api
-from backend.api.controllers.friend_controller import friend_api
-from backend.api.controllers.game_controller import game_api
-from backend.api.controllers.message_controller import message_api
-from backend.api.controllers.match_controller import match_api
-from backend.api.controllers.room_controller import room_api
-from backend.api.controllers.ranking_controller import ranking_api
+from api.controllers.user_controller import user_api
+from api.controllers.auth_controller import auth_api
+from api.controllers.friend_controller import friend_api
+from api.controllers.game_controller import game_api
+from api.controllers.message_controller import message_api
+from api.controllers.match_controller import match_api
+from api.controllers.room_controller import room_api
+from api.controllers.ranking_controller import ranking_api
 import os
 from flask_socketio import SocketIO
-from backend.api.config.auth import AuthConfig
+from api.config.auth import AuthConfig
 from flask_cors import CORS
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['MONGO_URI'] = os.getenv('MONGO_DB_CONN_STRING')
 
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+# CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Set all routes
@@ -42,8 +43,7 @@ jwt = JWTManager(app)
 def check_api_health():
     return "OK"
 
-import backend.api.controllers.gameplay_controller
+import api.controllers.gameplay_controller
 
 if __name__ == '__main__':
-    socketio.run(app)
-    # socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000)
