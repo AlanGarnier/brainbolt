@@ -63,18 +63,18 @@ export const SectionTitle = ({children, className}: CustomTextProps) => {
     )
 }
 
-export const FeatureTitle = ({children, className}: CustomTextProps) => {
+export const FeatureTitle = ({children}: CustomTextProps) => {
     return (
-        <h3 className={`feature-title ${className}`}>
+        <h3 className="feature-title">
             {children}
         </h3>
             
     )
 }
 
-export const FeatureText = ({children, className}: CustomTextProps) => {
+export const FeatureText = ({children}: CustomTextProps) => {
     return (
-        <p className={`feature-text ${className}`}>
+        <p className="feature-text">
             {children}
         </p>
     )
@@ -125,15 +125,18 @@ export const DashboardSubtitle = ({children}: CustomTextProps) => {
             {children}
         </li >
     )
-}
-export const DashboardSecondaryTitle = ({children}: CustomTextProps) => {
-    return (
-        <h2 className="dashboard-secondary-title">
-            {children}
-        </h2>
-    )
-}
 
+    
+}
+export const DashboardSubtitleScore = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="dashboard-subtitle">
+            {children}
+        </h2 >
+    )
+
+    
+}
 export const DashboardText = ({children, className}: CustomTextProps) => {
     return (
         <p className={`dashboard-text ${className}`}>
