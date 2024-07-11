@@ -4,6 +4,7 @@ import { User } from '@/lib/types';
 import React, { useEffect } from 'react';
 import { useSocket } from '@/context/SocketContext';
 import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 
 interface TicTacToeProps {
   user: User;
@@ -11,13 +12,14 @@ interface TicTacToeProps {
 }
 
 const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
-  const { socket, board, setBoard, activeId, setActiveId, isXNext, setIsXNext, winner, setWinner, message, setMessage, connectedPlayers, clientId, playerSymbol } = useSocket();
+  const { socket, board, setBoard, activeId, setActiveId, isXNext, setIsXNext, winner, setWinner, message, setMessage, connectedPlayers, clientId, playerSymbol, showButton, setShowButton } = useSocket();
+  
   const router = useRouter();
 
   useEffect(() => {
     if (!socket) return;
 
-    console.log('User ID:', user.id);
+    // console.log('User ID:', user.id);
     socket.emit('join_room', { room: gameId, id: user.id });
 
     socket.on('turn', (turn) => {
@@ -29,7 +31,7 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
       });
       setIsXNext(turn['isXNext']);
       setActiveId(turn['next']);
-      router.refresh(); // Force component update
+      router.refresh();
     });
 
     return () => {
@@ -37,19 +39,19 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
     };
   }, [socket, gameId, user.id, clientId, playerSymbol]);
 
-  console.log('activeId:', activeId);
+  // console.log('activeId:', activeId);
 
   const handleClick = (index: number) => {
     if (!board[index] && !winner && activeId === clientId) {
       const newBoard = [...board];
       const currentMark = playerSymbol;
       newBoard[index] = currentMark;
-      console.log(`Position ${index} marquée par ${user.pseudo}`);
-      console.log('Board before update:', newBoard);
+      // console.log(`Position ${index} marquée par ${user.pseudo}`);
+      // console.log('Board before update:', newBoard);
       setBoard(newBoard);
       setIsXNext(!isXNext);
       socket?.emit('turn', { pos: index, player: clientId, board: newBoard, isXNext: !isXNext, room: gameId });
-      console.log('Turn event emitted');
+      // console.log('Turn event emitted');
 
       // Check for win or draw after the move
       if (checkWinner(newBoard, currentMark)) {
@@ -61,9 +63,9 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
         socket?.emit('game_status', { 'status': 'Draw', 'player': user.pseudo });
       }
       
-      router.refresh(); // Force component update
+      router.refresh(); 
     }
-    console.log('board index:', board[index]);
+    // console.log('board index:', board[index]);
   };
 
   const handleRestart = () => {
@@ -72,7 +74,7 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
     setWinner(null);
     socket?.emit('restart_game', { room: gameId });
     socket?.emit('startGame');
-    router.refresh(); // Force component update
+    router.refresh(); 
   };
 
   const checkWinner = (board: (string | null)[], currentClass: string) => {
@@ -99,8 +101,10 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
   const endGame = (draw: boolean, currentMark?: string) => {
     if (draw) {
       setMessage('Draw!');
+      setShowButton(true);
     } else {
-      setMessage(`${currentMark === 'circle' ? "O's" : "X's"} Wins!`);
+      // setMessage(`${currentMark === 'circle' ? "O's" : "X's"} Wins!`);
+
     }
   };
 
@@ -109,7 +113,20 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
   };
 
   return (
-    <div>
+    <div className="relative">
+      {winner && (
+      <div className="absolute mx-auto container text-center flex flex-col justify-center items-center space-y-8 rounded-lg z-[2] top-0 left-0 w-full h-full bg-gray-400 opacity-80">
+        <h2 className="text-[64px] dark:text-white text-primary-black font-bold">
+          {winner === 'Draw' ? 'Draw!' : `${winner} Wins!`}
+        </h2>
+        <Button
+          variant="white"
+          id="restartButton" 
+          onClick={handleRestart}>
+              Restart
+        </Button>
+      </div>
+      )}
       <div className="game-board-area">
         <div className="board" id="board">
           {board.map((cell, index) => (
@@ -117,13 +134,12 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
               key={index}
               className={`cell ${cell ? cell : ''}`}
               data-cell
-              onClick={() => handleClick(index)} // Pass index directly
+              onClick={() => handleClick(index)}
             >
-              {/* The cell content will be handled by the CSS class */}
             </div>
           ))}
         </div>
-        {winner && (
+        {/* {winner && (
           <div className="winning-message" id="winningMessage">
             <div data-winning-message-text>
               {winner === 'Draw' ? 'Draw!' : `${winner} Wins!`}
@@ -132,13 +148,15 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
               Restart
             </button>
           </div>
-        )}
-        <div className="game-board-area-button">
-          <button id="gameStart" onClick={handleRestart}>Start Game</button>
-        </div>
-        {message && <div className="game-message">{message}</div>}
+        )} */}
+        {showButton && (
+          <div className="game-board-area-button">
+            <button id="gameStart" onClick={handleRestart}>Start Game</button>
+          </div>
+          )}
+        {message && <div className={`game-message ${showButton ? 'mt-0' : 'mt-8'} dark:text-white text-primary-black`}>{message}</div>}
       </div>
-      <div id="connected_players">Online: {connectedPlayers.join(', ')}</div>
+      {/* <div id="connected_players">Online: {connectedPlayers.join(', ')}</div> */}
     </div>
   );
 };

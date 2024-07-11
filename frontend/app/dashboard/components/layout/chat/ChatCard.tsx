@@ -19,12 +19,12 @@ const ChatCard: React.FC<{ user: User }> = ({ user }) => {
     socket.emit('join_room', { room: gameId });
 
     socket.on('clientId', (id: string, room: string) => {
-      console.log('Received playerId:', id);
+      // console.log('Received playerId:', id);
       setClientId(id, room);
     });
 
     socket.on('connected-Players', (players: string[]) => {
-      console.log('Connected players:', players);
+      // console.log('Connected players:', players);
       getConnectedPlayers(players);
     });
 
@@ -49,19 +49,19 @@ const ChatCard: React.FC<{ user: User }> = ({ user }) => {
       socket.off('connected-Players');
       socket.off('player message');
       socket.off('disconnect-status');
-      socket.off('turn'); // Clean up the turn event listener
+      socket.off('turn'); 
     };
   }, [session?.user?.id, gameId, socket]);
 
   const setClientId = (id: string, room: string) => {
-    console.log('Received playerId:', id);
+    // console.log('Received playerId:', id);
     const modalRoomName = `Game room [${room}]`;
     document.querySelector('.modal-header-title')!.innerText = modalRoomName;
     addMsg(`Received playerId: ${id}`, 'msg-container center', 'msg-content refer');
   };
 
   const getConnectedPlayers = (players: string[]) => {
-    console.log('Connected players:', players);
+    // console.log('Connected players:', players);
     setConnectedPlayers(players);
   };
 

@@ -23,6 +23,8 @@ interface SocketContextProps {
   setClientId: React.Dispatch<React.SetStateAction<number | null>>;
   playerSymbol: string | null;
   setPlayerSymbol: React.Dispatch<React.SetStateAction<string | null>>;
+  showButton: boolean;
+  setShowButton: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SocketContext = createContext<SocketContextProps | undefined>(undefined);
@@ -41,6 +43,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [connectedPlayers, setConnectedPlayers] = useState<string[]>([]);
   const [clientId, setClientId] = useState<number | null>(null);
   const [playerSymbol, setPlayerSymbol] = useState<string | null>(null);
+  const [showButton, setShowButton] = React.useState<boolean>(true);
 
   useEffect(() => {
     if (!isConnectedRef.current && session?.user?.id) {
@@ -63,7 +66,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       });
 
       newSocket.on('connected-Players', (players: string[]) => {
-        console.log('Connected players:', players);
+        // console.log('Connected players:', players);
         setConnectedPlayers(players);
       });
 
@@ -76,25 +79,27 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       newSocket.on('start', (data) => {
         setActiveId(data['activePlayer']);
         const txtmsg = (data['activePlayer'] === session?.user?.id)
-          ? `Joueur actif : ${data['pseudo']} (à vous de jouer)`
-          : `Joueur actif : ${data['pseudo']} (tour de l'adversaire)`;
+          ? `Joueur actif : ${data['pseudo']}`
+          : `Joueur actif : ${data['pseudo']}`;
         setMessage(txtmsg);
-        console.log(txtmsg);
+        // console.log(txtmsg);
         setBoard(Array(9).fill(null));
         setIsXNext(true);
         setWinner(null);
+        setShowButton(false);
       });
 
       newSocket.on('waiting second player start', () => {
         const txtmsg = 'En attente du second joueur...';
+        setShowButton(true);
         setMessage(txtmsg);
-        console.log(txtmsg);
+        // console.log(txtmsg);
       });
 
       newSocket.on('turn', (turn) => {
         console.log('Received turn event:', turn);
         const currentMark = turn['recentPlayer'] === clientId ? playerSymbol : (playerSymbol === 'x' ? 'circle' : 'x');
-        console.log(`Dernière position par ${turn['username']}, est ${turn['lastPos']}`);
+        // console.log(`Dernière position par ${turn['username']}, est ${turn['lastPos']}`);
         setBoard((prevBoard) => {
           const newBoard = [...prevBoard];
           newBoard[turn['lastPos']] = currentMark;
@@ -138,11 +143,11 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return null;
   };
 
-  const endGame = (draw: boolean, currentMark?: string) => {
+  const endGame = (draw: boolean, currentMark?: string, username?: string) => {
     if (draw) {
       setMessage('Draw!');
     } else {
-      setMessage(`${currentMark === 'circle' ? "O's" : "X's"} Wins!`);
+      setMessage(`${username} Wins!`);
     }
   };
 
@@ -170,7 +175,9 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       clientId,
       setClientId,
       playerSymbol,
-      setPlayerSymbol
+      setPlayerSymbol,
+      showButton,
+      setShowButton
     }}>
       {children}
     </SocketContext.Provider>
