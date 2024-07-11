@@ -1,8 +1,13 @@
+import { DashboardTitle } from '@/components/CustomTexts'
 import React from 'react'
 
 const FavoritesPage = () => {
   return (
-    <div>Favorites</div>
+    <div>
+      <DashboardTitle>
+        Fonctionnalité à venir... 🚧
+      </DashboardTitle>
+    </div>
   )
 }
 

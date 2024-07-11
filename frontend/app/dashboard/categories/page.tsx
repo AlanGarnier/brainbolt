@@ -1,8 +1,11 @@
+import { DashboardTitle } from '@/components/CustomTexts'
 import React from 'react'
 
 const CategoriesPage = () => {
   return (
-    <div>Categories</div>
+    <DashboardTitle>
+        Fonctionnalité à venir... 🚧
+    </DashboardTitle>
   )
 }
 
