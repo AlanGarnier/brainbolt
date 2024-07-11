@@ -8,6 +8,7 @@ from ..services.game_service import GameService
 game_api = Blueprint("game", __name__)
 game_service = GameService
 
+
 # Game routes
 @game_api.route("/api/game", methods=["GET"])
 def get_games():
@@ -19,4 +20,3 @@ def get_games():
 def get_game(game_id):
     game, status_code = game_service.get_one_game(game_id)
     return Response(response=dumps(game), status=status_code, mimetype="application/json")
-

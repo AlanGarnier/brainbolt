@@ -59,9 +59,9 @@ const Header = () => {
               height={30} />
           </Link>
           <ul className="items-stretch hidden space-x-3 lg:flex">
-            <NavLink link="#">Lorem Ipsum</NavLink>
-            <NavLink link="#">Lorem Ipsum</NavLink>
-            <NavLink link="#">Lorem Ipsum</NavLink>
+            <NavLink link="#features">Comment ça marche ?</NavLink>
+            <NavLink link="#explore">Explorez</NavLink>
+            <NavLink link="#connect">Restez connectés</NavLink>
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex lg:space-x-5">
             <GradientBorderButton>
@@ -115,10 +115,9 @@ const Header = () => {
                 </div>
               </div>
               <ul className="flex flex-col space-y-8 pb-10">
-                <NavLink link="#">Lorem Ipsum</NavLink>
-                <NavLink link="#">Lorem Ipsum</NavLink>
-                <NavLink link="#">Lorem Ipsum</NavLink>
-                <NavLink link="#">Lorem Ipsum</NavLink>
+                <NavLink link="#">Comment ça marche ?</NavLink>
+                <NavLink link="#">Explorez</NavLink>
+                <NavLink link="#">Soyez connecté</NavLink>
               </ul>
               <div className="inline">
                 <Button

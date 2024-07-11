@@ -3,9 +3,9 @@ from ..models.room import Room
 from pydantic import ValidationError
 from bson.objectid import ObjectId
 
-
 # Get reference to 'room' collection
 room_collection = db.room
+
 
 class RoomService:
     @staticmethod
@@ -21,7 +21,6 @@ class RoomService:
             # If the JSON data doesn't match the Pydantic model, return a 400 Bad Request response
             return {"message": str(e.errors()[0]['msg'])}, 400
 
-
     @staticmethod
     def get_all_rooms():
         rooms = list(room_collection.find())
@@ -30,7 +29,7 @@ class RoomService:
             return rooms, 200
         else:
             return {"message": "An error occurred while retrieving all games: no games in database"}, 400
-            
+
     @staticmethod
     def get_one_room(id):
         # Retrieve one chat
