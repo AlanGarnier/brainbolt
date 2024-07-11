@@ -44,7 +44,7 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     if (!isConnectedRef.current && session?.user?.id) {
-      const newSocket = io('http://127.0.0.1:5000', {
+      const newSocket = io(`${process.env.NEXT_PUBLIC_API_URL}`, {
         query: { id: session.user.id }
       });
 
