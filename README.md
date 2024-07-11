@@ -46,4 +46,59 @@ npm install
 npm run dev
 ```
 
+# Backend
+
+## Prérequis
+
+Assurez-vous d'avoir les éléments suivants installés sur votre système :
+
+- Python (version 3.10 recommandée)
+- pip (gestionnaire de paquets Python)
+- virtualenv (pour créer des environnements virtuels)
+
+## Installation
+
+**Accéder à la racine du projet :**
+
+```bash
+cd brainbolt
+```
+
+**Créer un environnement virtuel :**
+
+```bash
+python -m venv .venv
+```
+
+**Activer l'environnement virtuel :**
+**Sur MacOS et Linux :**
+
+```bash
+source .venv/bin/activate
+```
+
+**Sur Windows :**
+
+```bash
+.venv\Scripts\activate
+```
+
+**Accéder au dossier backend :**
+
+```bash
+cd backend
+```
+
+**Installer les dépendances :**
+
+```bash
+pip install -r requirements.txt
+```
+
+**Exécution :**
+
+```bash
+flask run
+```
+
 - Amusez-vous bien à explorer le projet, et n'oubliez pas d'essayer de ne pas casser trop de trucs ! 😊
