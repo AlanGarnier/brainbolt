@@ -8,9 +8,8 @@ class User(BaseModel):
     pseudo: str
     picture: Optional[str]
     email: EmailStr
-    score: Optional[list]
     password: str
-    wins: Optional[int]
+    wins: Optional[int] = None
 
     @field_validator('password')
     def validate_password(cls, value):
