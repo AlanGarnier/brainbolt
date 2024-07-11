@@ -41,7 +41,7 @@ class UserService:
             return user, 200
         else:
             # Return error message
-            return {"message": "An error occurred while retrieving the user " + id + ": user not found"}, 400
+            return {"message": "An error occurred while retrieving the user "  ": user not found"}, 400
 
     @staticmethod
     def find_user(data):
@@ -53,6 +53,28 @@ class UserService:
         # Retrieve one user
         return users_collection.find(data, args)
 
+
+    @staticmethod
+    def get_users_sorted_by_wins():
+        users = users_collection.find().sort("wins", -1)
+        # Convert users to a list of dictionaries
+        users_list = list(users)
+        # Remove MongoDB ObjectId from the output (optional)
+        for user in users_list:
+            user["_id"] = str(user["_id"])
+
+        return jsonify(users_list)
+
+    @staticmethod
+    def increments_user_wins(winner_id):
+         if winner_id:
+            # Convert winner_id to ObjectId
+            winner_id = ObjectId(winner_id)
+            # Increment the 'wins' field by 1
+            users_collection.update_one({'_id': winner_id}, {'$inc': {'wins': 1}})
+            # Retrieve the updated user
+            updated_user = users_collection.find_one({'_id': winner_id})
+            return updated_user
     @staticmethod
     def delete_user(id):
         # Delete a user

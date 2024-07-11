@@ -4,18 +4,21 @@ import DashboardNav from './navbar/DashboardNav'
 import DashboardSidebar from './sidebar/DashboardSidebar';
 import ChatCard from './chat/ChatCard';
 import DashboardContent from './content/DashboardContent';
-import { User } from '@/lib/types';
+import { User } from 'next-auth';
+
 
 interface DashboardLayoutProps {
     children: React.ReactNode
     user: User
+    
 }
 
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({children, user}) => {
   const [open, setOpen] = React.useState(false);
   const handleButtonClick = () => {
     setOpen(!open);
-  }
+  };
+
   return (
     <>
         <DashboardNav user={user} />
@@ -26,7 +29,9 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({children, user}) => {
           <DashboardContent>
             {children}
           </DashboardContent>
-          <ChatCard />
+          <ChatCard
+            user={user}
+          />
         </div>
     </>
   )

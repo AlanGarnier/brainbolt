@@ -57,7 +57,7 @@ class AuthService:
                 "pseudo": data.get('pseudo'),
                 "email": data.get('email'),
                 "picture": data.get('picture', default_image),
-                "score": data.get('score'),
+                #"score": data.get('score'),
                 "password": password,
             }
             response = user_service.create_user(user_data)

@@ -1,5 +1,5 @@
 # Resources
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, make_response
 from flask import request
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import get_jwt_identity
@@ -26,6 +26,7 @@ def login():
     # Call login service
     _json = request.json
     response, status_code = auth_service.login(_json)
+    # print(response["access_token"])
     return jsonify(response), status_code
 
 

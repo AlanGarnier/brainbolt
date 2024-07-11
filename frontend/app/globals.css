@@ -41,6 +41,8 @@
 
 
     --radius: 0.5rem;
+    --cell-size: 150px;
+    --mark-size: calc(var(--cell-size) * .9);
   }
 
 
@@ -131,21 +133,13 @@
   .banner-text {
     @apply text-base font-jost font-normal;
   }
-  .feature-title {
-    @apply font-ubuntu font-bold text-[24px] lg:text-[32px] text-white;
- 
-  }
-    .feature-text {
-    @apply font-jost font-normal text-[16px] lg:text-[24px] text-white;
- 
-  }
 
   .feature-title {
-    @apply font-ubuntu font-bold text-lg lg:text-xl text-white;
+    @apply font-ubuntu font-bold text-lg lg:text-xl text-primary-black dark:text-white;
   }
 
   .feature-text {
-    @apply font-jost font-normal text-base text-white;
+    @apply font-jost font-normal text-base text-primary-black dark:text-white;
   }
 
   .nav-link {
@@ -191,6 +185,10 @@
     @apply text-base text-primary-black dark:text-white font-ubuntu font-bold mt-6; 
   }
 
+  .dashboard-secondary-title {
+    @apply text-lg lg:text-xl text-primary-black dark:text-white font-ubuntu font-bold mt-6; 
+  }
+
   .dashboard-text{
     @apply font-jost font-light text-[15px] lg:text-[15px] text-primary-black dark:text-white text-opacity-80 mt-6;
   }
@@ -198,6 +196,257 @@
   .input-search {
     @apply bg-white dark:bg-primary-black border font-jost text-primary-black/80 dark:text-white/80 md:text-sm rounded-lg  focus:ring-white block w-full pl-10 p-2.5 border-primary-black/60 dark:border-light-grey placeholder-primary-black/60 dark:placeholder-light-grey focus:outline-none focus:border-primary-black focus:border-[1.5px] dark:focus:border-white;
   }
+
+  .game-board-area {
+    @apply p-[2%] flex items-center justify-center flex-col dark:bg-primary-black bg-white rounded-lg shadow-md border-[0.5px] border-dark-grey h-[500px] w-full mb-3 relative justify-between;
+  }
+
+  .board {
+    @apply grid grid-cols-3 justify-center content-center items-center;
+  }
+
+  .cell {
+    @apply w-[150px] h-[150px] border border-black/40 dark:border-lighter-grey flex justify-center items-center relative cursor-pointer;
+  }
+  
+  .cell:first-child,
+  .cell:nth-child(2),
+  .cell:nth-child(3) {
+    border-top: none;
+  }
+  
+  .cell:nth-child(3n + 1) {
+    border-left: none;
+  }
+  
+  .cell:nth-child(3n + 3) {
+    border-right: none;
+  }
+  
+  .cell:last-child,
+  .cell:nth-child(8),
+  .cell:nth-child(7) {
+    border-bottom: none;
+  }
+  
+  .cell.x,
+  .cell.circle {
+    cursor: not-allowed;
+  }
+
+  /* .cell.x, .cell.circle {
+    @apply dark:before:text-white before:text-black;
+  } */
+  
+  
+  
+  .board.x .cell:not(.x):not(.circle):hover::before,
+  .board.circle .cell:not(.x):not(.circle):hover::before {
+    color: lightgrey;
+  }
+  
+  .cell.x::before,
+  .board.x .cell:not(.x):not(.circle):hover::before {
+    content: 'x';
+    position: absolute;
+    /* width: calc(var(--mark-size) * .15);
+    height: var(--mark-size); */
+    margin: auto;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: var(--mark-size);
+    color: #918EF4;
+    opacity: 0.8;
+  }
+
+  
+  
+  .cell.circle::before,
+  .board.circle .cell:not(.x):not(.circle):hover::before {
+    content: 'o';
+    position: absolute;
+    border-radius: 50%;
+    margin: auto;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: var(--mark-size);
+    color: #62C7E4;
+    opacity: 0.8;
+  }
+
+  .messaging-header {
+    width: 100%;
+    /* height: 15%; */
+    background-color: #f0f2f5;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+  }
+  
+  .modal-header {
+    align-items: center;
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 10px 0 10px;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+  
+  }
+  
+  .connected-players {
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    font-size: 11px;
+  }
+  
+  .chat-header {
+    border-radius: calc(.5rem - 1px) calc(.5rem - 1px) 0 0;
+  }
+  
+  #send_msg {
+    width: 100%;
+  
+  }
+
+  #message {
+    @apply w-[90%] text-[16px] py-2 m-0 text-left bg-inherit placeholder-primary-black/60 dark:placeholder-white/90 focus:outline-none;
+  }
+  
+
+  
+  #gameStart {
+    background-color: white;
+    padding: .25em .5em;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #555555;
+    color: #fff;
+    font-weight: bold;
+    padding: 14px 16px;
+    border: 1px solid #dddfe2;
+    font-size: 17px;
+    width: 100%;
+  }
+  
+  
+  .messaging-view button:focus {
+    border-color: #1877f2;
+    box-shadow: 0 0 0 2px #e7f3ff;
+    caret-color: #1877f2;
+  
+  }
+  
+  #logs-container{
+    margin-bottom: 12px;
+  }
+  
+  .logs.message {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  form.messaging {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    gap: 12px;
+    padding: 10px 10px;
+  
+  
+  }
+  
+  .msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: calc(100% - 120.5px);
+    width: 100%;
+    background-color: inherit;
+    /* border: 1px solid rebeccapurple; */
+    overflow-y: scroll;
+    scrollbar-width: thin;
+  
+  }
+  
+  .msg::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  
+  .message-in,
+  .message-out,
+  .message-refer,
+  .msg-container {
+    width: 100%;
+    margin-bottom: 6px;
+    padding-right: 2%;
+    padding-left: 2%;
+    z-index: inherit;
+  }
+  
+  .message-in {
+    align-items: center;
+  }
+  
+  .msg-container {
+    display: flex;
+    /* position: relative; */
+  }
+  
+  .msg-container.right {
+    justify-content: flex-end !important;
+  }
+  
+  .msg-container.center {
+    justify-content: center;
+  }
+  
+  
+  
+  .msg-content {
+    padding: 6px 7px 8px 9px;
+    border-radius: 7.5px;
+    max-width: fit-content;
+  }
+
+  .msg-content.sender {
+    background-color: #918EF4;
+  }
+  .msg-content.receiver {
+    background-color: #62C7E4;
+  }
+  
+  .msg-content.refer {
+    background-color: #fefefd;
+    font-size: 14px;
+  }
+  
+  .board-logs-container {
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 85%;
+    /* border: 1px solid blue; */
+    margin: auto;
+    padding: 2%;
+    /* background-image: url('../assets/tic-tac-toe.webp'); */
+  
+  }
+  
   
 }
 
