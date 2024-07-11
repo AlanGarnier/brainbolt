@@ -67,7 +67,7 @@ const DashboardNav: React.FC<DashboardNavProps> = ({user}) => {
             <ToggleThemeDropdown />
             
             {/* Notifications */}
-            <NotificationsList />
+            {/* <NotificationsList /> */}
             
             {/* User Profile Menu */}
             <UserMenu user={user} />
