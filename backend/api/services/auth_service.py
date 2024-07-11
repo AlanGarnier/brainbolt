@@ -1,7 +1,23 @@
-
 from ..services.user_service import UserService
 from flask_jwt_extended import create_access_token
 import bcrypt
+import io
+import urllib.request
+from PIL import Image
+
+
+def is_valid_image_url(url):
+    try:
+        # Open the image URL
+        with urllib.request.urlopen(url) as response:
+            img_data = response.read()
+        # Check if the content type indicates it's an image
+        img = Image.open(io.BytesIO(img_data))
+        img.verify()  # Verify if it's a valid image
+        return True
+    except Exception as e:
+        return False
+
 
 # Call UserService
 user_service = UserService
@@ -22,18 +38,25 @@ class AuthService:
     def register(data):
         # Try to register a user
         pseudo = data.get('pseudo')
+        email = data.get('email')
         # Check if the user is already registered
-        already_registered = user_service.find_user({'pseudo': pseudo})
-        if already_registered is not None:
+        if user_service.find_user({'pseudo': pseudo}) and user_service.find_user({'email': email}):
+            return {"message": "Pseudo and email already exists. Choose a different one."}, 400
+        elif user_service.find_user({'pseudo': pseudo}):
             return {"message": "Pseudo already exists. Choose a different one."}, 400
+        elif user_service.find_user({'email': email}):
+            return {"message": "Email already exists. Choose a different one."}, 400
         else:
+            if data.get('picture') and not is_valid_image_url(data.get('picture')):
+                return {"message": "Image invalid"}, 400
+            default_image = 'https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg'
             # Password encryption before registration
             password = crypt_password(data.get('password'))
             # Set user data
             user_data = {
                 "pseudo": data.get('pseudo'),
                 "email": data.get('email'),
-                "picture": data.get('picture'),
+                "picture": data.get('picture', default_image),
                 "score": data.get('score'),
                 "password": password,
             }
@@ -47,10 +70,10 @@ class AuthService:
         login = data.get('email')
         password = data.get('password')
         # Get user from credentials
-        user = user_service.find_user_credentials({"email": login}, {'_id': 1, "email": 1, "password": 1})
-        # Check is the user is found
+        user = user_service.find_user_credentials({"email": login}, {'_id': 1, "email": 1, "password": 1, "pseudo": 1, "picture": 1})
+        # Check if the user is found
         if user is None:
-            message = {"User not found. Check your login and try again"}
+            message = {"message": "User not found. Check your login and try again"}
             return message, 400
         else:
             # Encode password entered by user
@@ -58,11 +81,24 @@ class AuthService:
             # Check between password entered and password in database
             result = bcrypt.checkpw(encoded_pwd, user[0]['password'])
             if not result:
-                message = {"The entered password is incorrect. Check your password and try again"}
+                message = {"message": "The entered password is incorrect. Check your password and try again"}
                 return message, 401
             else:
                 # Make user authentication
                 user_id = str(user[0]['_id'])
                 access_token = create_access_token(identity=user_id)
-                print(access_token)
-                return access_token, 200
+                user_info = {
+                    "id": user_id,
+                    "email": user[0]['email'],
+                    "pseudo": user[0]['pseudo'],
+                    "picture": user[0]['picture']
+                }
+                return {"user": user_info, "access_token": access_token}, 200
+
+    @staticmethod
+    def check_credentials(field, value):
+        user = user_service.find_user({field: value})
+        if user:
+            return {"isAvailable": False}
+        else:
+            return {"isAvailable": True}

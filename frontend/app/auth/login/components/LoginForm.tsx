@@ -10,6 +10,9 @@ import { SignInFormSchema } from '@/lib/schemas';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation'
 
 type Inputs = z.infer<typeof SignInFormSchema>;
 
@@ -22,8 +25,22 @@ const LoginForm = () => {
         resolver: zodResolver(SignInFormSchema),
     });
 
-    const onSubmit: SubmitHandler<Inputs> = data => {
-        // Handle form submission here
+    const router = useRouter();
+
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        const result = await signIn("credentials", {
+            redirect: false,
+            email: data.email,
+            password: data.password,
+          });
+      
+          if (result?.error) {
+            toast.error(result.error);
+          } else {
+            toast.success("Connexion réussie");
+            router.refresh();
+            router.push('/dashboard');
+          }
     };
 
     return (
@@ -104,7 +121,7 @@ const LoginForm = () => {
                     <p>Vous n’avez pas de compte ?
 
                         <Link href="/auth/signup">
-                            <span className="font-semibold font-jost  bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent  bg-clip-text text-[16px] group-hover:text-white  "> Inscrivez-vous ici </span>
+                            <span className="font-semibold font-jost bg-gradient-to-r from-primary-purple to-primary-skyblue text-transparent bg-clip-text text-[16px]"> Inscrivez-vous ici </span>
                         </Link>
                     </p>
                 </div>

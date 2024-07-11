@@ -182,6 +182,23 @@
   .bg-features {
     @apply bg-[url('/assets/img/half-circle.png')] bg-no-repeat bg-cover;
   }
+
+  .dashboard-title {
+    @apply  text-3xl lg:text-3xl text-primary-black dark:text-white font-ubuntu font-bold; 
+  }
+
+  .dashboard-subtitle {
+    @apply text-base text-primary-black dark:text-white font-ubuntu font-bold mt-6; 
+  }
+
+  .dashboard-text{
+    @apply font-jost font-light text-[15px] lg:text-[15px] text-primary-black dark:text-white text-opacity-80 mt-6;
+  }
+  
+  .input-search {
+    @apply bg-white dark:bg-primary-black border font-jost text-primary-black/80 dark:text-white/80 md:text-sm rounded-lg  focus:ring-white block w-full pl-10 p-2.5 border-primary-black/60 dark:border-light-grey placeholder-primary-black/60 dark:placeholder-light-grey focus:outline-none focus:border-primary-black focus:border-[1.5px] dark:focus:border-white;
+  }
+  
 }
 
   

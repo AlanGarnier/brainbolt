@@ -1,4 +1,7 @@
 import React, { ReactNode } from 'react'
+import DashboardLayout from './components/layout/DashboardLayout'
+import { ThemeProvider } from '@/providers/ThemeProvider'
+import { getCurrentUser } from '../actions/getCurrentUser'
 
 export const metadata = {
   title: 'Dashboard - Votre espace personnel sur Brainbolt',
@@ -9,11 +12,25 @@ interface LayoutProps {
     children: ReactNode
 }
 
-const Layout = ({children}: LayoutProps) => {
+const Layout = async ({children}: LayoutProps) => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <>
-        <h2>Dashboard</h2>
-        {children}
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <DashboardLayout user={user}>
+          {children}
+        </DashboardLayout>
+      </ThemeProvider>
     </>
   )
 }
