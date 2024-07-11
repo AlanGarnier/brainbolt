@@ -47,7 +47,7 @@ const UserMenu: React.FC<UserMenuProps> = ({user}) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 bg-white dark:bg-primary-black border-lighter-grey dark:border-dark-grey">
         <DropdownMenuLabel className="text-primary-black dark:text-white">
-          {user?.email}
+          {user?.pseudo}
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="border-[0.5px] border-lighter-grey dark:border-dark-grey" />
         <Link href={`/dashboard/profile/${user.id}`}>

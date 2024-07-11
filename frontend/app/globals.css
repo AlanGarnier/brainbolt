@@ -133,21 +133,13 @@
   .banner-text {
     @apply text-base font-jost font-normal;
   }
-  .feature-title {
-    @apply font-ubuntu font-bold text-[24px] lg:text-[32px] text-white;
- 
-  }
-    .feature-text {
-    @apply font-jost font-normal text-[16px] lg:text-[24px] text-white;
- 
-  }
 
   .feature-title {
-    @apply font-ubuntu font-bold text-lg lg:text-xl text-white;
+    @apply font-ubuntu font-bold text-lg lg:text-xl text-primary-black dark:text-white;
   }
 
   .feature-text {
-    @apply font-jost font-normal text-base text-white;
+    @apply font-jost font-normal text-base text-primary-black dark:text-white;
   }
 
   .nav-link {
@@ -191,6 +183,10 @@
 
   .dashboard-subtitle {
     @apply text-base text-primary-black dark:text-white font-ubuntu font-bold mt-6; 
+  }
+
+  .dashboard-secondary-title {
+    @apply text-lg lg:text-xl text-primary-black dark:text-white font-ubuntu font-bold mt-6; 
   }
 
   .dashboard-text{

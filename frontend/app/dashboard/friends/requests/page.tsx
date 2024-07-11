@@ -6,6 +6,11 @@ import { getReceivedRequests } from "@/app/actions/friends/getReceivedRequests";
 import { receivedColumnsData } from "../../components/friends/table/columns/receivedColumnsData";
 import { pendingColumnsData } from "../../components/friends/table/columns/pendingColumnsData";
 
+export const metadata = {
+  title: 'Gérer les demandes en amis - Dashboard',
+  description: 'Gérer les demandes en amis sur votre dashboard',
+};
+
 export default async function FriendsRequestsPage() {
   const user = await getCurrentUser();
 

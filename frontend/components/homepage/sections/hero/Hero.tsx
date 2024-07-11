@@ -13,8 +13,9 @@ const Hero = () => {
         <Badge>Made by gamers for gamers&nbsp;<Sparkles className="w-4 fill-white" /></Badge>
       </div>
       <div className="flex flex-col mx-auto lg:max-w-[796px] space-y-[40px] items-center justify-center h-full text-center">
-        <HeroTitle>Lorem ipsum dolor sit amet consectetur</HeroTitle>
-        <HeroSubtitle>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod. Proin fermentum mi vitae diam id. Purus est urna lectus malesuada et gravida porttitor fames. Nullam aliquet aliquam eget malesuada id sed rhoncus. Est metus elementum odio felis facilisi non natoque cras vitae.  </HeroSubtitle>
+        <HeroTitle>Vivez une expérience de jeu fluide et rapide</HeroTitle>
+        <HeroSubtitle>Découvrez notre plateforme de jeux vidéo en ligne, conçu pour offrir des performances inégalées et une expérience de jeu coopératif fluide avec vos amis.
+        </HeroSubtitle>
         <Button 
           asChild 
           className="glow">

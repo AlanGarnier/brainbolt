@@ -98,16 +98,16 @@ const LoginForm = () => {
                         </Link>
                     </Button>                    
                 </motion.div>
-                <div className="flex items-center justify-center text-gray-500 mt-4">
+                {/* <div className="flex items-center justify-center text-gray-500 mt-4">
                     <hr className="flex-grow border-gray-500" />
                     <span className="mx-4">ou</span>
                     <hr className="flex-grow border-gray-500" />
-                </div>
+                </div> */}
 
 
                 {/* Bouton "Se connecter avec Google" */}
 
-                <button className="flex items-center justify-center w-full py-4 bg-gray-800 text-white rounded-md">
+                {/* <button className="flex items-center justify-center w-full py-4 bg-gray-800 text-white rounded-md">
                     <Image
                         width={20}
                         height={20}
@@ -115,9 +115,9 @@ const LoginForm = () => {
                         alt="Favicon Brainbolt"
                         className="mr-2" />
                     <span className="ml-2">Se connecter avec Google</span>
-                </button>
+                </button> */}
                 {/* Vous n'avez pas de compte */}
-                <div className="text-center mt-4">
+                <div className="text-left mt-4">
                     <p>Vous n’avez pas de compte ?
 
                         <Link href="/auth/signup">

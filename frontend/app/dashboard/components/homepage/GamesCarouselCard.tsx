@@ -52,17 +52,24 @@ const GamesCarouselCard: React.FC<GamesCarouselCardProps> = ({ game }) => {
       onMouseLeave={handleMouseLeave} 
       className="relative overflow-hidden max-w-[300px] cursor-pointer">
       <Image 
-        className='object-cover rounded-xl'
+        className={`object-cover rounded-xl ${game.name === "Ping Pong" && "grayscale-[80%]"}`}
         width={300}
         height={380}
         src={game.picture} 
         alt={game.name} 
       />
-      <h3 className="ml-1">{game.name}</h3>
       <div className={`absolute ${isHovered ? 'translate-y-0' : 'translate-y-[100%]'} transition-transform duration-300 max-w-[300px] h-[197px] bottom-0 p-4 bg-secondary-black rounded-b-xl`}>
         <div className="flex flex-col justify-between space-y-2">
           <h3 className="font-semibold text-white text-lg font-jost">{game.name}</h3>
-          <p className="text-white text-sm font-jost">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget mi nec dolor ultricies.</p>
+          <p className="text-white text-sm font-jost">
+            {
+              game.name === 'Morpion' ? (
+                'Découvrez le jeu du Morpion ! Empêchez votre adversaire de gagner en alignant 3 symboles. 🎮'
+              ) : (
+                'Découvrez le jeu du Ping Pong ! Jouez contre un autre joueur en ligne. Surveillez la balle et renvoyez-la à votre adversaire. 🏓'
+              )
+            }
+          </p>
           <div>
             {game.name === 'Morpion' ? (
               <Button
