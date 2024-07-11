@@ -23,24 +23,20 @@ export interface DashboardBottomLinksInterface {
 
 export const gameData: GameDataInterface[] = [
     {
-        title: 'Missile Command',
-        img: '/assets/img/missile-command.webp',
+        title: 'Morpion',
+        img: '/assets/img/morpion.webp',
     },
     {
-        title: 'Chess',
-        img: '/assets/img/chess.webp',
+        title: 'Ping Pong',
+        img: '/assets/img/ping-pong.webp',
     },
     {
-        title: 'Tic Tac Toe',
-        img: '/assets/img/tic-tac-toe.webp',
+        title: 'Space Invaders',
+        img: '/assets/img/space-invaders.webp',
     },
     {
-        title: 'Sudoku',
-        img: '/assets/img/sudoku.webp',
-    },
-    {
-        title: '5 Roll',
-        img: '/assets/img/5-roll.webp',
+        title: 'Solitaire',
+        img: '/assets/img/solitaire.webp',
     }
 ]
 

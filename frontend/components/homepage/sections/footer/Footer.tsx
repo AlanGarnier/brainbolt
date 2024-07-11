@@ -22,8 +22,7 @@ const Footer = () => {
             {/* Texte */}
             <ul className="flex flex-col lg:flex-row justify-center items-center lg:space-x-7">
               <li>Plan du site</li>
-              <li>Plan du site</li>
-              <li>Plan du site</li>
+              <li>Politique de confidentialité</li>
             </ul>
             {/* Bouton */}
             <div className="items-center flex-shrink-0 hidden lg:flex lg:space-x-5">
