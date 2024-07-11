@@ -44,7 +44,9 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     if (!isConnectedRef.current && session?.user?.id) {
+
       const newSocket = io(`${process.env.NEXT_PUBLIC_API_URL}`, {
+        transports: ['websocket'],
         query: { id: session.user.id }
       });
 

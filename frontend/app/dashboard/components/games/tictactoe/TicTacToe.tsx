@@ -55,6 +55,7 @@ const TicTacToe: React.FC<TicTacToeProps> = ({ user, gameId }) => {
       if (checkWinner(newBoard, currentMark)) {
         endGame(false, currentMark);
         socket?.emit('game_status', { 'status': 'Win', 'player': user.pseudo });
+        socket?.emit('winner', {'winner_id': user.id})
       } else if (isDraw(newBoard)) {
         endGame(true);
         socket?.emit('game_status', { 'status': 'Draw', 'player': user.pseudo });

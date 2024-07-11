@@ -25,10 +25,19 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/public ./public
 
-CMD npm start
+CMD ["npm", "start"]
 
 FROM base as dev
 ENV NODE_ENV=development
 RUN npm install 
 COPY . .
-CMD npm run dev
+CMD ["npm", "run", "dev"]
+
+# FROM node:18
+
+# WORKDIR /app
+# COPY package*.json ./
+# RUN npm install
+# COPY . .
+# EXPOSE 3000
+# CMD ["npm", "run", "dev"]
