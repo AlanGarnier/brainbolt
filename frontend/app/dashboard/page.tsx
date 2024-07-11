@@ -2,7 +2,7 @@ import React from 'react'
 import GamesCarousel from './components/homepage/GamesCarousel'
 import { getGames } from '../actions/games/getGames'
 import { Game } from '@/lib/types';
-import { DashboardSecondaryTitle, DashboardTitle, FeatureText, FeatureTitle } from '@/components/CustomTexts';
+import { DashboardTitle, FeatureText, FeatureTitle } from '@/components/CustomTexts';
 import { getCurrentUser } from '../actions/getCurrentUser';
 import Image from 'next/image';
 
@@ -20,7 +20,7 @@ const DashboardPage = async () => {
         <DashboardTitle>Bienvenue {user?.pseudo}</DashboardTitle>
       </div>
       <div className="mb-6">
-        <DashboardSecondaryTitle>Jeux disponibles 🎮</DashboardSecondaryTitle>
+        <h2 className="text-lg lg:text-xl text-primary-black dark:text-white font-ubuntu font-bold mt-6">Jeux disponibles 🎮</h2>
       </div>
       
       <div className="pl-0 lg:pr-10">
@@ -28,7 +28,7 @@ const DashboardPage = async () => {
       </div>
 
       <div className="mb-6">
-        <DashboardSecondaryTitle>Fonctionnalités 🚀</DashboardSecondaryTitle>
+        <h3 className="text-lg lg:text-xl text-primary-black dark:text-white font-ubuntu font-bold mt-6">Fonctionnalités 🚀</h3>
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
