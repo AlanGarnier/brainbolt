@@ -128,6 +128,15 @@ export const DashboardSubtitle = ({children}: CustomTextProps) => {
 
     
 }
+export const DashboardSubtitleScore = ({children}: CustomTextProps) => {
+    return (
+        <h2 className="dashboard-subtitle">
+            {children}
+        </h2 >
+    )
+
+    
+}
 export const DashboardText = ({children, className}: CustomTextProps) => {
     return (
         <p className={`dashboard-text ${className}`}>
