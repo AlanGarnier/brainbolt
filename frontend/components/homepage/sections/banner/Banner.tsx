@@ -16,8 +16,8 @@ const Banner = () => {
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
         className="flex flex-col mx-auto lg:max-w-[796px] space-y-[40px] items-center justify-center h-full text-center">
-        <BannerTitle>Lorem ipsum dolor sit amet consectetur.</BannerTitle>
-        <BannerText>Lorem ipsum dolor sit amet consectetur. Euismod nam in ut nulla nulla euismod.</BannerText>
+        <BannerTitle>Profitez des meilleures performances, d'une latence minimale et d'une stabilité exceptionnelle.</BannerTitle>
+        <BannerText>Cliquez ci-dessous pour tester notre plateforme et vivre l'expérience ultime !</BannerText>
         <motion.div 
           variants={fadeIn('up', 'tween', 0.6, 1)}
           className="inline">

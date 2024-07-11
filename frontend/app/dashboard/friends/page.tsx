@@ -4,6 +4,11 @@ import { getCurrentUser } from '@/app/actions/getCurrentUser'
 import { getFriends } from '@/app/actions/friends/getFriends'
 import { friendsColumnsData } from '../components/friends/table/columns/friendsColumnsData'
 
+export const metadata = {
+  title: 'Gérez vos amis - Connectez-vous et jouez avec vos amis sur Brainbolt',
+  description: 'Découvrez la fonctionnalité d\'amis sur Brainbolt. Ajoutez, gérez et jouez avec vos amis en ligne.',
+};
+
 export default async function FriendsPage () {
 
   const user = await getCurrentUser();
